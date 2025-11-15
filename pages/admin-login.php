@@ -1,6 +1,8 @@
 <?php 
   include("../config/database.php");
 ?>
+
+<!--HTML STRUCTURE-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +14,10 @@
   
 </body>
 </html>
+<!-- END OF HTML STRUCTURE -->
+
+
+
 <?php 
 
   mysqli_close($conn);
