@@ -30,6 +30,7 @@
   if($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the method is post if yes
     // Variable for user
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+    // Variable for username
     $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
     // Variable for password
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
