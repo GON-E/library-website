@@ -1,6 +1,6 @@
 <?php 
   include("../config/database.php");
-?>  
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,18 +49,30 @@
       } else {
         $hash = password_hash(password: $password, algo: PASSWORD_DEFAULT); // hash
 
-        // SQL QUERY Insert data in the database
-        $sql = "INSERT INTO users (email,username,password) 
-        VALUES ('$email','$username','$hash')"; 
+        // SQL QUERY Prepared Statement (Avoid Sql-injection)
+        $sql = "INSERT INTO users (email,username,password)
+        VALUES (?,?,?)";
+
+        // Preparing to send the SQL without the real data
+        $stmt = $conn -> prepare($sql);
+        
+        // If preparation failed
+        if (!$stmt){
+          die('Preparation Failed: ' .$conn -> error);
+        }
+
+        // Attach the real PHP variable s stands for string
+        $stmt -> bind_param('sss',$email,$username, $hash);
 
       try { // Try query
-        mysqli_query($conn, $sql);
-        echo "You are now Registered!";   
+        // Send the query
+        $stmt -> execute();
+        header('Location: ');
       }catch(mysqli_sql_exception $err) { // Catch Error
         if($err -> getCode() == 1062){
           echo "Email already signed up!";
         } else {
-          echo "An Error Occured, Please Try Again!". $err -> getMessage();
+          echo "An Error Occured, Please Try Again!";
         }
       }
     }
