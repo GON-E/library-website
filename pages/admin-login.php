@@ -9,6 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Login</title>
+  <link rel="stylesheet" href="admin-login.css">
 </head>
 <body>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
@@ -37,14 +38,14 @@
       } catch(mysqli_sql_exception){
         echo "An Error Occured!";
       }
-
+      
       if(mysqli_num_rows($result) > 0){
         echo "Admin Found";
         $storedPassword = null;
         $row = mysqli_fetch_assoc($result);
 
         $storedPassword = $row['password'];
-
+        
         if(password_verify($password, $storedPassword)){
           $_SESSION['admin'] = $row['admin'];
 
