@@ -1,3 +1,87 @@
-/* EWAN KO */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:  rgb(30, 55, 30);
+  margin: 0;
+  padding: 6%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h3 {
+  margin: 0;
+}
 
-/**/
+input {
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  outline: solid 1px;
+}
+
+.form-container{
+  text-align: center;
+  padding: 20px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-height: 60vh;
+  height: auto;
+  background-color: #a8b8ae;
+  border-radius: 20px;
+}
+
+.form-title h2{
+  display: grid;
+  grid-template-rows: 1fr;
+  font-family: Alice, 'Times New Roman', Times, serif;
+  font-size: 26px;
+  font-weight: bolder;
+  background-color: #3d4a38;
+  color: white;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 60px;
+}
+
+.login-text {
+  color: white;
+  font-size: 20px;
+  font-family: Alice, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.sign-ups {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.sign-ups input{
+  width: 100%;
+  box-sizing:  border-box;
+}
+
+
+.login-button{ 
+  width: 50%;
+  background-color: #3d4a38;
+  margin-bottom: 10px;
+}
+
+.login-attempt {
+  font-size: 10px;
+}
+
+.form-footer {
+  font-size: 8px;
+}
+
+.login-button {
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+}

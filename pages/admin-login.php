@@ -1,30 +1,7 @@
 <?php 
   include("../config/database.php");
-?>
 
-<!--HTML STRUCTURE-->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login</title>
-  <link rel="stylesheet" href="admin-login.css">
-</head>
-<body>
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
-    Admin: 
-    <input type="text" name="admin"> <br>
-    Password:
-    <input type="password" name="password"> <br>
-    <input type="submit" name="login" value="login">    
-  </form>
-</body>
-</html>
-<!-- END OF HTML STRUCTURE -->
-
-<?php 
-  if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
     $admin = filter_input(INPUT_POST, "admin", FILTER_SANITIZE_SPECIAL_CHARS);
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -60,3 +37,48 @@
   }
   mysqli_close($conn);
 ?>
+
+<!--HTML STRUCTURE-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="../styles/admin-login.css">
+</head>
+<body>
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
+  <section class="form-container">
+    <section class="form-title">
+      <h2 class="Library-name">Le Bros: Library</h2>
+      <div class="login-text">
+        <h3>Login</h3>
+      </div>
+    </section>
+    <section class="sign-ups">
+      <section>
+        <input type="text" name="admin" placeholder="username"> <br>
+      </section>
+      <section class="password-section">
+        <input type="password" name="password" placeholder="password"> <br>
+        <span class="login-attempt"><u>Login Attempts: 0
+        </u></span>
+      </section>
+      <section>
+        <input type="submit" name="login" value="Log In" class="login-button">  
+      </section>  
+    </section>
+    <section class="form-footer">
+      <span>Not an admin?
+        <a>Back to login</a>
+      </span>
+    </section>
+  </section>
+  </form>
+</body>
+</html>
+<!-- END OF HTML STRUCTURE -->
