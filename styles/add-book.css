@@ -6,10 +6,12 @@
   <title>Add Book</title>
   <link rel="icon" href="../images/favicon.jpg" type="image/x-icon">
 </head>
+
 <body>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
+
     Book Title:
-    <input type="text" name="title"> <br>
+    <input type="text" name="title" class=""> <br>
     Author:
     <input type="text" name="author"> <br>
     Year Published: 
@@ -24,8 +26,9 @@
     <input type="submit" name="register" value="register">
   </form>
 </body>
+
 </html>*/
 
 body {
-    
+
 }

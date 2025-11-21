@@ -12,12 +12,14 @@
 </head>
 <body>
    <div class="signup-container">
-    <img src="LOGO.png" alt="Logo" width="100%">
-    <p class="title"> SIGN-UP </p>/
+   <img src="../images/bookTitle.png" alt="Logo" type="image" class="LOGO" width="90%" height="10%">
+    <p class="title"> SIGN-UP </p>
     <input type="email" placeholder="Email"> 
     <input type="text" placeholder="Recovery Information">
     <input type="password" placeholder="Password">  <i class="fa-solid fa-eye"></i>
-    <input type="password" placeholder="Confirm Password">     
+    <i class="fa-solid fa-eye" id="togglePassword"></i>
+    <input type="password" placeholder="Confirm Password">  
+    <i class="fa-solid fa-eye" id= "toggleConfirm"><i>   
     <button class="btn-signup"> Sign-In </button>
     
     <br>
@@ -28,7 +30,7 @@
   
 </body>
 
-<footer>Copyright © 2025 Lé Bros: Library <br>This system is for education puposes only. </footer>
+<footer>Copyright © 2025 Lé Bros: Library This system is for education puposes only. </footer>
 </html>
 
 <?php 

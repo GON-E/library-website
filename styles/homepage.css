@@ -1,15 +1,58 @@
-/*Hompage*/
+body{
+    margin: 0;
+    text-align: center;
+    background-color: #3d4a38;
+}
 
-/* Header */
+.main_container {
+    background-color: #d0d0cf;
+    margin-top: 3%;
+    margin-left: 3%;
+    text-align: left;
+    padding: 1%;
+    padding-left: 2%;
+}
 
-/*recommended books*/
+.welcome{
+    padding: 0;
+}
 
-/*Search bar*/
+.category {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: #617359;
+}
 
-/*Footer*/
 
-/*Contact info*/
+.login_btn {
+    align-items: right;
+    margin-left: 80%;
+    margin-top: -50%;
+}
+.login_btn :hover {
+    background-color: #6b8e23;
+    color: white;
+}
+.login_btn a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}  
 
 
 
-/*UGHHHH G LNG PERD FUCHHHHHK*/
+footer {
+    display: block;
+    margin-top: 20px;
+    bottom: 0;
+    padding: 1%;
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    background-color: #d0d0cf;
+}
+
+
