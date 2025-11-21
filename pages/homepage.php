@@ -1,7 +1,13 @@
 <?php
-  echo "Ang Sarap ni JEE Fuck; 
-  ";
+ include("../config/database.php");
 ?>
 
-<?php echo "efffffff"; ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>homepage</title>
+</head>
+
+
 

@@ -1,7 +1,7 @@
 
 
 
-console.log("ang pogi ko"); 
+console.log("ang pogi k0"); 
 
 
 // Get HTML

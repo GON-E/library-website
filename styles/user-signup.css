@@ -2,7 +2,9 @@ body{
     margin: 0;
     text-align: center; 
     background-color: #3d4a38;
-    
+    /*../images/imagename
+    /* images/imagename 
+    /* /images/imagename */
 }
 
 div {
@@ -112,4 +114,4 @@ footer {
 
 .report-png:hover {
     cursor: pointer;
-}
+}*/

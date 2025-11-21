@@ -1,7 +1,4 @@
 <?php
-
-use Dom\Mysql;
-
   include('../config/database.php');
   if($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -14,17 +11,30 @@ use Dom\Mysql;
     if(empty($title) || empty($author) || empty($year_published) || empty($book_type) || empty($isbn) || empty($quantity)) {
       echo "All field must be required!";
     } else {
-        echo "Successful Input";
-      
         $sql = "INSERT INTO books (book_title, author, year_published, book_category, isbn, quantity) VALUES
         (?,?,?,?,?,?)";
-        $statement = Mysqli
+        $statement = mysqli_prepare($conn, $sql);
+      try {
+        mysqli_stmt_bind_param($statement, "ssisii",
+          $title,
+          $author,
+          $year_published,
+          $book_type,
+          $isbn,
+          $quantity
+        );
 
-        try {
-          $result = mysqli_query($conn, $sql);
-        } catch(mysqli_sql_exception){ 
-          echo "Error Occured";
-        }
+      if(mysqli_stmt_execute($statement)) {
+        echo "Book Added Successfully!";
+      } else{
+        echo "Book Adding Failed!";
+      }
+
+      mysqli_stmt_close($statement);
+
+      } catch(mysqli_sql_exception){
+        echo "Error Occured";
+      }
     };
   };
   

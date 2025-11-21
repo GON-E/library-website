@@ -8,12 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="user-signup.css">
+    <link rel="stylesheet" href="../styles/user-signup.css">
 </head>
 <body>
    <div class="signup-container">
     <img src="LOGO.png" alt="Logo" width="100%">
-    <p class="title"> SIGN-UP </p>
+    <p class="title"> SIGN-UP </p>/
     <input type="email" placeholder="Email"> 
     <input type="text" placeholder="Recovery Information">
     <input type="password" placeholder="Password">  <i class="fa-solid fa-eye"></i>
