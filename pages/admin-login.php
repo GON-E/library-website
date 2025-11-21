@@ -6,7 +6,7 @@
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
     if(empty($admin) || empty($password)){
-      echo "All field are required!";
+      echo "All field are required!"; 
     } else {
       $sql = "SELECT * FROM admins WHERE admin = '$admin'";
 
@@ -15,7 +15,7 @@
       } catch(mysqli_sql_exception){
         echo "An Error Occured!";
       }
-      
+
       if(mysqli_num_rows($result) > 0){
         echo "Admin Found";
         $storedPassword = null;
@@ -26,7 +26,7 @@
         if(password_verify($password, $storedPassword)){
           $_SESSION['admin'] = $row['admin'];
 
-          header("location: ");
+          header("location: ../actions/add-book.php");
 
           exit();
         } 

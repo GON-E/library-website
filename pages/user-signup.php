@@ -5,25 +5,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIGN UP </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="user-signup.css">
 </head>
 <body>
-  <!-- Sign-Up Form -->
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?> " method="post">
-    email:
-    <input type="email" name="email"> <br>
-    username:
-    <input type="text" name="username"> <br>
-    password:
-    <input type="password" name="password"> <br>
-    Confirm Password:
-    <input type="password" name="confirmPassword"> <br>
-    <input type="submit" name="submit" value="Register" >
-  </form>
-  <!-- End of Sign-Up Form-->
+   <div class="signup-form">
+    <img src="Le__Bro_Guide-removebg-preview.png" alt="Logo" width="100%">
+    <input type="email" placeholder="Email">
+    <input type="text" placeholder="Recovery Information">
+    <input type="password" placeholder="Password">  
+    <input type="password" placeholder="Confirm Password">     
+    <button class="btn-signup"> Sign-In </button>
+    <a href="#" img src=""></a>
+    <br>
+    <p class="btn-login"> Back to <a class="btn-login" href="#"> Log In</a> </p> 
+   </div>
 </body>
+
+<footer>Copyright © 2025 Lé Bros: Library</footer>
 </html>
 
 <?php 
