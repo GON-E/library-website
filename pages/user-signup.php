@@ -11,20 +11,24 @@
     <link rel="stylesheet" href="user-signup.css">
 </head>
 <body>
-   <div class="signup-form">
-    <img src="Le__Bro_Guide-removebg-preview.png" alt="Logo" width="100%">
-    <input type="email" placeholder="Email">
+   <div class="signup-container">
+    <img src="LOGO.png" alt="Logo" width="100%">
+    <p class="title"> SIGN-UP </p>
+    <input type="email" placeholder="Email"> 
     <input type="text" placeholder="Recovery Information">
-    <input type="password" placeholder="Password">  
+    <input type="password" placeholder="Password">  <i class="fa-solid fa-eye"></i>
     <input type="password" placeholder="Confirm Password">     
     <button class="btn-signup"> Sign-In </button>
-    <a href="#" img src=""></a>
+    
     <br>
+    
     <p class="btn-login"> Back to <a class="btn-login" href="#"> Log In</a> </p> 
-   </div>
+   </div> 
+   <div class="report-png"><a img src="report_btn.png" href="https://www.youtube.com/@awshumdude._" width="100%" height="100%"></a></div>
+  
 </body>
 
-<footer>Copyright © 2025 Lé Bros: Library</footer>
+<footer>Copyright © 2025 Lé Bros: Library <br>This system is for education puposes only. </footer>
 </html>
 
 <?php 
@@ -32,7 +36,7 @@
     // Variable for user
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
     // Variable for username
-    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+    $username = filter_input(INPUT_POST, "username", filter: FILTER_SANITIZE_SPECIAL_CHARS);
     // Variable for password
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
     $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_SPECIAL_CHARS);

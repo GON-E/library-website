@@ -49,6 +49,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Alice&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
   <title>Admin Login</title>
   <link rel="stylesheet" href="../styles/admin-login.css">
+<!-- Favicon--> 
+  <link rel="icon" href="../images/lock.png" type="image/x-icon">
 </head>
 <body>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
@@ -65,7 +67,8 @@
       </section>
       <section class="password-section">
         <input type="password" name="password" placeholder="password"> <br>
-        <span class="login-attempt"><u>Login Attempts: 0
+        <span class="login-attempt attempt-count
+        "><u>Login Attempts: 0
         </u></span>
       </section>
       <section>
@@ -79,6 +82,7 @@
     </section>
   </section>
   </form>
+  <script src="../script/admin-login.js"></script>
 </body>
 </html>
 <!-- END OF HTML STRUCTURE -->

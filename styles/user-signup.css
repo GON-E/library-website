@@ -1,0 +1,115 @@
+body{
+    margin: 0;
+    text-align: center; 
+    background-color: #3d4a38;
+    
+}
+
+div {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.signup-container{
+    background-color: #d0d0cf;
+    border-radius: 20px;
+    max-width: 35%;
+    max-height: 15%;
+    margin:  auto;
+    margin-top: 2%;
+    margin-bottom: 8%;
+    box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
+    padding: 2%;
+}
+
+
+img{
+    margin: 0.5% 0 -2% 0;
+}
+
+.title {
+    font-size: 150%;
+    font-family: "Alfa Slab One";
+    font-weight: bold;
+    margin-bottom: 0%;
+}
+
+input{
+    display: block;
+    width: 95%;
+    padding: 2%;
+    font-size: 100%;
+    border: 0.5% solid rgb(0, 0, 0, 0.1);
+    border-radius: 90px;
+    margin-top: 10px;
+
+}
+
+
+.btn-signup {
+    font-family: "Alfa slab One";
+    margin-top: 5%;
+    background-color:#3d4a38;
+    padding: 3% 5%;
+    max-width: 28%;
+    font-size: 130%;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+
+.btn-signup:hover {
+    background-color: #7a896e;
+    cursor: pointer;
+}
+
+
+.btn-signup:active {
+    transform: scale(0.98);
+    background-color: rgb(0, 0, 0);
+}
+
+
+.btn-login {
+    font-family: "Alfa Slab One";
+    margin-top: 3%;
+    font-size: 100%;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    display: inline-block;
+}
+
+.btn-login:hover {
+    color: rgb(105, 129, 102);
+    cursor: pointer;
+}
+
+footer {
+    display: block;
+    margin-top: 20px;
+    bottom: 0;
+    padding: 1%;
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    background-color: #d0d0cf;
+}
+
+/*
+.report-png {
+    border-image: 100%;
+    display: inline-block;
+    padding: 100px;
+    align-items: right;
+    background-color: black;
+    margin-top: -70%;
+    margin-right: -85%;
+
+}
+
+.report-png:hover {
+    cursor: pointer;
+}
