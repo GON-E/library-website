@@ -14,9 +14,9 @@
     <div class="icon user"></div>
 </div>
 
-<div class="main-container">
+<div class="main-container">    
     <header>
-        <h2>Hello, User! Welcome to Lé Bros Library!</h2>
+        <h2>Hello, Admin Welcome to Lé Bros Library!</h2>
         <p>November 00, 2025 | Monday, 00:00 AM</p>
     </header>
 

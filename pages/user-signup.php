@@ -1,5 +1,7 @@
 <?php 
   include("../config/database.php");
+  include("../fetch/user-signup-fetch.php");
+  
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +16,8 @@
    <div class="signup-container">
    <img src="../images/bookTitle.png" alt="Logo" type="image" class="LOGO" width="90%" height="10%">
     <p class="title"> SIGN-UP </p>
-    <input type="email" placeholder="Email"> 
-    <input type="text" placeholder="Recovery Information">
+    <input type="email" placeholder="Email" name="email"> 
+    <input type="text" placeholder="Recovery Information" name="recovery">
     <input type="password" placeholder="Password">  <i class="fa-solid fa-eye"></i>
     <i class="fa-solid fa-eye" id="togglePassword"></i>
     <input type="password" placeholder="Confirm Password">  
@@ -32,58 +34,3 @@
 
 <footer>Copyright © 2025 Lé Bros: Library This system is for education puposes only. </footer>
 </html>
-
-<?php 
-  if($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the method is post if yes
-    // Variable for user
-    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-    // Variable for username
-    $username = filter_input(INPUT_POST, "username", filter: FILTER_SANITIZE_SPECIAL_CHARS);
-    // Variable for password
-    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
-    $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    if(!$email){  // If email is missing
-      echo "Email is Missing!";
-    } else if (empty($password)) { // If password is empty
-      echo "Password is Missing!";  
-    } else if(empty($username)) {
-      echo "Username is Missing!";
-    } else { // Else hash the password for security
-
-      if($password != $confirmPassword){
-        echo "Password do not match!";
-      } else {
-        $hash = password_hash(password: $password, algo: PASSWORD_DEFAULT); // hash
-
-        // SQL QUERY Prepared Statement (Avoid Sql-injection)
-        $sql = "INSERT INTO users (email,username,password)
-        VALUES (?,?,?)";
-
-        // Preparing to send the SQL without the real data
-        $stmt = $conn -> prepare($sql);
-        
-        // If preparation failed
-        if (!$stmt){
-          die('Preparation Failed: ' .$conn -> error);
-        }
-
-        // Attach the real PHP variable s stands for string
-        $stmt -> bind_param('sss',$email,$username, $hash);
-
-      try { // Try query
-        // Send the query
-        $stmt -> execute();
-        header('Location: ');
-      }catch(mysqli_sql_exception $err) { // Catch Error
-        if($err -> getCode() == 1062){
-          echo "Email already signed up!";
-        } else {
-          echo "An Error Occured, Please Try Again!";
-        }
-      }
-    }
-  }
-}
-  mysqli_close($conn);
-?>  
