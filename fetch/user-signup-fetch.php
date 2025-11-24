@@ -8,13 +8,13 @@
     // Variable for username
     $username = filter_input(INPUT_POST, "username", filter: FILTER_SANITIZE_SPECIAL_CHARS);
     // Variable for recovery password
-    $recovery_email = filter_input(INPUT_POST, "revo");
+    $recovery_em = filter_input(INPUT_POST, "recoveryEmail");
     // Variable for password
-    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
-    $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_SPECIAL_CHARS);
+    $password = $_POST["password"] ?? "";
+    $confirmPassword = $_POST["confirmPassword"] ?? "";
 
-    if(!$email){  // If email is missing
-      echo "Email is Missing!";
+    if(!$email || !$recovery_em) {  // If email is missing
+      echo "Email or Recovery Emailnis Missing!";
     } else if (empty($password)) { // If password is empty
       echo "Password is Missing!";  
     } else if(empty($username)) {
@@ -27,8 +27,8 @@
         $hash = password_hash(password: $password, algo: PASSWORD_DEFAULT); // hash
 
         // SQL QUERY Prepared Statement (Avoid Sql-injection)
-        $sql = "INSERT INTO users (email,username,password)
-        VALUES (?,?,?)";
+        $sql = "INSERT INTO users (email,recovery_em,username,password)
+        VALUES (?,?,?,?)";
 
         // Preparing to send the SQL without the real data
         $stmt = $conn -> prepare($sql);
@@ -39,7 +39,7 @@
         }
 
         // Attach the real PHP variable s stands for string
-        $stmt -> bind_param('sss',$email,$username, $hash);
+        $stmt -> bind_param('ssss',$email, $recovery_em,$username, $hash);
 
       try { // Try query
         // Send the query

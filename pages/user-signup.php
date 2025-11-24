@@ -1,7 +1,6 @@
 <?php 
   include("../config/database.php");
   include("../fetch/user-signup-fetch.php");
-  
 ?>
 
 <!DOCTYPE html>
@@ -13,23 +12,25 @@
     <link rel="stylesheet" href="../styles/user-signup.css">
 </head>
 <body>
-   <div class="signup-container">
+  <form <?php echo htmlspecialchars($_SERVER["PHP_SELF"])?> method="post">
+    <div class="signup-container">
    <img src="../images/bookTitle.png" alt="Logo" type="image" class="LOGO" width="90%" height="10%">
     <p class="title"> SIGN-UP </p>
     <input type="email" placeholder="Email" name="email"> 
-    <input type="text" placeholder="Recovery Information" name="recovery">
-    <input type="password" placeholder="Password">  <i class="fa-solid fa-eye"></i>
+    <input type="text" placeholder="Recovery Email" name="recoveryEmail">
+    <input type="text" placeholder="username" name="username">
+    <input type="password" placeholder="Password" name="password">
+    <i class="fa-solid fa-eye" name="password"></i>
     <i class="fa-solid fa-eye" id="togglePassword"></i>
-    <input type="password" placeholder="Confirm Password">  
+    <input type="password" placeholder="Confirm Password" name="confirmPassword">  
     <i class="fa-solid fa-eye" id= "toggleConfirm"><i>   
-    <button class="btn-signup"> Sign-In </button>
-    
+    <button class="btn-signup" name="register">Sign-In </button>
+
     <br>
-    
     <p class="btn-login"> Back to <a class="btn-login" href="#"> Log In</a> </p> 
    </div> 
    <div class="report-png"><a img src="report_btn.png" href="https://www.youtube.com/@awshumdude._" width="100%" height="100%"></a></div>
-  
+  </form>
 </body>
 
 <footer>Copyright © 2025 Lé Bros: Library This system is for education puposes only. </footer>
