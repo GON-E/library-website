@@ -1,3 +1,7 @@
+<?php 
+  include('../config/database.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,34 +18,42 @@
   </header>
   <main>
     <section class="main-container">
-      <section class="side-nav-container">
         <aside class="side-nav">
-        <section>
+        <section class="sidenav-link">
           <a>
             <img src="../images/icons/home-icon.svg">
           </a>
         </section>
-        <section>
+        <section class="sidenav-link">
           <a>
             <img src="../images/icons/settings-icon.svg">
           </a>
         </section>
-        <section>
+        <section class="sidenav-link">
           <a>
             <img src="../images/icons/report-icon.svg">
           </a>
         </section>
-        <section>
+        <section class="sidenav-link">
           <a>
             <img src="../images/icons/info-icon.svg">
           </a>
         </section>
-        <section>
+        <section class="sidenav-link">
           <a>
             <img src="../images/icons/account-icon.svg">
           </a>
         </section>
         </aside>
+      <section class="information-cards-grid">
+        <section>
+          <section class="information-card">
+            <h2>Total Visitor: </h2>
+
+          </section>        
+        </section>
+        <section>Test</section>
+        <section>Test</section>
       </section>
     </section>
   </main>

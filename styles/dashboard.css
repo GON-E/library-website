@@ -2,58 +2,53 @@ body {
   margin: 0;
   padding: 0;
 }
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  justify-content: space-evenly;
+  left: 0;
+  top: 40px;
+  bottom: 0;
+  width: 40px;
+  height: 100vh;
+  background-color: rgb(11, 27, 11);
+  z-index: 2;
+}
+.sidenav-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+
+.sidenav-link a:hover {
+    background: rgba(255,255,255,.15);
+}
+
+/* change when the link is clicked / tapped */
+.sidenav-link a:active {
+    background: rgba(255,255,255,.25);
+}
 
 .main-container {
-  display: flex;
   background-color: cyan;
   width: 100%;
   height: 300px;
   position: relative;
-  margin-left: 40px; /* Add space for the sidebar */
+  z-index: 1;
+  padding-left: 40px;
 }
 
-.side-nav-container {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 40px;
-  height: 100vh;
-  background-color: rgb(11, 27, 11);
-  z-index: 1000;
+
+.information-cards-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-.side-nav {
-  display: flex; /* ADD THIS */
-  flex-direction: column; /* ADD THIS */
-  align-items: center; /* ADD THIS */
-  justify-content: center; /* ADD THIS */
-  height: 100%; /* ADD THIS */
-  gap: 20px;
-  padding: 10px 0;
-}
-
-.side-nav section {
-  width: 100%;
+.information-card{
   display: flex;
-  justify-content: center;
-}
-
-.side-nav a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  border-radius: 4px;
-}
-
-.side-nav a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.side-nav img {
-  width: 24px;
-  height: 24px;
-  filter: brightness(0) invert(1); /* Makes SVG icons white */
+  flex-direction: row;
 }
