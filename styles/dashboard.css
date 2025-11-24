@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: beige;
 }
 .side-nav {
   display: flex;
@@ -34,21 +35,41 @@ body {
 }
 
 .main-container {
-  background-color: cyan;
-  width: 100%;
+  width: auto;
   height: 300px;
   position: relative;
   z-index: 1;
-  padding-left: 40px;
+  padding: 10px 10px 10px 10px;
 }
 
 
 .information-cards-grid{
+  margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 20px;
+  margin-left: 40px;
+  height: 60px;
+  width: auto;
 }
 
 .information-card{
+  color: white;
+  background-color:#2f3e2a;
+  display: grid;
+  grid-template-rows: 1fr;
+  border-radius: 15px;
+}
+
+.card-title{
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+}
+
+.card-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

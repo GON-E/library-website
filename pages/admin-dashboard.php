@@ -46,14 +46,36 @@
         </section>
         </aside>
       <section class="information-cards-grid">
-        <section>
-          <section class="information-card">
-            <h2>Total Visitor: </h2>
 
-          </section>        
+        <section class="information-card">
+          <section class="card-title">
+            <h2>Total Visitor: </h2>
+            <img src="../images/icons/visitor-icon.svg">
+          </section>
+          <section class="card-count">
+            <h1>00</h1>
+          </section>     
         </section>
-        <section>Test</section>
-        <section>Test</section>
+
+        <section class="information-card">
+          <section class="card-title">
+            <h2>Borrowed Books:  </h2>
+            <img src="../images/icons/borrow-icon.svg">
+          </section>
+          <section class="card-count">
+            <h1>00</h1>
+          </section>     
+        </section>
+
+        <section class="information-card">
+          <section class="card-title">
+            <h2>Unreturned Rooks: </h2>
+            <img src="../images/icons/visitor-icon.svg">
+          </section>
+          <section class="card-count">
+            <h1>00</h1>
+          </section>     
+        </section>
       </section>
     </section>
   </main>
