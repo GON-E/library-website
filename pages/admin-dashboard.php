@@ -45,8 +45,9 @@
           </a>
         </section>
         </aside>
-      <section class="information-cards-grid">
 
+
+      <section class="information-cards-grid">
         <section class="information-card">
           <section class="card-title">
             <h2>Total Visitor: </h2>
@@ -70,13 +71,41 @@
         <section class="information-card">
           <section class="card-title">
             <h2>Unreturned Rooks: </h2>
-            <img src="../images/icons/visitor-icon.svg">
+            <img src="../images/icons/timer-icon.svg">
           </section>
           <section class="card-count">
             <h1>00</h1>
           </section>     
-        </section>
       </section>
+    </section>
+
+    <section class="information-table-container">
+      <h2>Recently Borrowed Books:</h2>
+      <table class="table-wrap">
+          <thead>
+            <tr>
+                <th>Borrower Name</th>
+                <th>Book Name</th>
+                <th>BookId</th>
+                <th>BookType</th>
+                <th>Date Borrowed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Row 1, Cell 1</td>
+                <td>Row 1, Cell 2</td>
+                <td>Row 1, Cell 3</td>
+                <td>Row 1, Cell 4</td>
+                <td>Row 1, Cell 5</td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+            </tr>
+        </tbody>
+      </table>
     </section>
   </main>
 </body>
