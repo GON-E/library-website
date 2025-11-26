@@ -20,8 +20,9 @@
     <input type="text" placeholder="Recovery Email" name="recoveryEmail">
     <input type="text" placeholder="username" name="username">
     <input type="password" placeholder="Password" name="password">
-    <i class="fa-solid fa-eye" name="password"></i>
-    <i class="fa-solid fa-eye" id="togglePassword"></i>
+ 
+    
+
     <input type="password" placeholder="Confirm Password" name="confirmPassword">  
     <i class="fa-solid fa-eye" id= "toggleConfirm"><i>   
     <button class="btn-signup" name="register">Sign-In </button>

@@ -9,26 +9,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Book</title>
-  
+  <link rel="stylesheet" href="../styles/add-book.css">
   <link rel="icon" href="../images/favicon.jpg" type="image/x-icon">
 </head>
 <body>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
+  <section>
+    <h2>Add Book</h2>
     Book Title:
     <input type="text" name="title"> <br>
     Author:
     <input type="text" name="author"> <br>
     Year Published: 
     <input type="text" name="publish"> <br>
-    book_type
+    Book Type:
     <input type="text" name="bookType"> <br>
-    isbn:
+    ISBN:
     <input type="text" name="isbn"> <br>
-    quantity:
+    Quantity:
     <input type="text" name="quantity"> <br>
-
     <input type="submit" name="register" value="register">
+  </section>
+  <section>
+    <h2 id="delete">Delete Book</h2>
+    <input type="text" name="delete" value="delete">
     <input type="submit" name="delete" value="delete">
+  </section>
   </form>
 </body>
 </html>

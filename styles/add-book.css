@@ -1,34 +1,70 @@
-/*<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Book</title>
-  <link rel="icon" href="../images/favicon.jpg" type="image/x-icon">
-</head>
 
-<body>
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
-
-    Book Title:
-    <input type="text" name="title" class=""> <br>
-    Author:
-    <input type="text" name="author"> <br>
-    Year Published: 
-    <input type="text" name="publish"> <br>
-    book_type
-    <input type="text" name="bookType"> <br>
-    isbn:
-    <input type="text" name="isbn"> <br>
-    quantity:
-    <input type="text" name="quantity"> <br>
-    
-    <input type="submit" name="register" value="register">
-  </form>
-</body>
-
-</html>*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #819983;
+}
 
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+
+section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #a8b8ae;
+}
+
+section h2 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: white;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0 12px 0;
+  border-radius: 4px;
+  border: solid 1px;
+  font-size: 14px;
+}
+
+input[type="submit"]{ 
+  display: flex;
+  padding: 10px;
+  width: 50%;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #4f9956;
+  border: solid 1px;
+  color: white  ;
+}
+
+input[type="submit"]:hover{
+  background-color: #3f7f45;
+}
+
+section:nth-child(2) input[type="submit"] {
+  background: #cc0000;
+  color: white;
+  border: solid 1px;
+}
+
+section:nth-child(2) input[type="submit"]:hover {
+  background: #990000;
 }
