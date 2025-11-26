@@ -19,7 +19,7 @@
     Book Title:
     <input type="text" name="title"> <br>
     Author:
-    <input type="text" name="author"> <br>
+    <input type="text" name="author"><br>
     Year Published: 
     <input type="text" name="publish"> <br>
     Book Type:

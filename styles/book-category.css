@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.book-category {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 25px; /* spacing between categories */
+  padding: 15px 40px;
+
+  background-color: #d0d0cf;
+  color: #4f9956;
+
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.book-category a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #4f9956;
+  -webkit-text-stroke: 0.3px black;
+  transition: 0.2s;
+}
+
+.book-category a:hover {
+  color: #3f7f45;
+  transform: translateY(-2px);
+}
+

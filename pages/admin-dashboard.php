@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="../styles/admin-dashboard.css">
 </head>
 <body>
   <header>
@@ -17,35 +17,9 @@
     </section>
   </header>
   <main>
-    <section class="main-container">
-        <aside class="side-nav">
-        <section class="sidenav-link">
-          <a>
-            <img src="../images/icons/home-icon.svg">
-          </a>
-        </section>
-        <section class="sidenav-link">
-          <a>
-            <img src="../images/icons/settings-icon.svg">
-          </a>
-        </section>
-        <section class="sidenav-link">
-          <a>
-            <img src="../images/icons/report-icon.svg">
-          </a>
-        </section>
-        <section class="sidenav-link">
-          <a>
-            <img src="../images/icons/info-icon.svg">
-          </a>
-        </section>
-        <section class="sidenav-link">
-          <a>
-            <img src="../images/icons/account-icon.svg">
-          </a>
-        </section>
-        </aside>
+    <section class="main-container"> 
 
+      <?php include('side-nav.php');?>
 
       <section class="information-cards-grid">
         <section class="information-card">

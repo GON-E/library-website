@@ -4,35 +4,6 @@ body {
   background-color: beige;
 }
 
-.side-nav {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  justify-content: space-evenly;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 40px;
-  height: 100vh;
-  background-color: rgb(11, 27, 11);
-  z-index: 2;
-}
-
-.sidenav-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.sidenav-link a:hover {
-  background: rgba(255,255,255,.15);
-}
-
-.sidenav-link a:active {
-  background: rgba(255,255,255,.25);
-}
 
 .main-container {
   width: auto;

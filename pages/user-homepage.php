@@ -8,19 +8,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="../style/user-homepage.css">
 </head>
 <body>
     <!-- <button img src="" name="logo" href="#"></button> -->
     <div class="main_container">
         <div class="welcome">
-            <h1>Hello, User! Welcome to Le' Bros Library!</h1> <!--"User" is the users name -->
+            <h1>Hello, User Welcome to Le' Bros Library!</h1> <!--"User" is the users name -->
             <button class="login_btn"> Log-In</button>
             <button class="signup_btn"> Sign-up </button>
             <br>
             <h7> November 00, 2025 | Monday, 00:00AM<h7>
             <br>
-
             <div class="Category">
                 <a href="#">Technology |</a>
                 <a href="#">Entertainment |</a>
@@ -30,15 +29,55 @@
                 <a href="#">Electonics |</a>
                 <a href="#">Nature |</a>
                 <a href="#">Cooking |</a>
+
             </div>
         </div>
-            
+    <main>
+        <section>
+            <div class="Recommend-container">
+            <div class="Recommend-category">
+            <h3>Recommend:</h3>
+            <div class="Recommend-item">Book Title</div>
+            <div class="Recommend-item">front view</div>
+            <div class="Recommend-item"><br>by: Author Name</div>
         <div>
+            <div class="Recommend-category">
+            <h3>Title:</h3>
+            <div class="Recommend-item">Book Title</div>
+            <div class="Recommend-item">front view</div>
+            <div class="Recommend-item"><br>by: Author Name</div>
+        <div>
+                  
+            <div class="Recommend-category">
+            <h3>Title:</h3>
+            <div class="Recommend-item">Book Title</div>
+            <div class="Recommend-item">front view</div>
+            <div class="Recommend-item"><br>by: Author Name</div>
+        <div>
+        </section>
 
+        <h4>Selected for you:
+            <ul>
+            <div class="Recommend-item"><br>Book Title</div>
+            <div class="Recommend-item">front view</div>
+            <div class="Recommend-item"><br>by: Author Name</div>
+        <div>
+            <div class="Recommend-item"><br>Book Title</div>
+            <div class="Recommend-item">front view</div>
+            <div class="Recommend-item"><br>by: Author Name</div>
+        <div>
+            <div class="Recommend-item"><br>Book Title</div>
+            <div class="Recommend-item">front view</div>
+            <div class="Recommend-item"><br>by: Author Name</div>
+        <div>
+            <ul>
+        </main>
         </div>
     </div>
    
 </body>
 
-<footer> Copyright © 2025 Lé Bros: Library This system is for education puposes only.  </footer>
+<footer> <br>Copyright © 2025 Lé Bros: Library This system is for education puposes only.  </footer>
 </html>
+
+ 

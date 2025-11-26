@@ -1,0 +1,32 @@
+        .Recommend-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 2rem; 
+        } 
+         
+        .Recommendcategory { 
+            background-color: white; 
+            padding: 1.5rem; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+        } 
+         
+        .Recommend-category h3 { 
+            color: var(--accent); 
+            margin-top: 0; 
+        } 
+         
+        .Recommend-item { 
+            margin-bottom: 0.5rem; 
+            padding-left: 1.5rem; 
+            position: relative; 
+        } 
+         
+        .Recommend-item::before { 
+            content: "•"; 
+            color: var(--secondary); 
+            font-size: 1.5rem; 
+            position: absolute; 
+            left: 0; 
+            top: -3px; 
+        } 
