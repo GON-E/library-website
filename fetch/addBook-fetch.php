@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       
       if($statement) {
         try {
-          mysqli_stmt_bind_param($statement, "ssisii",
+          mysqli_stmt_bind_param($statement, "ssissi",
             $title,
             $author,
             $year_published,

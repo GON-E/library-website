@@ -86,7 +86,34 @@ body {
 
 
 
+.modify-button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
 
+.edit-btn, .delete-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.no-books-message {
+  text-align: center;
+  padding: 50px;
+  color: #999;
+}
 
 
 

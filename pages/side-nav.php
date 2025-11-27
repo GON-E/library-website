@@ -8,12 +8,12 @@
 <body>
   <aside class="side-nav">
 <section class="sidenav-link">
-  <a href="user-homepage.php">
+  <a href="admin-dashboard.php">
     <img src="../images/icons/home-icon.svg">
   </a>
 </section>
 <section class="sidenav-link">
-  <a href="">
+  <a href="../pages/admin-homepage.php">
     <img src="../images/icons/settings-icon.svg">
   </a>
 </section>

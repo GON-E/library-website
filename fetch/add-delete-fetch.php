@@ -1,20 +1,17 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 include('../config/database.php');
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // HANDLE DELETE REQUEST
-  if(isset($_POST['delete'])) {
+  if(isset($_POST['delete_btn'])) {
     $isbn = filter_input(INPUT_POST, "isbn", FILTER_SANITIZE_SPECIAL_CHARS);
     
     if(empty($isbn)) {
       echo "ISBN is required to delete a book!";
     } else {
       // CHECK IF THE BOOK EXISTS
-      $check_sql = "SELECT book_title FROM books WHERE isbn = ?";
+      $check_sql = "SELECT book_title , image FROM books WHERE isbn = ?";
       $check_stmt = mysqli_prepare($conn, $check_sql);
 
       if($check_stmt) {
@@ -25,6 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if(mysqli_num_rows($result) > 0) {
           $row = mysqli_fetch_assoc($result);
           $book_title = $row['book_title'];
+          $image = $row['image'];
 
           // DELETE THE BOOK
           $delete_sql = "DELETE FROM books WHERE isbn = ?";
@@ -34,7 +32,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($delete_stmt, "s", $isbn);
             
             if(mysqli_stmt_execute($delete_stmt)) {
-              echo "Book '$book_title' deleted successfully!";
+               if($image && file_exists(("../images/books/" . $image))) {
+                  unlink("../images/books/" . $image );
+               }
+
             } else {
               echo "Error deleting book: " . mysqli_stmt_error($delete_stmt);
             }
@@ -59,21 +60,50 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $isbn = filter_input(INPUT_POST, "isbn", FILTER_SANITIZE_SPECIAL_CHARS);
     $quantity = filter_input(INPUT_POST, "quantity", FILTER_SANITIZE_NUMBER_INT);
 
+
+
     if(empty($title) || empty($author) || empty($year_published) || empty($book_type) || empty($isbn) || empty($quantity)) {
       echo "All fields are required!";
     } else {
-      $sql = "INSERT INTO books (book_title, author, year_published, book_category, isbn, quantity) VALUES (?,?,?,?,?,?)";
+
+      $imageName = null; // Default no image
+
+      if(!empty($_FILES["bookImage"]["name"])) {
+
+        $tmp_name = $_FILES["bookImage"]["tmp_name"];
+        $original_name = $_FILES["bookImage"]["name"];
+
+        // get file extension
+        $file_extension = pathinfo($original_name, PATHINFO_EXTENSION);
+
+        $imageName = "book_" .time() . "_" . rand(1000, 9999) . "." . $file_extension;
+
+        $upload_path = "../images/books/" . $imageName;
+
+        // move the file from temp to the folder
+
+        if(move_uploaded_file($tmp_name, $upload_path)) {
+            // Successful
+        } else {
+          echo "Error uploading image!";
+          exit();
+        }
+      }
+
+
+      $sql = "INSERT INTO books (book_title, author, year_published, book_category, isbn, quantity, image) VALUES (?,?,?,?,?,?,?)";
       $statement = mysqli_prepare($conn, $sql);
       
       if($statement) {
         try {
-          mysqli_stmt_bind_param($statement, "ssisii",
+          mysqli_stmt_bind_param($statement, "ssissis",
             $title,
             $author,
             $year_published,
             $book_type,
             $isbn,
-            $quantity
+            $quantity,
+            $imageName
           );
           
           if(mysqli_stmt_execute($statement)) {

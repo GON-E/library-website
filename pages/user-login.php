@@ -1,5 +1,6 @@
 <?php 
   include("../config/database.php");
+  include("../fetch/user-login-fetch.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,50 +23,3 @@
 </body>
 </html>
 
-<?php 
-  if($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Form Validation
-    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
-    
-    // If email is missing 
-    if(!$email) {
-      echo "Email is missing";
-    } else if(empty($password)) { // If Password is missing
-      echo "Password is missing";
-    } else { // If none is missing
-      // sql query
-      $sql = "SELECT * FROM users WHERE email = '$email'";
-      try { // try to query
-        $result = mysqli_query($conn, $sql);
-        
-      } catch (mysqli_sql_exception) { // catach fatal error
-        echo "Error Occured!";
-      }
-
-      if(mysqli_num_rows($result) > 0){ // check if there is a result
-        $storedPassword = null; // Accumulator variable
-        $row = mysqli_fetch_assoc($result);  // fetch data from the db
-        $storedPassword = $row['password']; // get the password stored in db
-        
-        if(password_verify($password, $storedPassword)) { // if the password and stored password is same
-          // Session to store basic information
-          $_SESSION['userId'] = $row['id'];
-          $_SESSION['userName'] = $row['username'];
-
-          header("location: "); // Redirect to a certain page
-
-          exit();
-
-        } else { // If not same
-          echo "Incorrect Password!";
-        }
-
-      } else { // If there is no matching account
-        echo "No Records of the Account!";
-      }
-    }
-  
-  }
-
-?>

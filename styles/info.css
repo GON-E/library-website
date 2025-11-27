@@ -1,0 +1,64 @@
+body{
+   background-color:rgb(164, 194, 120);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1{
+    background-color:greenyellow;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+p{
+    text-align: center;
+    margin: 0 auto;
+    border-style: outset;
+    border-width: 5px;
+    border-color: green;
+    border-radius: 10px;
+    padding:10px;
+    background-color: rgb(79, 211, 36);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.about{
+        border-style: outset;
+    border-width: 5px;
+    border-color: green;
+    border-radius: 10px;
+    padding:10px;
+    background-color: rgb(16, 100, 35);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.contact{
+    text-align: center;
+    margin: 0 auto;
+     border-style: outset;
+     border-width: 5px;
+    border-color: rgb(133, 155, 100);
+    border-radius: 10px;
+    padding:10px;
+    background-color: rgb(127, 179, 139);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
+button:hover{
+    background-color: lightgrey;
+}
+button:active{
+    background-color: burlywood;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #f1f1f1;
+    text-align: center;
+    padding: 10px 0;
+}
