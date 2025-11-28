@@ -17,6 +17,8 @@
     <section>
       <h2>Add Book</h2>
       
+      
+
       Book Title:
       <input type="text" name="title" required> <br>
       
@@ -24,11 +26,20 @@
       <input type="text" name="author" required><br>
       
       Year Published: 
-      <input type="number" name="publish" required> <br>
-      
+      <input type="date" name="publish" required> <br>
+    
       Book Type:
-      <input type="text" name="bookType" required> <br>
-      
+    <select name="bookType" required> 
+    <option value="" disabled selected>Select a category...</option>
+    <option value="Entertainment">Entertainment</option>
+    <option value="Science">Science</option>
+    <option value="History">History</option>
+    <option value="Mathematics">Mathematics</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Novel">Novel</option>
+    <option value="Cooking">Cooking</option>
+  </select>
+
       ISBN:
       <input type="text" name="isbn" required> <br>
       
@@ -38,10 +49,12 @@
       Image:
       <input type="file" name="bookImage" accept="image/*"> <br>
       
-      <input type="submit" name="register" value="register">
+      <input type="submit" name="register" value="Register">
+
+      <a href="../pages/admin-homepage.php" class="home-btn"> Admin homepage </a> <br>
     </section>
   </form> 
-  <hr> 
+  <hr>  
 
 
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
@@ -51,7 +64,7 @@
       Enter ISBN to Delete:
       <input type="text" name="isbn" placeholder="Type ISBN here..." required>
       
-      <input type="submit" name="delete_btn" value="delete">
+      <input type="submit" name="delete_btn" value="Delete">
     </section>
   </form>
 

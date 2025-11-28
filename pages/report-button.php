@@ -37,13 +37,13 @@
       <label></label>
       <textarea placeholder="Type the problem here..."></textarea>
     </div>
-
+  
     
     <button class="submit-btn">Submit Report</button>
 
-      <a class="back-btn">Home</a>
+      <a class="back-btn" href="../pages/admin-homepage.php">Home</a>
   </div>
 
 </body>
-
+<section><?php include('footer.php');?></section>
 </html>

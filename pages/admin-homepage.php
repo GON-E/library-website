@@ -19,10 +19,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_qty'])) {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         
-        // Refresh page to show new number and prevent form resubmission
-        header("Location: " . $_SERVER['PHP_SELF']);
+        // --- FIX: KEEP THE CATEGORY AFTER RELOAD ---
+        // If we don't do this, clicking (+) sends you back to "All Books"
+        $redirect_url = $_SERVER['PHP_SELF'];
+        if (!empty($_SERVER['QUERY_STRING'])) {
+            $redirect_url .= '?' . $_SERVER['QUERY_STRING'];
+        }
+        
+        header("Location: " . $redirect_url);
         exit();
-    }
+    } 
 }
 ?>
 <!DOCTYPE html>
@@ -32,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_qty'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Homepage</title>
   <link rel="stylesheet" href="../styles/admin-homepage.css">
-  </head>
+</head>
 <body>
   
   <header><?php include('header.php');?></header>
@@ -43,9 +49,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_qty'])) {
     
     <section class="book-catalog">
       <?php
-      $sql = "SELECT * FROM books ORDER BY book_title ASC";
-      $result = mysqli_query($conn, $sql);
+      // --- LOGIC TO FILTER BOOKS ---
+      
+      // 1. Check if a category link was clicked
+      if(isset($_GET['category'])) {
+          $cat_filter = $_GET['category'];
+          
+          // Prepared statement for security
+          $sql = "SELECT * FROM books WHERE book_category = ? ORDER BY book_title ASC";
+          $stmt = mysqli_prepare($conn, $sql);
+          mysqli_stmt_bind_param($stmt, "s", $cat_filter);
+          mysqli_stmt_execute($stmt);
+          $result = mysqli_stmt_get_result($stmt);
+      } 
+      else {
+          // 2. No category clicked? Show ALL books
+          $sql = "SELECT * FROM books ORDER BY book_title ASC";
+          $result = mysqli_query($conn, $sql);
+      }
 
+      // --- DISPLAY LOOP ---
       if(mysqli_num_rows($result) > 0) {
           while($book = mysqli_fetch_assoc($result)) {
               ?>
@@ -85,12 +108,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_qty'])) {
               <?php
           }
       } else {
-          echo "<p style='color:white;'>No books available.</p>";
+          // Message if category is empty
+          echo "<p style='color:white; grid-column: 1/-1; text-align:center;'>No books found in this category.</p>";
       }
-      mysqli_free_result($result);
+      
+      // Clean up statement if it exists, otherwise free result
+      if(isset($stmt)) { mysqli_stmt_close($stmt); }
+      else { mysqli_free_result($result); }
       ?>
     </section>
   </section>
 
 </body>
+<section><?php include('footer.php');?></section>
 </html>

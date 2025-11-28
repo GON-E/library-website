@@ -16,10 +16,10 @@
     <div class="signup-container">
    <img src="../images/bookTitle.png" alt="Logo" type="image" class="LOGO" width="90%" height="10%">
     <p class="title"> SIGN-UP </p>
-    <input type="email" placeholder="Email" name="email"> 
-    <input type="text" placeholder="Recovery Email" name="recoveryEmail">
-    <input type="text" placeholder="username" name="username">
-    <input type="password" placeholder="Password" name="password">
+    <input type="email" placeholder="Email" name="email" required> 
+    <input type="text" placeholder="Recovery Email" name="recoveryEmail" required>
+    <input type="text" placeholder="username" name="username" required>
+    <input type="password" placeholder="Password" name="password" required>
  
     
 
@@ -28,7 +28,7 @@
     <button class="btn-signup" name="register">Sign-In </button>
 
     <br>
-    <p class="btn-login"> Back to <a class="btn-login" href="#"> Log In</a> </p> 
+    <p class="btn-login"> Back to <a class="btn-login" href="../pages/user-login.php"> Log In</a> </p> 
    </div> 
    <div class="report-png"><a img src="report_btn.png" href="https://www.youtube.com/@awshumdude._" width="100%" height="100%"></a></div>
   </form>

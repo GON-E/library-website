@@ -26,7 +26,7 @@
         if(password_verify($password, $storedPassword)){
           $_SESSION['admin'] = $row['admin'];
 
-          header("location: ../actions/add-book.php");
+          header("location: ../pages/admin-homepage.php");
 
           exit();
         } 
@@ -80,6 +80,7 @@
         <a>Back to login</a>
       </span>
     </section>
+  
   </section>
   </form>
   <script src="../script/admin-login.js"></script>

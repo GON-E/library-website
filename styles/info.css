@@ -1,11 +1,12 @@
 body{
-   background-color:rgb(164, 194, 120);
+   background-color: #ececec;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
 h1{
-    background-color:greenyellow;
+    color: white;
+    background-color: #3d4a38;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -15,21 +16,21 @@ p{
     margin: 0 auto;
     border-style: outset;
     border-width: 5px;
-    border-color: green;
+    border-color: #3d4a38;
     border-radius: 10px;
     padding:10px;
-    background-color: rgb(79, 211, 36);
+    background-color: #d0d0cf;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
 .about{
-        border-style: outset;
+    border-style: outset;
     border-width: 5px;
-    border-color: green;
+    border-color: #3d4a38;
     border-radius: 10px;
     padding:10px;
-    background-color: rgb(16, 100, 35);
+    background-color: #3d4a38;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -53,12 +54,4 @@ button:hover{
 button:active{
     background-color: burlywood;
 }
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #f1f1f1;
-    text-align: center;
-    padding: 10px 0;
-}
+

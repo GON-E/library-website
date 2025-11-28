@@ -12,14 +12,27 @@
   <link rel="stylesheet" href="../styles/user-login.css">
 </head>
 <body>
+
   <!-- Form -->
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>"method="post">
-    Email:
-    <input type="text" name="email" placeholder="email"> <br>
-    Password:
+    <section class="form-title">
+      <h2>User Login</h2>
+    </section>
+    <section>
+    <input type="text" name="email" placeholder="email"> 
+    </section>
+    <section>
+    
     <input type="password" name="password" placeholder="password"> <br>
-    <input type="submit" name="submit" value="submit">
+    </section>
+    <section>
+    <input type="submit" name="submit" value="submit" class="submit-btn">
+    </section>
+    <section class="links">
+      <h6><a href="../pages/reset-password.php">forgot password</a></h6>
+    </section>
   </form>
+
 </body>
 </html>
 

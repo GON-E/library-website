@@ -78,9 +78,12 @@
             </tr>
             <tr>
             </tr>
+
         </tbody>
       </table>
+      
     </section>
   </main>
 </body>
+<section><?php include('footer.php');?></section>
 </html>

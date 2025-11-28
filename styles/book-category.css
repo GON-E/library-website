@@ -20,7 +20,7 @@
   cursor: pointer;
   text-decoration: none;
   color: #4f9956;
-  -webkit-text-stroke: 0.3px black;
+  -webkit-text-stroke: 0.3px black; 
   transition: 0.2s;
 }
 
@@ -28,4 +28,7 @@
   color: #3f7f45;
   transform: translateY(-2px);
 }
+
+
+
 

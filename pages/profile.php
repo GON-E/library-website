@@ -31,6 +31,7 @@
   </main>
 
 </body>
+<section><?php include('footer.php');?></section>
 </html>
 
 

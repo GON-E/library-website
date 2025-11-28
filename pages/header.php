@@ -6,10 +6,10 @@
   <title>Document</title>
   <link rel="stylesheet" href="../styles/header.css">
 </head>
-<body>
+<kdam>
   <header>
     <section class="upper-header">
-      <img src="../images/icons/bookIcon.png" class="bookIcon">
+
     </section>
     <section class="lower-header">
       <!--
@@ -22,12 +22,20 @@
           <h1>Hello, Admin! Welcome to Lé Bros Library!</h1  >
         </section>
         <section class="time-date"> 
-          November 00, 2025 | Monday, 00:00 AM
-        </section>
-      </section>
+<?php date_default_timezone_set('Asia/Manila'); ?>
+
+<div id="liveClock"></div>
+
+<script>
+const initialTime = "<?php echo date('Y-m-d H:i:s'); ?>";
+</script>
+
+<script src="assets/script.js"></script>
+
     <!--
     -->
     </section>
   </header>
+   <script src="../script/header.js"> </script>
 </body>
 </html>

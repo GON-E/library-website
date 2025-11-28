@@ -1,6 +1,6 @@
   <?php
   
-    include("../config/database.php");
+    include_once("../config/database.php");
 
   if($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the method is post if yes
     // Variable for user

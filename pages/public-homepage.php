@@ -8,18 +8,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="../styles/public-homepage.css">
 </head>
 <body>
+ 
+<section><?php include('side-nav.php');?></section>
+  
     <!-- <button img src="" name="logo" href="#"></button> -->
     <div class="main_container">
         <div class="welcome">
-            <h1>Hello, User! Welcome to Le' Bros Library!</h1> <!--"User" is the users name -->
-            <button class="login_btn"> Log-In</button>
-            <button class="signup_btn"> Sign-up </button>
-            <br>
-            <h7> November 00, 2025 | Monday, 00:00AM<h7>
-            <br>
+            <header>
+              <h1>Hello, User! Welcome to Le' Bros Library!</h1> <!-- "user" name of the user-->
+            <div class="date">November 00, 2025 | Monday, 00:00 AM</div>
+
+            <div class="header-buttons">
+              <button class="login_btn">Log-In</button>
+               <button class="signup_btn">Sign-up</button>
+            </div>
+             </header>
 
             <div class="Category">
                 <a href="#">Technology |</a>
@@ -40,5 +46,5 @@
    
 </body>
 
-<footer> Copyright © 2025 Lé Bros: Library This system is for education puposes only.  </footer>
+<section><?php include('footer.php');?></section>
 </html>

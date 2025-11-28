@@ -11,6 +11,7 @@
    <title>info</title>
       <link rel="stylesheet" href="../styles/info.css">
  </head>
+ 
  <body>
   <div class=about>
  <h1> ABOUT OUR SITE </h1>
@@ -26,7 +27,6 @@
     <div>Location: 2543 Jose Burgos St, Calamba, 4027 Laguna</div>
   <button onclick="window.location='admin-dashboard.php'">Back Home</button>
 </div>
-    <br>
-    <footer>Copyright © 2025 Lé Bros: Library This system is for education puposes only. </footer>
 </body>
+<section><?php include('footer.php');?></section>
 </html> 

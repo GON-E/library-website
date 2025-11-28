@@ -1,58 +1,117 @@
-body{
+/* RESET */
+* {
     margin: 0;
-    text-align: center;
-    background-color: #3d4a38;
-}
-
-.main_container {
-    background-color: #d0d0cf;
-    margin-top: 3%;
-    margin-left: 3%;
-    text-align: left;
-    padding: 1%;
-    padding-left: 2%;
-}
-
-.welcome{
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-.category {
-    margin-top: 2%;
-    margin-bottom: 2%;
-    background-color: #617359;
+body {
+    background-color: #0b0e0b;
+    color: #ffffff;
+    overflow-x: hidden;
 }
 
-
-.login_btn {
-    align-items: right;
-    margin-left: 80%;
-    margin-top: -50%;
-}
-.login_btn :hover {
-    background-color: #6b8e23;
-    color: white;
-}
-.login_btn a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    padding: 10px;
-    border: 2px solid black;
-    border-radius: 5px;
-}  
-
-
-
-footer {
-    display: block;
-    margin-top: 20px;
-    bottom: 0;
-    padding: 1%;
-    position: fixed;
+/* TOP HEADER – EXACT MATCH */
+header {
     width: 100%;
-    margin: 0;
-    background-color: #d0d0cf;
+    height: 90px;
+    background-color: #294227;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 35px;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    border-bottom: 4px solid #1e311c;
 }
 
+header h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
 
+/* DATE UNDER TITLE */
+header .date {
+    margin-top: 4px;
+    font-size: 17px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* BUTTONS IN HEADER – RIGHT SIDE */
+.header-buttons {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.header-buttons button {
+    padding: 10px 22px;
+    margin-left: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+/* BUTTON COLORS EXACT MATCH STYLE */
+.login_btn {
+    background-color: #375e34;
+    border: 2px solid #8cb584;
+}
+
+.signup_btn {
+    background-color: #4e7d49;
+    border: 2px solid #a3d49a;
+}
+
+.header-buttons button:hover {
+    filter: brightness(0.85);
+}
+
+/* NAVIGATION BAR (GRAY BAR UNDER HEADER) */
+.Category {
+    width: 100%;
+    background-color: #d1d1d1;
+    padding: 18px 40px;
+    margin-top: 90px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+}
+
+.Category a {
+    color: #1e3b1c;
+    font-size: 22px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-right: 40px;
+}
+
+.Category a:hover {
+    text-decoration: underline;
+}
+
+/* MAIN CONTENT BELOW BARS */
+.main-content {
+    padding: 40px;
+    margin-top: 20px;
+    min-height: 65vh;
+}
+
+/* FOOTER EXACT MATCH STYLE */
+footer {
+    background-color: #1a2918;
+    color: #c4c4c4;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 50px;
+    border-top: 3px solid #0f180e;
+}

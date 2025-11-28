@@ -5,7 +5,6 @@
   $db_name = "librarysysdb"; // Name of the Database  
 
   // For Database Connectivity
-  $conn = "";
 
   try { // Try to connect
     $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);

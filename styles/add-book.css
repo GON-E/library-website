@@ -1,70 +1,133 @@
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: sans-serif; /* Added for cleaner look */
 }
 
 body {
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #819983;
-}
-
-form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-
-section {
-  background: white;
+  align-items: center; /* Centers vertically */
+  background-color: #262c23;
+  min-height: 100vh; /* Ensures it fills the screen height */
   padding: 20px;
+  height: 60vh;
+}
+
+/* THE LAYOUT CONTAINER */
+.main-container {
+  display: grid;
+  background-color: #d0d0cf;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 0px;
+  width: 100%;
+  max-width: 900px; /* Prevents it from getting too wide */
+  align-items: start; /* Aligns boxes to the top */
+}
+
+/* Box Styling */
+section {
+  background: #d0d0cf;
+  padding: 10px;
   border-radius: 10px;
-  border: 1px solid #ddd;
-  background-color: #a8b8ae;
+  border: 1px solid #3d4a38;
+  background-color: #d0d0cf;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  margin-right: 5%;
 }
 
 section h2 {
-  margin-bottom: 12px;
-  font-size: 20px;
-  color: white;
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #000000;
+  font-weight: bold;
 }
 
-input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  margin: 6px 0 12px 0;
-  border-radius: 4px;
-  border: solid 1px;
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: white;
   font-size: 14px;
 }
 
-input[type="submit"]{ 
-  display: flex;
-  padding: 10px;
-  width: 50%;
-  justify-content: center;
-  cursor: pointer;
-  background-color: #4f9956;
-  border: solid 1px;
-  color: white  ;
+/* UNIFIED INPUT STYLING */
+/* This ensures Text, Number, Date, and Select dropdowns look identical */
+input[type="text"], 
+input[type="number"], 
+input[type="date"],
+select {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px; /* Consistent spacing */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  height: 30px; /* Enforce same height */
+  background-color: #f9f9f9;
 }
 
-input[type="submit"]:hover{
+/* File Input specific styling */
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+
+/* REGISTER BUTTON (Green) */
+input[type="submit"] { 
+  display: block;
+  width: 100%; /* Changed to 100% to fill the box properly */ 
+  padding: 12px;
+  cursor: pointer;
+  background-color: #3d4a38;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+.home-btn {
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  margin: auto;
+  width: 95%;
+  display: block;
+}
+
+.home-btn:hover {
+  text-decoration: underline;
+}
+
+.home-btn:hover {
+  color: #f9f9f9;
+}
+
+input[type="submit"]:hover {
   background-color: #3f7f45;
 }
 
-section:nth-child(2) input[type="submit"] {
-  background: #cc0000;
-  color: white;
-  border: solid 1px;
+/* DELETE BUTTON (Red) */
+/* Targeted by class name now */
+input.delete-btn {
+  background-color: #cc0000;
 }
 
-section:nth-child(2) input[type="submit"]:hover {
-  background: #990000;
+input.delete-btn:hover {
+  background-color: #990000;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .main-container {
+    grid-template-columns: 1fr; /* Stack vertically on phones */
+  }
+
+}
+

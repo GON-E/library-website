@@ -19,7 +19,7 @@
 </section>
 <section class="sidenav-link">
   <a href="report-button.php">
-    <img src="../images/icons/report-icon.svg">
+    <img src="../images/icons/report-flag.png">
   </a>
 </section>
 <section class="sidenav-link">
