@@ -1,0 +1,34 @@
+
+.public-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85px;
+    height: 100vh;
+    background-color: #0c1a0b; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    gap: 55px; 
+}
+
+.publicnav-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.publicnav-link img {
+    width: 40px;
+    height: 40px;
+    filter: brightness(100%); 
+    transition: 0.2s ease;
+}
+
+
+.publicnav-link img:hover {
+    filter: brightness(75%);
+    cursor: pointer;
+}

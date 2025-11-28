@@ -13,7 +13,7 @@
 <body>
   <header>
     <section>
-      <?php include('header.php');?>
+      <?php include 'public-header.php';?>
     </section>
   </header>
   <main>

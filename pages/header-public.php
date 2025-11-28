@@ -1,13 +1,10 @@
 <?php
-  include_once('../config/database.php');
-  include('../fetch/logout.php');
 // Ensure session is started to access the 'admin_name' variable
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-
-
+hi
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +24,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <section class="lower-header">
         <section class="lower-header-content">
         <section>
-          <h1>Hello, Admin! Welcome to Lé Bros Library!</h1  >
+          <h1>Hello, US! Welcome to Lé Bros Library!</h1  >
         </section>
         <section class="time-date"> 
 <?php date_default_timezone_set('Asia/Manila'); ?>

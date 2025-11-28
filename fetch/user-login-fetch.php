@@ -1,49 +1,81 @@
 <?php 
-  include('../config/database.php');
+// 1. Start the session at the very beginning of the script
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-  if($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Form Validation
-    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+// NOTE: Adjust the path if necessary
+include('../config/database.php');
+
+$error_message = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // If email is missing 
+    // 2. Input Filtering (Securely get and sanitize data)
+    // Sanitize email input
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+    // Use RAW for password, as sanitizing might alter the input needed for verification
+    $password = filter_input(INPUT_POST, "password", FILTER_UNSAFE_RAW);
+    
+    // 3. Basic Validation
     if(!$email) {
-      echo "Email is missing";
-    } else if(empty($password)) { // If Password is missing
-      echo "Password is missing";
-    } else { // If none is missing
-      // sql query
-      $sql = "SELECT * FROM users WHERE email = '$email'";
-      try { // try to query
-        $result = mysqli_query($conn, $sql);
+      $error_message = "Email is missing.";
+    } else if(empty($password)) {
+      $error_message = "Password is missing.";
+    } else {
         
-      } catch (mysqli_sql_exception) { // catach fatal error
-        echo "Error Occured!";
-      }
-
-      if(mysqli_num_rows($result) > 0){ // check if there is a result
-        $storedPassword = null; // Accumulator variable
-        $row = mysqli_fetch_assoc($result);  // fetch data from the db
-        $storedPassword = $row['password']; // get the password stored in db
+        // 4. PREPARE THE SQL STATEMENT (Security Step 1)
+        // Only select the data needed: id, username, and the hashed password
+        $sql = "SELECT userId, username, password FROM users WHERE email = ?";
         
-        if(password_verify($password, $storedPassword)) { // if the password and stored password is same
-          // Session to store basic information
-          $_SESSION['userId'] = $row['id'];
-          $_SESSION['userName'] = $row['username'];
+        if ($stmt = $conn->prepare($sql)) {
+            
+            // 5. BIND PARAMETER (Security Step 2)
+            // 's' specifies the variable type is string
+            $stmt->bind_param("s", $email);
+            
+            // 6. EXECUTE THE STATEMENT
+            if ($stmt->execute()) {
+                
+                // 7. GET THE RESULT
+                $result = $stmt->get_result();
 
-          header("location: "); // Redirect to a certain page
+                if($result->num_rows === 1) { 
+                    $row = $result->fetch_assoc();
+                    $storedPassword = $row['password']; 
+                    
+                    // 8. VERIFY THE PASSWORD HASH
+                    if(password_verify($password, $storedPassword)) { 
+                        // SUCCESS! Start the session variables
+                        $_SESSION['userId'] = $row['userId']; // Use 'id' from DB column
+                        $_SESSION['userName'] = $row['username'];
 
-          exit();
+                        // Redirect to the homepage
+                        header("location: public-homepage.php");
+                        exit();
 
-        } else { // If not same
-          echo "Incorrect Password!";
+                    } else {
+                        $error_message = "Incorrect Email or Password!";
+                        // NOTE: It is better to use a generic message for security
+                    }
+
+                } else {
+                    // This handles both 0 and >1 results (though >1 should be prevented by a UNIQUE index on email)
+                    $error_message = "Incorrect Email or Password!";
+                }
+
+            } else {
+                // Handle execution error
+                $error_message = "Error occurred during query execution.";
+            }
+
+            // Close the statement
+            $stmt->close();
+        } else {
+            // Handle preparation error
+            $error_message = "Database error: Could not prepare statement.";
         }
-
-      } else { // If there is no matching account
-        echo "No Records of the Account!";
-      }
     }
-  
-  }
-
+}
+// NOTE: $conn->close() is typically done at the end of the script or connection file, not here.
 ?>

@@ -1,22 +1,21 @@
+function updateClock() {
+    const timePH = new Date();
 
-
-let timePH = new Date(initialTime);
-
-setInterval(() => {
-    timePH.setSeconds(timePH.getSeconds() + 1);
-    document.getElementById("liveClock").innerHTML =
-        timePH.toLocaleString("en-US", { timeZone: "Asia/Manila" });
-
-           const options = {
-        month: "long",   // ← This makes it show the FULL month name
+    const options = {
+        weekday: "long",
+        month: "long",
         day: "numeric",
         year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric"
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+        timeZone: "Asia/Manila"
     };
 
     document.getElementById("liveClock").innerHTML =
         timePH.toLocaleString("en-US", options);
-}, 1000);
+}
 
+updateClock();
+setInterval(updateClock, 1000);

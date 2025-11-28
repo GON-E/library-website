@@ -1,12 +1,11 @@
 <?php
 include('../config/database.php');
-
 // --- HANDLE QUANTITY UPDATE ---
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_qty'])) {
     $isbn_to_update = $_POST['book_isbn'];
     $action = $_POST['update_qty'];
 
-    if ($action == 'plus') {
+    if ($action == 'plus') {  
         $update_sql = "UPDATE books SET quantity = quantity + 1 WHERE isbn = ?";
     } elseif ($action == 'minus') {
         // GREATEST(0, ...) prevents the number from going below 0

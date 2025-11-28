@@ -1,52 +1,342 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+* /* General Body and Container Styles */
 body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Or a similar sans-serif font */
+    background-color: #2e3e2e; /* Dark green/brownish background */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    background-color: #ececec;
+    min-height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent scrollbars if content slightly overflows */
+    position: relative;
 }
 
-form    {
+/* Background texture/pattern (if desired, not directly in image but implied) */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/dust-and-scratches.png'); /* Example texture, replace or remove */
+    opacity: 0.1; /* Adjust opacity for subtlety */
+    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 0;
+}
+
+.container {
+    display: flex;
+    gap: 30px; /* Space between the login form and the about box */
+    align-items: flex-start; /* Align items at the top */
+    z-index: 1; /* Keep content above background texture */
+}
+
+/* Login Form Styling */
+form {
+    background-color: #90a986; /* Lighter green/grey background for the form */
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 350px; /* Fixed width for the form */
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    background-color: #3d4a38;
-    width: 500px;
-    height: 500px;  
-    padding: 10px;
+    align-items: center;
+    position: relative; /* For the book header */
+    overflow: hidden; /* To contain the book header */
 }
 
-input {
+/* Book header graphic */
+form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-}
-
-input[type="password"] {
-    padding: 5px;
-}
-
-input[type="text"] {
-    padding: 5px;
-}
-
-
-
-.submit-btn {
-    width: 100%;
-    padding: 5px;
+    height: 50px; /* Height of the book graphic */
+    background-color: #5d7054; /* Darker green for the book spine area */
+    border-radius: 10px 10px 0 0;
+    background-image: url('https://i.imgur.com/your-book-texture-here.png'); /* Replace with your actual book texture or a simpler linear gradient */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Example simple gradient if you don't have an image: */
+    /* background: linear-gradient(to right, #6d8263, #90a986, #6d8263); */
+    /* border-bottom: 2px solid #4a5c41; */
 }
 
 .form-title {
     display: flex;
     align-items: center;
-    justify-content: center;
+    margin-top: 50px; /* Push down to clear the book header */
+    margin-bottom: 20px;
+    color: #2e3e2e; /* Dark text color */
+}
+
+.form-title h2 {
+    font-size: 2.2em; /* Larger font for the title */
+    margin: 0;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.form-title img {
+    height: 50px; /* Adjust size of your book icon */
+    margin-right: 10px;
+}
+
+.form-title p { /* For "Log In" text below "Lé Bros: Library" */
+    font-size: 1.5em;
+    margin-top: 5px;
+    font-weight: normal;
+    color: #4a5c41;
+}
+
+/* Input field sections */
+form section:not(.form-title):not(.links) {
+    width: 100%; /* Make input sections take full width */
+    margin-bottom: 15px;
+    position: relative;
+    display: flex; /* For icons */
+    align-items: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] { /* Added email for reset password form */
+    width: calc(100% - 40px); /* Adjust for padding and icon */
+    padding: 12px 10px 12px 40px; /* Left padding for icon */
+    border: none;
+    border-radius: 5px;
+    background-color: #d1d8cb; /* Lighter background for inputs */
+    font-size: 1em;
+    color: #2e3e2e;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
+    color: #6a7c61; /* Placeholder color */
+}
+
+/* Input Icons */
+.form-title > img { /* Assuming the book icon is an actual <img> tag */
+    height: 50px; /* Size of the book icon */
+    margin-right: 10px;
+}
+
+/* For the user icon */
+form section:nth-of-type(2)::before { /* Targets the first input section (email/username) */
+    content: '👤'; /* Unicode user icon */
+    font-size: 1.2em;
+    position: absolute;
+    left: 10px;
+    color: #4a5c41; /* Icon color */
+    pointer-events: none; /* Make icon unclickable */
+}
+
+/* For the password icon */
+form section:nth-of-type(3)::before { /* Targets the second input section (password) */
+    content: '🔒'; /* Unicode lock icon */
+    font-size: 1.2em;
+    position: absolute;
+    left: 10px;
+    color: #4a5c41; /* Icon color */
+    pointer-events: none;
+}
+
+/* Eye icon for password visibility (assuming it's part of the input section) */
+/* You'll likely need a JavaScript solution to toggle password visibility */
+form section:nth-of-type(3)::after { /* Targets the second input section (password) */
+    content: '👁️'; /* Unicode eye icon */
+    font-size: 1.2em;
+    position: absolute;
+    right: 10px;
+    color: #4a5c41;
+    cursor: pointer; /* Indicate it's clickable */
 }
 
 
+/* Login Attempts */
+.login-attempts { /* Assuming you add a class to the "Login Attempts: 0" text */
+    width: 100%;
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    color: #4a5c41;
+}
 
 
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #5d7054; /* Darker green for the button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #4a5c41; /* Even darker green on hover */
+}
+
+/* Links Section */
+.links {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.links a {
+    color: #4a5c41; /* Link color */
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.links h6 {
+    margin: 5px 0;
+    font-weight: normal;
+}
+
+
+/* About Page / Info Box Styling */
+.about-box { /* Assuming this is a div with class 'about-box' */
+    background-color: #90a986; /* Same as form background */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 380px; /* Adjust width as needed */
+    height: 300px; /* Fixed height from image */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    border: 3px solid #6d8263; /* Purple-like border from image */
+    position: relative; /* For the top left "About page" text */
+    color: #2e3e2e; /* Dark text color */
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.about-box::before {
+    content: "About page:";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-weight: bold;
+    color: #2e3e2e; /* Dark text color */
+    font-size: 1.1em;
+}
+
+.about-box p {
+    margin-top: 30px; /* Push content down to clear "About page:" */
+    font-size: 0.95em;
+    /* Adjust text color and line height as needed */
+}
+
+/* Login as Admin Button */
+.admin-login-btn { /* Assuming this is a button or link with class 'admin-login-btn' */
+    background-color: #5d7054; /* Darker green, similar to submit button */
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 20px; /* Space below about box */
+    align-self: flex-start; /* Align with the start of the about box container */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    display: inline-block; /* To allow padding */
+    cursor: pointer;
+}
+
+.admin-login-btn:hover {
+    background-color: #4a5c41;
+}
+
+/* Right-side container for about box and admin button */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align the about box and button to the left */
+}
+
+/* Bottom right exclamation mark (assuming it's a fixed element) */
+.exclamation-mark {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #5d7054; /* Dark green */
+    color: white;
+    font-size: 1.8em;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #4a5c41; /* Darker green for footer */
+    color: #d1d8cb;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.85em;
+    z-index: 1; /* Keep above background texture */
+}
+
+/* Adjustments for the specific text styling in your image */
+/* This is an approximation of the "Lé Bros: Library" custom font */
+.form-title h2 {
+    font-family: 'Times New Roman', serif; /* A serif font for the title */
+    /* If you have a custom font like 'Lobster' or 'Pacifico', you'd include it */
+    /* @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap'); */
+    /* font-family: 'Lobster', cursive; */
+}
+
+/* The "Log In" text right below the main title */
+.form-title p {
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    color: #2e3e2e;
+    font-weight: 500;
+}
+
+/* Specific styling for the about box text */
+.about-box p {
+    font-family: 'Georgia', serif; /* A classic serif font */
+    color: #2e3e2e;
+}
+
+
+/* Responsive Adjustments (optional, but good practice) */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .about-box, .admin-login-btn {
+        margin-left: 0; /* Remove margin for smaller screens */
+        width: 350px; /* Match form width */
+    }
+}

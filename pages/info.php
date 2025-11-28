@@ -11,8 +11,10 @@
    <title>info</title>
       <link rel="stylesheet" href="../styles/info.css">
  </head>
- 
+
  <body>
+   <?php include('side-nav.php');?>
+   <main class="main-container">
   <div class=about>
  <h1> ABOUT OUR SITE </h1>
   <p>This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.
@@ -25,8 +27,8 @@
     <a>Email:</a>
     <a href= link>Lebros67@.gmail.com</a>
     <div>Location: 2543 Jose Burgos St, Calamba, 4027 Laguna</div>
-  <button onclick="window.location='admin-dashboard.php'">Back Home</button>
 </div>
+</main>
 </body>
 <section><?php include('footer.php');?></section>
 </html> 
