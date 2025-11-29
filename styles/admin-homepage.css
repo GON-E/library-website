@@ -142,3 +142,85 @@ body {
 .qty-btn.plus:hover {
     background-color: #2e5e32;
 }
+
+
+
+/* ============================================ */
+/* 🆕 NEW STYLES FOR DELETE AND RESTORE */
+/* ============================================ */
+
+/* Container for restore and delete buttons */
+.zero-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Restore button (circular arrow) */
+.restore-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.restore-btn:hover {
+    background-color: #218838;
+    transform: rotate(180deg) scale(1.1);
+}
+
+.restore-btn:active {
+    transform: rotate(180deg) scale(0.95);
+}
+
+/* Delete button styling */
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.delete-btn:active {
+    transform: scale(0.95);
+}
+
+/* Zero quantity styling - makes it red */
+.qty-display.zero {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Adjust the form to handle both layouts */
+.qty-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    padding: 5px;
+    margin-top: 10px;
+}
