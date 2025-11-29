@@ -1,13 +1,7 @@
 <?php
   include_once('../config/database.php');
-  include('../fetch/logout.php');
-// Ensure session is started to access the 'admin_name' variable
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+  include('../config/admin-auth.php');
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,13 +15,22 @@ if (session_status() == PHP_SESSION_NONE) {
   <header>
     <section class="upper-header">
       <section class="signout-container">
-        <button class="signout-btn">Sign Out</button>
+          <form action="../fetch/logout.php" method="post">
+    <button type="submit" name="signout" class="signout-btn">Sign Out</button>
+  </form>
+      </section>
+      <section >
+        <form action="../actions/add-book.php" method="get">
+        <button type="submit" name="modify" class="signout-btn">Modify Books</button>
+  </form>
       </section>
     </section>
     <section class="lower-header">
         <section class="lower-header-content">
         <section>
-          <h1>Hello, Admin! Welcome to Lé Bros Library!</h1  >
+          <h1>Hello, <?php echo  htmlspecialchars($_SESSION['admin_name'] ?? 'Admin')?>
+      
+          Welcome to Lé Bros Library!</h1  >
         </section>
         <section class="time-date"> 
 <?php date_default_timezone_set('Asia/Manila'); ?>

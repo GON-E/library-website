@@ -1,4 +1,5 @@
 <?php 
+/*
   include('../config/database.php');
 
   $sql = "SELECT * FROM books";
@@ -12,5 +13,5 @@
       $books = $row;
     }
   } 
-
+  */
 ?>  

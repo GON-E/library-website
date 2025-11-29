@@ -1,5 +1,6 @@
 <?php
 include('../config/database.php');
+include('../config/admin-auth.php');
 // --- HANDLE QUANTITY UPDATE ---
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_qty'])) {
     $isbn_to_update = $_POST['book_isbn'];

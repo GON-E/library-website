@@ -1,4 +1,5 @@
 <?php
+  include('../config/admin-auth.php');
   include('../config/database.php');
   include('../fetch/add-delete-fetch.php');
 ?>

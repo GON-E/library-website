@@ -24,14 +24,19 @@ header {
   box-sizing: border-box;
   justify-content: start;
   align-items: center;
+  gap: 10px;
 }
 
-.signout-btn {
+.signout-btn, .modify-btn {
   color: white;
   background-color: #3d4a38;
   border: none;
   padding: 10px;
   cursor: pointer;
+}
+
+.signout-container{ 
+  margin-right: 10px;
 }
 
 
