@@ -12,11 +12,7 @@
     <img src="../images/icons/home-icon.svg">
   </a>
 </section>
-<section class="publicnav-link">
-  <a href="../pages/public-homepage.php">
-    <img src="../images/icons/settings-icon.svg">
-  </a>
-</section>
+
 <section class="publicnav-link">
   <a href="report-button.php">
     <img src="../images/icons/report-flag.png">
