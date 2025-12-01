@@ -8,19 +8,19 @@
 <body>
   <aside class="public-nav">
 <section class="publicnav-link">
-  <a href="user-homepage.php" title="My Borrowed Books">
-    <img src="../images/icons/home-icon.svg">
+  <a href="user-login.php" title="My Borrowed Books">
+    <img src="../images/dashboard-icon.svg"> 
   </a>
 </section>
 
 <section class="publicnav-link">
   <a href="public-homepage.php" title="Browse Books">
-    <img src="../images/icons/borrow-icon.svg">
+    <img src="../images/icons/home-icon.svg">
   </a>
 </section>
 
 <section class="publicnav-link">
-  <a href="report-button.php" title="Report Issue">
+  <a href="user-login.php" title="Report Issue">
     <img src="../images/icons/report-flag.png">
   </a>
 </section>
@@ -32,7 +32,7 @@
 </section>
 
 <section class="publicnav-link">
-  <a href="profile.php" title="Profile">
+  <a href=".php" title="Profile">
     <img src="../images/icons/account-icon.svg">
   </a>
 </section>

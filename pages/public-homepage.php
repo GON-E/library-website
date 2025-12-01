@@ -1,5 +1,11 @@
 <?php
-session_start();
+// pages/public-homepage.php
+
+// Start session first
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 include('../config/database.php');
 include('../fetch/borrow-book-fetch.php');
 ?>

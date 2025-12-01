@@ -18,7 +18,7 @@ header {
   flex-direction: row;
   width: 100%;
   height: 40px;
-  background-color:#262c23;
+  background-color:#20231e;
   object-fit: contain;
   padding-left: 40px;
   box-sizing: border-box;
@@ -27,19 +27,24 @@ header {
   gap: 10px;
 }
 
-.signin-btn, .modify-btn {
-  color: white;
-  background-color: #3d4a38;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
+
 
 .signin-container{ 
   margin-right: 10px;
 }
 
+.signin-btn {
+  color: rgb(0, 0, 0);
+  background-color: #778f5e;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
+.signin-btn:hover {
+  background-color: white;
+}
 
 .lower-header { 
   color: white;
@@ -51,14 +56,14 @@ header {
   box-sizing: border-box;
   margin: 0;
 }
-
+/*
 .blank-green-bg {
   display: flex;
   width: 40px;
   height: 100%;
   background-color: white;
   align-self: stretch;
-}
+} */
 
 
 .lower-header-content {

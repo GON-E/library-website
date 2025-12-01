@@ -21,7 +21,7 @@ $userName = $isLoggedIn ? $_SESSION['userName'] : 'Guest';
 <body>
   <header>
     <section class="upper-header">
-      <section class="signout-container">
+      <section class="signin-container">
         <?php if($isLoggedIn): ?>
           <!-- User is logged in - show Sign Out button -->
           <form action="../fetch/user-logout.php" method="post" style="display: inline;">
@@ -30,10 +30,10 @@ $userName = $isLoggedIn ? $_SESSION['userName'] : 'Guest';
         <?php else: ?>
           <!-- User is NOT logged in - show Login/Sign Up buttons -->
           <a href="user-login.php">
-            <button class="signout-btn">Login</button>
+            <button class="signin-btn">Login</button>
           </a>
           <a href="user-signup.php">
-            <button class="signout-btn">Sign Up</button>
+            <button class="signin-btn">Sign Up</button>
           </a>
         <?php endif; ?>
       </section>

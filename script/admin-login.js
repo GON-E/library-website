@@ -1,7 +1,15 @@
 
 
 
-console.log("ang pogi k0"); 
+//console.log("ang pogi k0"); 
+
+const showPassword = document.querySelector("#show-password");
+const passwordField = document.querySelector("#password");
+
+showPassword.addEventListener("click", () => {
+    showPassword.classList.toggle("fa-eye-slash");
+    passwordField.type = passwordField.type === "password" ? "text" : "password";
+});
 
 
 // Get HTML

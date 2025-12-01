@@ -4,31 +4,61 @@
 
 <!DOCTYPE html>
 <html lang="en">
- <head>
+<head>
    <link rel="stylesheet" href="../styles/info.css">
+   
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>info</title>
-      <link rel="stylesheet" href="../styles/info.css">
- </head>
+   <title>Info</title>
+</head>
 
- <body>
+<body>
    <?php include('public-nav.php');?>
+
    <main class="main-container">
-  <div class=about>
- <h1> ABOUT OUR SITE </h1>
-  <p>This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.This website is for education purpose only you can check some newly books in our library.
- This website is for education purpose only you can check some newly books in our library</p>
-</div>
-<div class=contact>
-   <h3>CONTACT US:</h3>
-   <a>Contact No:</a>
-   <a href= number>+639218931232</a> <br>
-    <a>Email:</a>
-    <a href= link>Lebros67@.gmail.com</a>
-    <div>Location: 2543 Jose Burgos St, Calamba, 4027 Laguna</div>
-</div>
-</main>
+
+      <section class="about">
+         <h1>ABOUT OUR SITE</h1>
+         <p>
+            meow
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+            This website is for educational purposes only. You can check newly added books in our library.
+
+         </p>
+      </section>
+
+      <section class="contact">
+         <h3>CONTACT US</h3>
+
+         <div class="info-item">
+            <strong>Contact No:</strong> 
+            <a href="tel:+639218931232">+639218931232</a>
+         </div>
+
+         <div class="info-item">
+            <strong>Email:</strong> 
+            <a href="mailto:Lebros67@gmail.com">Lebros67@gmail.com</a>
+         </div>
+
+         <div class="info-item">
+            <strong>Location:</strong> 
+            2543 Jose Burgos St, Calamba, 4027 Laguna
+         </div>
+      </section>
+
+   </main>
+
+   <?php include('footer.php');?>
 </body>
-<section><?php include('footer.php');?></section>
-</html> 
+</html>

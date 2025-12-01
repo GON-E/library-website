@@ -57,6 +57,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alice&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <title>Admin Login</title>
   <link rel="stylesheet" href="../styles/admin-login.css">
   <link rel="icon" href="../images/lock.png" type="image/x-icon">
@@ -80,8 +81,13 @@
           <input type="text" name="admin" placeholder="username"> <br>
         </section>
         <section class="password-section">
-          <input type="password" name="password" placeholder="password"> <br>
+          <div class="password-wrapper">
+          <input type="password" name="password" id="password" placeholder="password">
+           <i id="show-password" class="fa-regular fa-eye"></i>
+          <br>
+    </div>
           <span class="login-attempt attempt-count"><u>Login Attempts: 0</u></span>
+    
         </section>
         <section>
           <input type="submit" name="login" value="Log In" class="login-button">  

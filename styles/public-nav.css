@@ -8,7 +8,7 @@
   bottom: 0;
   width: 40px;
   height: 100vh;
-  background-color: rgb(11, 27, 11);
+  background-color: #20231e;
   z-index: 2;
 }
 
@@ -21,11 +21,11 @@
 }
 
 .publicnav-link a:hover {
-  background: rgba(255,255,255,.15);
+  background: rgb(74, 102, 80);
 }
 
 .publicnav-link a:active {
-  background: rgba(255,255,255,.25);
+  background: rgb(74, 102, 80);
 }
 
 .publicnav-link img {

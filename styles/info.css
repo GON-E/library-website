@@ -1,58 +1,74 @@
-body{
-    background-color: #ececec;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+/* Background */
+body {
+    background-color: black;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-h1{
-    color: white;
-    background-color: #3d4a38;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+/* MAIN CONTAINER */
+.main-container {
+    padding: 40px 20px;
+    margin-left: 80px; 
 }
 
-p{
-    text-align: center;
+/* ABOUT SECTION */
+.about {
+    max-width: 900px;
     margin: 0 auto;
-    border-style: outset;
-    border-width: 5px;
-    border-color: #3d4a38;
-    border-radius: 10px;
-    padding:10px;
     background-color: #d0d0cf;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+    color: white;
 }
 
-.about{
+.about h1 {
+    margin-top: 0;
     text-align: center;
-    margin: 0 auto;
-    width: 95%;
-    border-style: outset;
-    border-width: 5px;
-    border-color: #3d4a38;
+    letter-spacing: 2px;
+}
+
+.about p {
+    margin-top: 15px;
+    background: #e8e8e8;
+    padding: 18px;
     border-radius: 10px;
-    padding:10px;
-    background-color: #3d4a38;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    color: #333;
+    line-height: 1.6;
+    border: none;
+    box-shadow: inset 0px 0px 6px rgba(0,0,0,0.2);
 }
 
-.contact{
+/* CONTACT SECTION */
+.contact {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #d0d0cf;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px black;
     text-align: center;
-    margin: 35px;
-    width: 95%;
-    margin-top: 20%;
-    border-style: outset;
-    border-width: 5px;
-    border-color: rgb(133, 155, 100);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding:10px;
-    background-color: rgb(127, 179, 139);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    
 }
 
+.contact h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: red;
+    letter-spacing: 1px;
+}
 
+/* Contact info items */
+.info-item {
+    margin: 12px 0;
+    font-size: 18px;
+    color: grey;
+}
+
+.info-item a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.info-item a:hover {
+    text-decoration: underline;
+}

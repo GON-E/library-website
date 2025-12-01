@@ -11,22 +11,17 @@
 
 <section class="sidenav-link">
     <a href="user-dashboard.php" title="Status">
-        <img src="" alt="">
+        <img src="../images/dashboard-icon.svg">
     </a>
 </section>
  
 
 <section class="sidenav-link">
   <a href="user-homepage.php" title="My Borrowed Books"> <!-- HOME ICON -->
-    <img src="../images/icons/borrow-icon.svg">
-  </a>
-</section>
-
-<section class="sidenav-link">
-  <a href="public-homepage.php" title="Browse Books"> <!-- wala dapat to-->
     <img src="../images/icons/home-icon.svg">
   </a>
 </section>
+
 
 <section class="sidenav-link">
   <a href="report-button.php" title="Report Issue">

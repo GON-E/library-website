@@ -10,12 +10,12 @@ if(!isset($_SESSION['userId'])) {
 
 $user_id = $_SESSION['userId'];
 
-// Get borrowed books - using isbn as the join key
-$sql = "SELECT bb.*, b.book_title, b.author, b.image, b.isbn 
-        FROM borrow_records bb
-        JOIN books b ON bb.book_id = b.isbn
-        WHERE bb.user_id = ?
-        ORDER BY bb.date_borrowed DESC";
+// Get borrowed books - join with books table using bookId
+$sql = "SELECT br.*, b.book_title, b.author, b.image, b.isbn 
+        FROM borrow_records br
+        JOIN books b ON br.book_id = b.bookId
+        WHERE br.user_id = ?
+        ORDER BY br.date_borrowed DESC";
 
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $user_id);
@@ -31,12 +31,13 @@ $result = mysqli_stmt_get_result($stmt);
   <title>My Borrowed Books</title>
   <link rel="stylesheet" href="../styles/admin-dashboard.css">
   <style>
+
   </style>
 </head>
 <body>
 
   <header><?php include('public-header.php'); ?></header>
-  <section><?php include('public-nav.php'); ?></section>
+  <section><?php include('user-nav.php'); ?></section>
 
   <a href="public-homepage.php" class="browse-link">📚 Browse All Books</a>
 

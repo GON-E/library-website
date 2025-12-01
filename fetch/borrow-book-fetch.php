@@ -6,6 +6,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
     
     // Check if user is logged in
     if(!isset($_SESSION['userId'])) {
+        $_SESSION['error_message'] = "Please log in to borrow books.";
         header("Location: ../pages/user-login.php");
         exit();
     }
@@ -19,9 +20,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
         exit();
     }
     
-    // Get book details and check availability
-    // Note: Using isbn as the book identifier since there's no book_id column
-    $check_sql = "SELECT isbn, quantity FROM books WHERE isbn = ?";
+    // Get book details using ISBN - use bookId if that's your column name
+    $check_sql = "SELECT bookId, isbn, quantity, book_title FROM books WHERE isbn = ?";
     $check_stmt = mysqli_prepare($conn, $check_sql);
     
     if($check_stmt) {
@@ -30,8 +30,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
         $result = mysqli_stmt_get_result($check_stmt);
         
         if($row = mysqli_fetch_assoc($result)) {
-            $book_id = $row['isbn']; // Using isbn as book_id
+            $book_id = $row['bookId']; // Get the bookId from your table
             $quantity = $row['quantity'];
+            $book_title = $row['book_title'];
             
             // Check if book is available
             if($quantity <= 0) {
@@ -45,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
             $check_borrowed_sql = "SELECT borrow_id FROM borrow_records 
                                    WHERE user_id = ? AND book_id = ? AND status = 'borrowed'";
             $check_borrowed_stmt = mysqli_prepare($conn, $check_borrowed_sql);
-            mysqli_stmt_bind_param($check_borrowed_stmt, "is", $user_id, $book_id); // Changed to "is" since book_id is now isbn (string)
+            mysqli_stmt_bind_param($check_borrowed_stmt, "ii", $user_id, $book_id);
             mysqli_stmt_execute($check_borrowed_stmt);
             $borrowed_result = mysqli_stmt_get_result($check_borrowed_stmt);
             
@@ -68,13 +69,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
             $insert_stmt = mysqli_prepare($conn, $insert_sql);
             
             if($insert_stmt) {
-                mysqli_stmt_bind_param($insert_stmt, "isss", $user_id, $book_id, $date_borrowed, $due_date); // Changed to "isss"
+                mysqli_stmt_bind_param($insert_stmt, "iiss", $user_id, $book_id, $date_borrowed, $due_date);
                 
                 if(mysqli_stmt_execute($insert_stmt)) {
-                    // Decrease book quantity - using isbn instead of book_id
-                    $update_sql = "UPDATE books SET quantity = quantity - 1 WHERE isbn = ?";
+                    // Decrease book quantity - use bookId
+                    $update_sql = "UPDATE books SET quantity = quantity - 1 WHERE bookId = ?";
                     $update_stmt = mysqli_prepare($conn, $update_sql);
-                    mysqli_stmt_bind_param($update_stmt, "s", $book_id); // "s" for string (isbn)
+                    mysqli_stmt_bind_param($update_stmt, "i", $book_id);
                     mysqli_stmt_execute($update_stmt);
                     mysqli_stmt_close($update_stmt);
                     
