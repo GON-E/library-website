@@ -12,7 +12,7 @@ $user_id = $_SESSION['userId'];
 
 // Get borrowed books - using isbn as the join key
 $sql = "SELECT bb.*, b.book_title, b.author, b.image, b.isbn 
-        FROM borrow_book bb
+        FROM borrow_records bb
         JOIN books b ON bb.book_id = b.isbn
         WHERE bb.user_id = ?
         ORDER BY bb.date_borrowed DESC";
@@ -31,127 +31,6 @@ $result = mysqli_stmt_get_result($stmt);
   <title>My Borrowed Books</title>
   <link rel="stylesheet" href="../styles/admin-dashboard.css">
   <style>
-    .borrowed-books-container {
-      margin: 20px auto;
-      max-width: 1200px;
-      padding: 20px;
-      margin-left: 60px;
-      background-color: #2f3e2a;
-      border-radius: 10px;
-    }
-    
-    .borrowed-books-container h2 {
-      color: white;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    
-    .borrowed-book-card {
-      background-color: white;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      display: grid;
-      grid-template-columns: 100px 1fr 200px;
-      gap: 15px;
-      align-items: center;
-    }
-    
-    .borrowed-book-card img {
-      width: 100px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-    
-    .book-info h3 {
-      margin: 0 0 5px 0;
-      color: #3f7f45;
-    }
-    
-    .book-info p {
-      margin: 5px 0;
-      font-size: 14px;
-      color: #666;
-    }
-    
-    .status-info {
-      text-align: right;
-    }
-    
-    .status-badge {
-      display: inline-block;
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    
-    .status-borrowed {
-      background-color: #4CAF50;
-      color: white;
-    }
-    
-    .status-overdue {
-      background-color: #f44336;
-      color: white;
-    }
-    
-    .status-returned {
-      background-color: #999;
-      color: white;
-    }
-    
-    .browse-link {
-      display: inline-block;
-      margin: 20px;
-      margin-left: 60px;
-      padding: 10px 20px;
-      background-color: #3f7f45;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    
-    .browse-link:hover {
-      background-color: #2e5e32;
-    }
-
-    .no-books-message {
-      color: white;
-      text-align: center;
-      padding: 40px;
-    }
-
-    .no-books-message a {
-      color: #4CAF50;
-      text-decoration: underline;
-    }
-
-    @media screen and (max-width: 768px) {
-      .borrowed-book-card {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .borrowed-book-card img {
-        margin: 0 auto;
-      }
-
-      .status-info {
-        text-align: center;
-      }
-
-      .borrowed-books-container {
-        margin-left: 20px;
-        margin-right: 20px;
-      }
-
-      .browse-link {
-        margin-left: 20px;
-      }
-    }
   </style>
 </head>
 <body>

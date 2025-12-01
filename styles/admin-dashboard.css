@@ -1,11 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: beige;
+  background-color: #d0d0cf;
 }
 
 
 .main-container {
+  background-color: #d0d0cf;
   width: auto;
   height: auto;
   position: relative;

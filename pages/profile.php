@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../styles/profile.css" />
 </head>
 <body>
- <?php include('side-nav.php');?>
+ <?php include('public-nav.php');?>
   <main class="profile-container" role="main" aria-labelledby="profile-heading">
    
     <img src="your-photo.jpg" alt="Profile picture of Your Name" />
@@ -26,7 +26,7 @@
     </div>
 
     <div class="actions">
-      <a href="admin-dashboard.php" class="btn" role="button">Back Home</a>
+      <a href="public-homepage.php" class="btn" role="button">Back Home</a>
     </div>
   </main>
 

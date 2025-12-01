@@ -12,11 +12,13 @@
   <link rel="stylesheet" href="../styles/admin-dashboard.css">
 </head>
 <body>
+
   <header>
     <section>
       <?php include('admin-header.php');?>
     </section>
   </header>
+  
   <main>
     <section class="main-container"> 
 

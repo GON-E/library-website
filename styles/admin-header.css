@@ -28,8 +28,8 @@ header {
 }
 
 .signin-btn, .modify-btn {
-  color: white;
-  background-color: #3d4a38;
+  color: rgb(0, 0, 0);
+  background-color: red;
   border: none;
   padding: 10px;
   cursor: pointer;
