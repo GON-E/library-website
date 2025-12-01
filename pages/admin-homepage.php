@@ -109,8 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_qty'])) {
 </head>
 <body>
   
-  <header><?php include('header.php');?></header>
-  <section><?php include('side-nav.php');?></section>
+  <header><?php include('admin-header.php');?></header>
+  <section><?php include('admin-side-nav.php');?></section>
   <section><?php include('book-category.php');?></section>
 
   <section class="book-catalog-container">

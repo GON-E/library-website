@@ -1,10 +1,13 @@
 <?php
-// Ensure session is started to access the 'admin_name' variable
+// Ensure session is started to access user info
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+// Get user name from session
+$userName = isset($_SESSION['userName']) ? $_SESSION['userName'] : 'User';
 ?>
-hi
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +21,22 @@ hi
   <header>
     <section class="upper-header">
       <section class="signout-container">
-        <button class="signout-btn">Sign Out</button>
+        <!-- User Sign Out button -->
+        <form action="../fetch/user-logout.php" method="post" style="display: inline;">
+          <button type="submit" name="signout" class="signout-btn">Sign Out</button>
+        </form>
+      </section>
+      <section>
+        <!-- Browse Books Button -->
+        <a href="public-homepage.php">
+          <button class="signout-btn">Browse Books</button>
+        </a>
       </section>
     </section>
     <section class="lower-header">
         <section class="lower-header-content">
         <section>
-          <h1>Hello, US! Welcome to Lé Bros Library!</h1  >
+          <h1>Hello, <?php echo htmlspecialchars($userName); ?>! Welcome to Lé Bros Library!</h1>
         </section>
         <section class="time-date"> 
 <?php date_default_timezone_set('Asia/Manila'); ?>
@@ -34,6 +46,8 @@ hi
 <script>
 const initialTime = "<?php echo date('Y-m-d H:i:s'); ?>";
 </script>
+        </section>
+      </section>
     </section>
   </header>
 </body>

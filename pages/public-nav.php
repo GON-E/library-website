@@ -8,7 +8,7 @@
 <body>
   <aside class="public-nav">
 <section class="publicnav-link">
-  <a href="public-dashboard.php">
+  <a href="user-dashboard.php">
     <img src="../images/icons/home-icon.svg">
   </a>
 </section>

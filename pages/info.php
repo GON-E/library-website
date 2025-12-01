@@ -13,7 +13,7 @@
  </head>
 
  <body>
-   <?php include('side-nav.php');?>
+   <?php include('public-nav.php');?>
    <main class="main-container">
   <div class=about>
  <h1> ABOUT OUR SITE </h1>

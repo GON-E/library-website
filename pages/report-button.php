@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <?php include('side-nav.php');?>
+  <?php include('public-nav.php');?>
      <div class="container">
     <h2>Report an Issue</h2>
 

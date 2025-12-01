@@ -14,13 +14,13 @@
 <body>
   <header>
     <section>
-      <?php include('header.php');?>
+      <?php include('admin-header.php');?>
     </section>
   </header>
   <main>
     <section class="main-container"> 
 
-      <?php include('side-nav.php');?>
+      <?php include('admin-side-nav.php');?>
 
       <section class="information-cards-grid">
         <section class="information-card">
