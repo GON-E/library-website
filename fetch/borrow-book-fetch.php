@@ -1,13 +1,12 @@
 <?php
 // fetch/borrow-book-fetch.php
-include('../config/database.php');
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
     
     // Check if user is logged in
     if(!isset($_SESSION['userId'])) {
-        $_SESSION['error_message'] = "Please log in to borrow books.";
-        header("Location: ../pages/user-login.php");
+        // User not logged in - redirect to signup page
+        header("Location: ../pages/user-signup.php");
         exit();
     }
     
@@ -20,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
         exit();
     }
     
-    // Get book details using ISBN - use bookId if that's your column name
+    // Get book details using ISBN
     $check_sql = "SELECT bookId, isbn, quantity, book_title FROM books WHERE isbn = ?";
     $check_stmt = mysqli_prepare($conn, $check_sql);
     
@@ -30,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
         $result = mysqli_stmt_get_result($check_stmt);
         
         if($row = mysqli_fetch_assoc($result)) {
-            $book_id = $row['bookId']; // Get the bookId from your table
+            $book_id = $row['bookId'];
             $quantity = $row['quantity'];
             $book_title = $row['book_title'];
             
@@ -72,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
                 mysqli_stmt_bind_param($insert_stmt, "iiss", $user_id, $book_id, $date_borrowed, $due_date);
                 
                 if(mysqli_stmt_execute($insert_stmt)) {
-                    // Decrease book quantity - use bookId
+                    // Decrease book quantity
                     $update_sql = "UPDATE books SET quantity = quantity - 1 WHERE bookId = ?";
                     $update_stmt = mysqli_prepare($conn, $update_sql);
                     mysqli_stmt_bind_param($update_stmt, "i", $book_id);

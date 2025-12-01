@@ -1,3 +1,15 @@
+<?php
+// Protect this navigation - only for logged-in users
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// If user is not logged in, redirect to login
+if(!isset($_SESSION['userId']) || empty($_SESSION['userId'])) {
+    header("Location: ../pages/user-login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,20 +20,23 @@
 <body>
   <aside class="side-nav">
 
-
 <section class="sidenav-link">
-    <a href="user-dashboard.php" title="Status">
+    <a href="user-dashboard.php" title="Dashboard">
         <img src="../images/dashboard-icon.svg">
     </a>
 </section>
- 
 
 <section class="sidenav-link">
-  <a href="user-homepage.php" title="My Borrowed Books"> <!-- HOME ICON -->
+  <a href="user-homepage.php" title="My Borrowed Books">
     <img src="../images/icons/home-icon.svg">
   </a>
 </section>
 
+<section class="sidenav-link">
+  <a href="public-homepage.php" title="Browse Books">
+    <img src="../images/icons/borrow-icon.svg">
+  </a>
+</section>
 
 <section class="sidenav-link">
   <a href="report-button.php" title="Report Issue">
@@ -30,7 +45,7 @@
 </section>
 
 <section class="sidenav-link">
-  <a href="info.php" title="Information">
+  <a href="info.php" title="About">
     <img src="../images/icons/info-icon.svg">
   </a>
 </section>

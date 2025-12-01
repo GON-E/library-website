@@ -26,13 +26,13 @@
 </section>
 
 <section class="publicnav-link">
-  <a href="info.php" title="About">
+  <a href="public-info.php" title="About">
     <img src="../images/icons/info-icon.svg">
   </a>
 </section>
 
 <section class="publicnav-link">
-  <a href=".php" title="Profile">
+  <a href="user-login.php" title="Profile">
     <img src="../images/icons/account-icon.svg">
   </a>
 </section>

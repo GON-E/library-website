@@ -8,6 +8,9 @@ if(session_status() == PHP_SESSION_NONE) {
 
 include('../config/database.php');
 include('../fetch/borrow-book-fetch.php');
+
+// Check if user is logged in
+$isLoggedIn = isset($_SESSION['userId']) && !empty($_SESSION['userId']);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +18,7 @@ include('../fetch/borrow-book-fetch.php');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Public Homepage</title>
+  <title>Browse Books - Lé Bros Library</title>
   <link rel="stylesheet" href="../styles/admin-homepage.css">
   <link rel="stylesheet" href="../styles/public-homepage.css">
 </head>

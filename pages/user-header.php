@@ -14,14 +14,14 @@ $userName = isset($_SESSION['userName']) ? $_SESSION['userName'] : 'User';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/user-header.css">
   <script src="../script/header.js" defer></script>
 </head>
 <body>
   <header>
     <section class="upper-header">
       <section class="signout-container">
-        <!-- User Sign Out button -->
+        <!-- User Sign Out button - FIXED PATH -->
         <form action="../fetch/user-logout.php" method="post" style="display: inline;">
           <button type="submit" name="signout" class="signout-btn">Sign Out</button>
         </form>
