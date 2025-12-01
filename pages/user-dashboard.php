@@ -19,7 +19,7 @@
   <main>
     <section class="main-container"> 
 
-      <?php include('side-nav.php');?>
+      <?php include('user-nav.php');?>
 
       <section class="information-cards-grid">
         <section class="information-card">

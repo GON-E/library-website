@@ -17,7 +17,7 @@
 
 <section class="sidenav-link">
   <a href="../pages/admin-homepage.php">
-    <img src="../images/icons/settings-icon.svg">
+    <img src="../images/icons/home-icon.svg"> 
   </a>
 
 </section>

@@ -8,19 +8,22 @@
 <body>
   <aside class="side-nav">
 
+
 <section class="sidenav-link">
     <a href="user-dashboard.php" title="Status">
         <img src="" alt="">
+    </a>
+</section>
+ 
 
 <section class="sidenav-link">
-  <a href="user-homepage.php" title="Borrow Books">
+  <a href="user-homepage.php" title="My Borrowed Books"> <!-- HOME ICON -->
     <img src="../images/icons/borrow-icon.svg">
-    
   </a>
 </section>
 
 <section class="sidenav-link">
-  <a href="public-homepage.php" title="Browse Books">
+  <a href="public-homepage.php" title="Browse Books"> <!-- wala dapat to-->
     <img src="../images/icons/home-icon.svg">
   </a>
 </section>

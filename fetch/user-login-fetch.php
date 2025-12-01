@@ -50,8 +50,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['userId'] = $row['userId']; // Use 'id' from DB column
                         $_SESSION['userName'] = $row['username'];
 
-                        // Redirect to the homepage
-                        header("location: public-homepage.php");
+                        // Redirect to user homepage (borrowed books page)
+                        header("location: user-homepage.php");
                         exit();
 
                     } else {

@@ -1,72 +1,26 @@
 <?php
-// Start session and check if user is logged in
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
+include('../config/database.php');
 
-// Redirect to login if not logged in
-if (!isset($_SESSION['userId']) || empty($_SESSION['userId'])) {
-    header("Location: user-login.php");
+// Check if user is logged in
+if(!isset($_SESSION['userId'])) {
+    header("Location: ../pages/user-login.php");
     exit();
 }
 
-include('../config/database.php');
+$user_id = $_SESSION['userId'];
 
-$userId = $_SESSION['userId'];
-$userName = $_SESSION['userName'];
+// Get borrowed books - using isbn as the join key
+$sql = "SELECT bb.*, b.book_title, b.author, b.image, b.isbn 
+        FROM borrow_book bb
+        JOIN books b ON bb.book_id = b.isbn
+        WHERE bb.user_id = ?
+        ORDER BY bb.date_borrowed DESC";
 
-// Update overdue status
-$today = date('Y-m-d');
-$update_overdue = "UPDATE borrowed_books 
-                   SET status = 'overdue' 
-                   WHERE user_id = ? 
-                   AND status = 'borrowed' 
-                   AND return_date < ?";
-$stmt_overdue = mysqli_prepare($conn, $update_overdue);
-mysqli_stmt_bind_param($stmt_overdue, "is", $userId, $today);
-mysqli_stmt_execute($stmt_overdue);
-mysqli_stmt_close($stmt_overdue);
-
-// --- HANDLE RETURN BOOK REQUEST ---
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['return_book'])) {
-    $borrow_id = $_POST['borrow_id'];
-    $book_isbn = $_POST['book_isbn'];
-    
-    // Update borrowed_books table
-    $return_sql = "UPDATE borrowed_books 
-                   SET status = 'returned', actual_return_date = ? 
-                   WHERE borrow_id = ? AND user_id = ?";
-    $return_stmt = mysqli_prepare($conn, $return_sql);
-    mysqli_stmt_bind_param($return_stmt, "sii", $today, $borrow_id, $userId);
-    
-    if (mysqli_stmt_execute($return_stmt)) {
-        // Increase book quantity back
-        $update_book = "UPDATE books SET quantity = quantity + 1 WHERE isbn = ?";
-        $update_stmt = mysqli_prepare($conn, $update_book);
-        mysqli_stmt_bind_param($update_stmt, "s", $book_isbn);
-        mysqli_stmt_execute($update_stmt);
-        mysqli_stmt_close($update_stmt);
-        
-        echo "<script>
-            alert('Book returned successfully! Thank you.');
-            window.location.href = '" . $_SERVER['PHP_SELF'] . "';
-        </script>";
-        exit();
-    }
-    mysqli_stmt_close($return_stmt);
-}
-
-// Get borrowed books with their images
-$borrowed_sql = "SELECT bb.*, b.image 
-                 FROM borrowed_books bb
-                 LEFT JOIN books b ON bb.book_isbn = b.isbn
-                 WHERE bb.user_id = ? 
-                 AND (bb.status = 'borrowed' OR bb.status = 'overdue')
-                 ORDER BY bb.borrow_date DESC";
-$borrowed_stmt = mysqli_prepare($conn, $borrowed_sql);
-mysqli_stmt_bind_param($borrowed_stmt, "i", $userId);
-mysqli_stmt_execute($borrowed_stmt);
-$borrowed_result = mysqli_stmt_get_result($borrowed_stmt);
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 ?>
 
 <!DOCTYPE html>
@@ -75,110 +29,207 @@ $borrowed_result = mysqli_stmt_get_result($borrowed_stmt);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Borrowed Books</title>
-  <link rel="stylesheet" href="../styles/user-homepage.css">
+  <link rel="stylesheet" href="../styles/admin-dashboard.css">
+  <style>
+    .borrowed-books-container {
+      margin: 20px auto;
+      max-width: 1200px;
+      padding: 20px;
+      margin-left: 60px;
+      background-color: #2f3e2a;
+      border-radius: 10px;
+    }
+    
+    .borrowed-books-container h2 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .borrowed-book-card {
+      background-color: white;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 100px 1fr 200px;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    .borrowed-book-card img {
+      width: 100px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    
+    .book-info h3 {
+      margin: 0 0 5px 0;
+      color: #3f7f45;
+    }
+    
+    .book-info p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .status-info {
+      text-align: right;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .status-borrowed {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    .status-overdue {
+      background-color: #f44336;
+      color: white;
+    }
+    
+    .status-returned {
+      background-color: #999;
+      color: white;
+    }
+    
+    .browse-link {
+      display: inline-block;
+      margin: 20px;
+      margin-left: 60px;
+      padding: 10px 20px;
+      background-color: #3f7f45;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    
+    .browse-link:hover {
+      background-color: #2e5e32;
+    }
+
+    .no-books-message {
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .no-books-message a {
+      color: #4CAF50;
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 768px) {
+      .borrowed-book-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .borrowed-book-card img {
+        margin: 0 auto;
+      }
+
+      .status-info {
+        text-align: center;
+      }
+
+      .borrowed-books-container {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+
+      .browse-link {
+        margin-left: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  
-  <header><?php include('user-header.php'); ?></header>
-  <section><?php include('user-nav.php'); ?></section>
 
-  <section class="book-catalog-container">
+  <header><?php include('public-header.php'); ?></header>
+  <section><?php include('public-nav.php'); ?></section>
+
+  <a href="public-homepage.php" class="browse-link">📚 Browse All Books</a>
+
+  <div class="borrowed-books-container">
+    <h2>My Borrowed Books</h2>
     
-    <section class="page-title">
-      <h1>📚 My Borrowed Books</h1>
-      <p>Here are the books you currently have</p>
-    </section>
-
-    <section class="book-catalog">
-      <?php
-      if(mysqli_num_rows($borrowed_result) > 0) {
-          while($book = mysqli_fetch_assoc($borrowed_result)) {
-              // Calculate days left
-              $return_date = new DateTime($book['return_date']);
-              $today_date = new DateTime($today);
-              $days_left = $today_date->diff($return_date)->days;
-              $is_overdue = $book['status'] == 'overdue';
-              ?>
-              <section class="book-info-container <?php echo $is_overdue ? 'overdue-book' : ''; ?>">
-                
-                <!-- Status Badge (Top) -->
-                <div class="status-badge-top <?php echo $book['status']; ?>">
-                    <?php echo $is_overdue ? '⚠️ OVERDUE' : '✓ BORROWED'; ?>
-                </div>
-
-                <section class="image-container">
-                  <?php if(!empty($book['image'])): ?>
-                    <img src="../images/books/<?php echo htmlspecialchars($book['image']); ?>" 
-                         alt="<?php echo htmlspecialchars($book['book_title']); ?>">
-                  <?php else: ?>
-                    <div class="no-image">No Image</div>
-                  <?php endif; ?>
-                </section>
-                
-                <section class="book-details">
-                    <div class="book-title"><?php echo htmlspecialchars($book['book_title']); ?></div>
-                    <div class="author-name"><?php echo htmlspecialchars($book['author']); ?></div>
-                    
-                    <!-- Borrow Information -->
-                    <div class="borrow-info">
-                        <div class="info-row">
-                            <span class="info-label">📅 Borrowed:</span>
-                            <span class="info-value"><?php echo date('M d, Y', strtotime($book['borrow_date'])); ?></span>
-                        </div>
-                        <div class="info-row return-date-row">
-                            <span class="info-label">⏰ Return by:</span>
-                            <span class="info-value"><?php echo date('M d, Y', strtotime($book['return_date'])); ?></span>
-                        </div>
-                        <div class="info-row days-left-row">
-                            <span class="info-label">⏳ Days Left:</span>
-                            <span class="days-count <?php echo $is_overdue ? 'overdue' : ($days_left <= 1 ? 'urgent' : ''); ?>">
-                                <?php 
-                                if ($is_overdue) {
-                                    echo $days_left . ' day' . ($days_left != 1 ? 's' : '') . ' overdue';
-                                } else {
-                                    echo $days_left . ' day' . ($days_left != 1 ? 's' : '');
-                                }
-                                ?>
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Return Button -->
-                    <form method="post" class="return-form">
-                        <input type="hidden" name="borrow_id" value="<?php echo $book['borrow_id']; ?>">
-                        <input type="hidden" name="book_isbn" value="<?php echo $book['book_isbn']; ?>">
-                        <button type="submit" 
-                                name="return_book" 
-                                class="return-btn"
-                                onclick="return confirm('Are you sure you want to return this book?')">
-                            📤 Return Book
-                        </button>
-                    </form>
-                </section>
-
-              </section>
-              <?php
+    <?php if(mysqli_num_rows($result) > 0): ?>
+      <?php while($book = mysqli_fetch_assoc($result)): ?>
+        <?php
+          // Determine status
+          $status = $book['status'];
+          $today = date('Y-m-d');
+          
+          if($status == 'borrowed' && $book['due_date'] < $today) {
+            $status = 'overdue';
           }
-      } else {
-          ?>
-          <div class="no-books-container">
-              <div class="no-books-message">
-                  <h2>📭 No Borrowed Books</h2>
-                  <p>You haven't borrowed any books yet.</p>
-                  <a href="public-homepage.php" class="browse-books-btn">
-                      📚 Browse Books
-                  </a>
-              </div>
+          
+          $status_class = 'status-' . $status;
+        ?>
+        
+        <div class="borrowed-book-card">
+          <div>
+            <?php if(!empty($book['image'])): ?>
+              <img src="../images/books/<?php echo htmlspecialchars($book['image']); ?>" 
+                   alt="<?php echo htmlspecialchars($book['book_title']); ?>">
+            <?php else: ?>
+              <div style="width: 100px; height: 140px; background: #eee; display: flex; align-items: center; justify-content: center; border-radius: 5px;">No Image</div>
+            <?php endif; ?>
           </div>
-          <?php
-      }
-      
-      mysqli_stmt_close($borrowed_stmt);
-      mysqli_close($conn);
-      ?>
-    </section>
-  </section>
+          
+          <div class="book-info">
+            <h3><?php echo htmlspecialchars($book['book_title']); ?></h3>
+            <p><strong>Author:</strong> <?php echo htmlspecialchars($book['author']); ?></p>
+            <p><strong>ISBN:</strong> <?php echo htmlspecialchars($book['isbn']); ?></p>
+            <p><strong>Date Borrowed:</strong> <?php echo date('F j, Y', strtotime($book['date_borrowed'])); ?></p>
+            <p><strong>Due Date:</strong> <?php echo date('F j, Y', strtotime($book['due_date'])); ?></p>
+            <?php if($book['date_returned']): ?>
+              <p><strong>Returned:</strong> <?php echo date('F j, Y', strtotime($book['date_returned'])); ?></p>
+            <?php endif; ?>
+          </div>
+          
+          <div class="status-info">
+            <span class="status-badge <?php echo $status_class; ?>">
+              <?php echo strtoupper($status); ?>
+            </span>
+            <?php if($status == 'borrowed' || $status == 'overdue'): ?>
+              <br>
+              <?php
+                $days_left = ceil((strtotime($book['due_date']) - time()) / 86400);
+                if($days_left > 0) {
+                  echo "<p style='color: #4CAF50;'>$days_left days left</p>";
+                } else {
+                  echo "<p style='color: #f44336;'>" . abs($days_left) . " days overdue</p>";
+                }
+              ?>
+            <?php endif; ?>
+          </div>
+        </div>
+      <?php endwhile; ?>
+    <?php else: ?>
+      <p class="no-books-message">
+        You haven't borrowed any books yet.<br><br>
+        <a href="public-homepage.php">Click here to browse available books</a>
+      </p>
+    <?php endif; ?>
+  </div>
 
 </body>
 <section><?php include('footer.php'); ?></section>
 </html>
+
+<?php
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
+?>
