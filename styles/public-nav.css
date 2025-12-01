@@ -1,34 +1,36 @@
-
 .public-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 85px;
-    height: 100vh;
-    background-color: #0c1a0b; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 40px;
-    gap: 55px; 
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  justify-content: space-evenly;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  height: 100vh;
+  background-color: rgb(11, 27, 11);
+  z-index: 2;
 }
 
 .publicnav-link {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
 }
 
+.publicnav-link a:hover {
+  background: rgba(255,255,255,.15);
+}
+
+.publicnav-link a:active {
+  background: rgba(255,255,255,.25);
+}
 
 .publicnav-link img {
-    width: 40px;
-    height: 40px;
-    filter: brightness(100%); 
-    transition: 0.2s ease;
-}
-
-
-.publicnav-link img:hover {
-    filter: brightness(75%);
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  filter: brightness(100%);
+  transition: 0.2s ease;
 }
