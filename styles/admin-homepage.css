@@ -144,12 +144,6 @@ body {
 }
 
 
-
-/* ============================================ */
-/* 🆕 NEW STYLES FOR DELETE AND RESTORE */
-/* ============================================ */
-
-/* Container for restore and delete buttons */
 .zero-actions {
     display: flex;
     gap: 8px;
