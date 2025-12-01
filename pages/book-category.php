@@ -1,6 +1,5 @@
 <?php
-  include('../config/database.php');
-  include('../config/admin-auth.php');
+  include('../config/database.php')
 ?>
 
 <!DOCTYPE html>

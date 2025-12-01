@@ -88,7 +88,7 @@
         </section>  
       </section>
       <section class="form-footer">
-        <span>Not an admin? <a>Back to login</a></span>
+        <span>Not an admin? <a href="../pages/public-homepage.php">Exit</a></span>
       </section>
     </section>
   </form>
