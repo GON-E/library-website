@@ -1,108 +1,105 @@
-body{
+* {
     margin: 0;
-    text-align: center; 
-    background-color: #2f3e2a;
-    /*../images/imagename
-    /* images/imagename 
-    /* /images/imagename */
+    padding: 0;
+    box-sizing: border-box;
 }
 
-div {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+body {
+    background-color: #2f3e2a; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; 
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
 }
 
-.signup-container{
+/* --- Container Styling (REDUCED HEIGHT) --- */
+.signup-container {
     background-color: #d0d0cf;
     border-radius: 20px;
-    max-width: 35%;
-    max-height: 15%;
-    margin:  auto;
-    margin-top: 2%;
-    margin-bottom: 8%;
+    max-width: 480px;
+    width: 95%; 
+    height: auto;
     box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
-    padding: 2%;
+    /* REDUCED vertical padding */
+    padding: 25px 40px; 
+    /* Reduced vertical margin */
+    margin: 40px auto; 
     position: relative;
+}
+
+/* --- Logo Styling --- */
+.LOGO {
     width: 95%;
+    height: auto; 
+    display: block; 
+    /* Reduced margin below logo */
+    margin: 0 auto 15px auto; 
 }
 
-
-.LOGO{
-    margin: 0.5% 0 -2% 0;
-}
-
+/* --- Title Styling (SIGN-UP) --- */
 .title {
-    font-size: 150%;
-    font-family: "Alfa Slab One";
+    font-size: 180%;
     font-weight: bold;
-    margin-bottom: 0%;
+    margin-bottom: 10px;
 }
 
-input{
+/* --- Input Field Styling --- */
+input {
     display: block;
-    width: 95%;
-    padding: 2%;
-    font-size: 100%;
-    border: 0.5% solid rgb(0, 0, 0, 0.1);
-    border-radius: 90px;
-    margin-top: 10px;
+    width: 100%;
+    padding: 14px; 
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    margin: 10px auto;
+    text-align: left;
+    border-radius: 20px;
 }
 
 
-.btn-signup{ 
+/* --- Sign-up Button --- */
+.btn-signup { 
     width: 100%;
-    padding: 12px 20px;
-    background-color: #5d7054; /* Darker green for the button */
+    padding: 15px 20px;
+    background-color: #5d7054; 
     color: white;
     border: none;
     border-radius: 20px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
-}
-
-
-.btn-login {
-    font-family: "Alfa Slab One";
-    margin-top: 3%;
-    font-size: 100%;
+    font-size: 18px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
-    display: inline-block;
-}
-
-.btn-login:active {
-    color: rgb(105, 129, 102);
     cursor: pointer;
-}
-
-footer {
+    /* Reduced vertical margins */
+    margin-top: 15px;
+    margin-bottom: 5px;
     display: block;
-    margin-top: 20px;
-    bottom: 0;
-    padding: 1%;
-    position: fixed;
-    width: 100%;
-    margin: 0;
-    background-color: #d0d0cf;
+}
+.btn-signup:hover {
+    background-color: #4a5c41; 
 }
 
 
-/*
-.report-png {
-    border-image: 100%;
-    display: inline-block;
-    padding: 100px;
-    align-items: right;
-    background-color: black;
-    margin-top: -70%;
-    margin-right: -85%;
-
+/* --- Back to Log In Link Fix --- */
+.btn-login {
+    font-size: 1em;
+    font-weight: normal; 
+    color: black;
+    text-decoration: none; 
+    display: block; 
+    text-align: center; 
 }
 
-.report-png:hover {
+.btn-login a {
+    font-weight: bold; 
+    color: black;
+    text-decoration: none;
+    margin-left: 5px; 
+    display: inline;
+}
+
+.btn-login a:active {
+    color: rgb(105, 129, 102); 
     cursor: pointer;
-}*/
+}

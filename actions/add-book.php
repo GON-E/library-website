@@ -54,19 +54,6 @@
 
       <a href="../pages/admin-homepage.php" class="home-btn"> Admin homepage </a> <br>
     </section>
-  </form> 
-  <hr>  
-
-
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
-    <section>
-      <h2 id="delete">Delete Book</h2>
-      
-      Enter ISBN to Delete:
-      <input type="text" name="isbn" placeholder="Type ISBN here..." required>
-      
-      <input type="submit" name="delete_btn" value="Delete">
-    </section>
   </form>
 
 </body>

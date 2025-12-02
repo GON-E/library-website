@@ -77,28 +77,14 @@ if ($selector && $token) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Set New Password</title>
-    <link rel="stylesheet" href="../styles/user-login.css">
-    <style>
-        .message-box {
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            text-align: center;
-        }
-        .success {
-            background: #d4edda;
-            border: 1px solid #3f7f45;
-            color: #155724;
-        }
-        .error {
-            background: #f8d7da;
-            border: 1px solid #dc3545;
-            color: #721c24;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/new-password.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?selector=" . $selector . "&token=" . $token)?>" method="post">
+        
+        <img src="../images/bookTitle.png" alt="Logo" class="LOGO">
+
         <section class="form-title">
             <h2>Set New Password</h2>
         </section>

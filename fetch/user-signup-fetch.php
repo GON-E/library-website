@@ -1,60 +1,76 @@
   <?php
+  // fetch/user-signup-fetch.php - Handles user registration with password hashing
   
-    include_once("../config/database.php");
+  // Load database connection
+  include_once("../config/database.php");
 
-  if($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the method is post if yes
-    // Variable for user
+  // Check if form was submitted using POST method
+  if($_SERVER["REQUEST_METHOD"] == "POST") { 
+    // Get email from form and validate it as a real email
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-    // Variable for username
-    $username = filter_input(INPUT_POST, "username", filter: FILTER_SANITIZE_SPECIAL_CHARS);
-    // Variable for recovery password
+    // Get username from form and sanitize special characters
+    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+    // Get recovery email from form (used for password recovery)
     $recovery_em = filter_input(INPUT_POST, "recoveryEmail");
-    // Variable for password
+    // Get password from form (use null coalescing to avoid undefined index)
     $password = $_POST["password"] ?? "";
+    // Get password confirmation from form
     $confirmPassword = $_POST["confirmPassword"] ?? "";
 
-    if(!$email || !$recovery_em) {  // If email is missing
-      echo "Email or Recovery Emailnis Missing!";
-    } else if (empty($password)) { // If password is empty
+    // Check if email or recovery email is missing
+    if(!$email || !$recovery_em) {
+      echo "Email or Recovery Email is Missing!";
+    } else if (empty($password)) { 
+      // Check if password is empty
       echo "Password is Missing!";  
     } else if(empty($username)) {
+      // Check if username is empty
       echo "Username is Missing!";
-    } else { // Else hash the password for security
+    } else { 
+      // All fields are provided, now validate password match
 
+      // Check if password and confirm password match
       if($password != $confirmPassword){
-        echo "Password do not match!";
+        echo "Passwords do not match!";
       } else {
-        $hash = password_hash(password: $password, algo: PASSWORD_DEFAULT); // hash
+        // Passwords match! Hash the password using bcrypt for security
+        $hash = password_hash(password: $password, algo: PASSWORD_DEFAULT);
 
-        // SQL QUERY Prepared Statement (Avoid Sql-injection)
+        // SQL query to insert new user with prepared statement (prevents SQL injection)
         $sql = "INSERT INTO users (email,recovery_em,username,password)
         VALUES (?,?,?,?)";
 
-        // Preparing to send the SQL without the real data
+        // Prepare the SQL statement without the real values yet
         $stmt = $conn -> prepare($sql);
         
-        // If preparation failed
+        // Check if SQL preparation failed
         if (!$stmt){
           die('Preparation Failed: ' .$conn -> error);
         }
 
-        // Attach the real PHP variable s stands for string
+        // Bind the PHP variables to the SQL placeholders
+        // 'ssss' = 4 string values (email, recovery_em, username, password hash)
         $stmt -> bind_param('ssss',$email, $recovery_em,$username, $hash);
 
-      try { // Try query
-        // Send the query
+      try { 
+        // Execute the prepared statement with the bound values
         $stmt -> execute();
+        // Redirect to login page after successful registration
         header('Location: ');
-      }catch(mysqli_sql_exception $err) { // Catch Error
+      }catch(mysqli_sql_exception $err) { 
+        // Catch any database errors during execution
+        // Error code 1062 = duplicate entry (email already exists)
         if($err -> getCode() == 1062){
           echo "Email already signed up!";
         } else {
-          echo "An Error Occured, Please Try Again!";
+          // Generic error for other database issues
+          echo "An Error Occurred, Please Try Again!";
         }
       }
     }
   }
 }
-  mysqli_close($conn);
+// Close the database connection
+mysqli_close($conn);
 ?>  
 

@@ -53,8 +53,8 @@ if($isLoggedIn) {
     <section class="book-catalog">
       <?php
       // Filter books by category
-      if(isset($_GET['category'])) {
-          $cat_filter = $_GET['category'];
+        if(isset($_GET['category'])) {
+          $cat_filter = trim(urldecode($_GET['category']));
           $sql = "SELECT * FROM books WHERE book_category = ? ORDER BY book_title ASC";
           $stmt = mysqli_prepare($conn, $sql);
           mysqli_stmt_bind_param($stmt, "s", $cat_filter);

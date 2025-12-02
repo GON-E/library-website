@@ -1,14 +1,17 @@
 <?php
-// logout.php
-  include('../config/admin-auth.php');
+// fetch/logout.php - Handles admin logout
 
-// If the sign out button is clicked
+// Load and check admin authentication
+include('../config/admin-auth.php');
+
+// Check if the sign out button was clicked (via POST or GET)
 if(isset($_POST['signout']) || isset($_GET['signout'])) {
-    // Destroy all session data
+    // Destroy all session variables (remove stored data like userId, username)
     session_unset();
+    // Completely destroy the session
     session_destroy();
     
-    // Redirect to login page
+    // Redirect to the admin login page
     header("Location: ../pages/admin-login.php");
     exit();
 }

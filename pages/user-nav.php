@@ -9,6 +9,7 @@ if(!isset($_SESSION['userId']) || empty($_SESSION['userId'])) {
     header("Location: ../pages/user-login.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +29,7 @@ if(!isset($_SESSION['userId']) || empty($_SESSION['userId'])) {
 
 <section class="sidenav-link">
   <a href="user-dashboard.php" title="My Borrowed Books">
-    <img src="../images/icons/borrow-icon.svg">
+    <img src="../images/dashboard-icon.svg">
   </a>
 </section>
 

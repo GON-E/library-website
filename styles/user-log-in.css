@@ -1,143 +1,98 @@
-* /* General Body and Container Styles */
+/* --- Core Styling for Centering and Background --- */
 body {
     margin: 0;
-    text-align: center; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
     background-color: #2f3e2a;
 }
 
-
-
+/* --- Form Container Styling (SMALLER) --- */
 form {
     background-color: #d0d0cf;
     border-radius: 20px;
-    max-width: 35%;
-    max-height: 15%;
-    margin:  auto;
-    margin-top: 4%;
-    margin-bottom: 4%;
+    max-width: 400px; 
+    width: 90%; 
+    height: auto;
+    margin: 0; 
     box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
-    padding: 2%;
-    position: relative;
-    width: 95%;
+    padding: 30px; 
 }
 
+/* --- Logo Styling --- */
 .LOGO{
-    margin: auto;
+    width: 95%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto 20px auto; 
 }
 
-
-
-/* Login Attempts */
-.login-attempts { /* Assuming you add a class to the "Login Attempts: 0" text */
-    width: 100%;
-    text-align: left;
-    margin-bottom: 15px;
-    font-size: 0.9em;
-    color: #4a5c41;
-}
-
-
-/* Submit Button */
-.submit-btn {
-  width: 95%;
-  border-radius: 20px;
-  color: white;
-  background-color: #3d4a38;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 20px;
-  box-shadow: none;
-}
-
-.submit-btn:hover {
-    background-color: #4a5c41; /* Even darker green on hover */
-}
-
-/* Links Section */
-.links {
-    width: 100%;
+/* --- Form Title --- */
+.form-title h2 {
+    font-size: 180%; 
+    margin: 5px 0 25px 0; 
     text-align: center;
+}
+
+/* --- Input Field Styling (Smaller Padding) --- */
+form section input[type="text"], 
+form section input[type="password"] {
+    width: 100%; 
+    padding: 15px; /* Reduced input height padding */
+    margin: 10px 0;
+    border: none; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+    font-size: 16px;
+    text-align: left; 
+}
+
+/* --- Submit Button --- */
+.submit-btn {
+    width: 100%; 
+    border-radius: 20px;
+    color: white;
+    background-color: #3d4a38;
+    margin-bottom: 20px; 
     margin-top: 20px;
-    font-size: 0.9em;
-}
-
-.links a {
-    color: black; /* Link color */
-    text-decoration: none;
-    margin: 0 5px;
-}
-
-.links a:hover {
-    text-decoration: underline;
-}
-
-.links h6 {
-    margin: 5px 0;
-    color: white;
-    font-weight: normal;
-}
-
-
-/* About Page / Info Box Styling */
-.about-box { /* Assuming this is a div with class 'about-box' */
-    background-color: #90a986; /* Same as form background */
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    width: 380px; /* Adjust width as needed */
-    height: 300px; /* Fixed height from image */
-    overflow-y: auto; /* Enable scrolling if content overflows */
-    border: 3px solid #6d8263; /* Purple-like border from image */
-    position: relative; /* For the top left "About page" text */
-    color: #2e3e2e; /* Dark text color */
-    font-size: 1em;
-    line-height: 1.6;
-}
-
-.about-box::before {
-    content: "About page:";
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    padding: 15px;
     font-weight: bold;
-    color: #2e3e2e; /* Dark text color */
-    font-size: 1.1em;
-}
-
-
-
-/* Login as Admin Button */
-.admin-login-btn { /* Assuming this is a button or link with class 'admin-login-btn' */
-    background-color: #5d7054; /* Darker green, similar to submit button */
-    color: white;
-    padding: 12px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-top: 20px; /* Space below about box */
-    align-self: flex-start; /* Align with the start of the about box container */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-    display: inline-block; /* To allow padding */
+    font-size: 18px;
+    box-shadow: none;
     cursor: pointer;
 }
 
-
-.form-container {
-    background-color: #d0d0cf;
-    border-radius: 20px;
-    max-width: 95%;
-    max-height: 15%;
-    margin:  auto;
-    margin-top: 2%;
-    margin-bottom: 3%;
-    box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
-    padding: 2%;
-    position: relative;
-    width: 95%;
+.submit-btn:hover {
+    background-color: #4a5c41;
 }
 
+/* --- Links Section --- */
+.links {
+    margin-top: 20px;
+    font-size: 1em;
+    text-align: center;
+}
 
+/* Forgot Password Link */
+.links h4:first-child a {
+    color: black;
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Don't have an account? Sign Up Link */
+.links h4:last-child {
+    font-weight: normal;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.links h4:last-child a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+}

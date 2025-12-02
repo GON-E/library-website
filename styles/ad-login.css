@@ -1,195 +1,122 @@
-/**/
-
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color:  #2f3e2a;
-  margin: 0;
-  padding: 6%;
-  font-family: "Alfa Slab One";
-}
-h3 {
-  margin-top: 10px;
-  text-shadow: black
-}
-
-input {
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  outline: solid 1px;
-}
-
-.form-container{
-  text-align: center;
-  padding: 40px 40px 0px 40px;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  min-height: 60vh;
-  height: auto;
-  box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
-  background-color: #d0d0cf;
-  border-radius: 20px;
-}
-
-.form-title h2{
-  display: grid;
-  grid-template-rows: 1fr;
-  font-family: "Alfa Slab One";
-  font-size: 26px;
-  font-weight: bolder;
-  background-color: #3d4a38;
-  color: white;
-  margin-bottom: 10px;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  height: 60px;
-}
-
-.LOGO{
+* {
     margin: 0;
-
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.login-text {
-  color: black;
-  text-shadow: black;
-  font-size: 20px;
-  font-family: "Alfa Slab One";
-  font-weight: bold;
-  margin-bottom: 0px;
+/* --- Core Body Styling for Centering --- */
+body {
+    background-color: #2f3e2a; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh;
 }
 
-.sign-ups {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+/* --- Form Container Styling (REDUCED HEIGHT) --- */
+.form-container {
+    background-color: #d0d0cf;
+    border-radius: 20px;
+    max-width: 480px; 
+    width: 90%; 
+    height: auto;
+    box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
+    /* Reduced top/bottom padding */
+    padding: 30px 40px; 
 }
 
-.sign-ups input{
-  width: 100%;
-  box-sizing:  border-box;
+/* --- Logo and Title Styling --- */
+.LOGO {
+    width: 95%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto 15px auto; /* Slightly reduced margin */
 }
 
-u {
-  font-size: 110%;
+.login-text h3 {
+    font-size: 180%; 
+    /* Reduced margin below title */
+    margin: 5px 0 15px 0;
+    text-align: center;
 }
 
-span {
-  font-family: "Alfa Slab One";
-  margin-top: 3%;
-  font-size: 100%;
-  font-weight: bold;
-  color: rgb(0, 0, 0);
-  display: inline-block;
-  font-size: 130%;
+/* --- Input Field Styling --- */
+.sign-ups section input[type="text"], 
+.sign-ups section .password-wrapper input[type="password"] {
+    width: 100%; 
+    padding: 18px; 
+    margin: 12px 0;
+    border: none; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+    font-size: 16px;
+    text-align: left; 
 }
 
-span:active {
-    color: rgb(105, 129, 102);
+/* --- Password Wrapper for Eye Icon --- */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input[type="password"] {
+    padding-right: 40px; 
+    margin-right: 0; 
+}
+
+#show-password {
+    position: absolute;
+    right: 15px;
     cursor: pointer;
+    color: #4a4a4a;
+    font-size: 1.2em;
 }
 
-a {
-  font-family: "Alfa Slab One";
-  margin-top: 3%;
-  font-size: 100%;
-  font-weight: bold;
-  color: rgb(0, 0, 0);
-  display: inline-block;
-  font-size: 130%;
+/* --- Login Attempts Text --- */
+.login-attempt {
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+    /* Reduced margin below attempts text */
+    margin-bottom: 15px; 
+    font-size: 0.9em;
+    color: #555;
+    text-decoration: none;
 }
 
-a:active {
-    color: rgb(105, 129, 102);
+/* --- Log In Button --- */
+.login-button {
+    width: 100%; 
+    padding: 18px; 
+    background-color: #3d4a38;
+    color: white;
+    border: none;
+    border-radius: 20px; 
     cursor: pointer;
-}
-
-.login-button{ 
-  width: 90%;
-  border-radius: 20px;
-  color: white;
-  background-color: #3d4a38;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 20px;
-  box-shadow: none;
+    /* Reduced margins around button */
+    margin-top: 15px; 
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .login-button:hover {
-    background-color: #7a896e;
-    cursor: pointer;
+    background-color: #4a5c41;
 }
 
-.btn-signup:active {
-    transform: scale(0.98);
-    background-color: rgb(0, 0, 0);
-}
-
-.login-attempt {
-  font-size: 10px;
-}
-
+/* --- Footer Link (Not an admin? Exit) --- */
 .form-footer {
-  font-size: 8px;
+    text-align: center;
+    font-size: 0.9em;
 }
 
-.login-button {
-  color: white;
-  font-weight: bolder;
-  font-size: 20px;
+.form-footer span a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-
-
-/*show password*/
-.password-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.password-wrapper input {
-    width: 100%;
-    padding-right: 35px;
-}
-
-.password-wrapper i {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: gray;
-}
-
-
-.fa-eye{
-    position: absolute;
-    top: 8%;
-    right: 4%;
-    cursor: pointer;
-    color: lightgray;
-}
-
-
-input::-ms-reveal,
-input::-ms-clear {
-    display: none;
-}
-
-
-input[type="password"]::-webkit-textfield-decoration-container {
-    display: none;
-}
-
-input[type="password"]::-webkit-clear-button,
-input[type="password"]::-webkit-reveal-button {
-    display: none;
+.form-footer span a:hover {
+    text-decoration: underline;
 }

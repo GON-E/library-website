@@ -20,11 +20,11 @@ body {
 
 .book-catalog {
   display: grid;
-  /* Cards will be minimum 200px wide */
+  margin-left: 50px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  gap: 10px;
   background-color: #d0d0cf;
-  padding: 20px;
+  padding: 15px;
   border-radius: 10px;
 }
 

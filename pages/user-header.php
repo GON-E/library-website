@@ -37,7 +37,7 @@ $userName = isset($_SESSION['userName']) ? $_SESSION['userName'] : 'User';
     <section class="lower-header">
         <section class="lower-header-content">
         <section>
-          <h1>Hello, <?php echo htmlspecialchars($userName); ?>! Welcome to Lé Bros Library!</h1>
+          <h2>Hello, <?php echo htmlspecialchars($userName); ?>! Welcome to Lé Bros Library!</h2>
         </section>
         <section class="time-date"> 
 <?php date_default_timezone_set('Asia/Manila'); ?>

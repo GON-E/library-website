@@ -23,9 +23,9 @@
  
     
 
-    <input type="password" placeholder="Confirm Password" name="confirmPassword">  
-    <i class="fa-solid fa-eye" id= "toggleConfirm"><i>   
-    <button class="btn-signup" name="register">Sign-In </button>
+    <input type="password" placeholder="Confirm Password" name="confirmPassword">  
+    <i class="fa-solid fa-eye" id= "toggleConfirm"></i>   
+    <button class="btn-signup" name="register"> Sign-In </button>
 
     <br>
     <p class="btn-login"> Back to <a class="btn-login" href="../pages/user-login.php"> Log In</a> </p> 
@@ -34,5 +34,4 @@
   </form>
 </body>
 
-<footer>Copyright © 2025 Lé Bros: Library This system is for education puposes only. </footer>
 </html>

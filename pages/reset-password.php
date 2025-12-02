@@ -74,13 +74,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
     <link rel="stylesheet" href="../styles/reset-password.css">
-    <style>
-        
-    </style>
+    
 </head>
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
+        
     <section class="form-container">
+        <img src="../images/bookTitle.png" alt="Logo" class="LOGO" width="100%">
         <section class="form-title">
             <h2>Reset Password</h2>
         </section>

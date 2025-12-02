@@ -19,7 +19,7 @@ include("../fetch/user-login-fetch.php");
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
         
-    <img src="../images/bookTitle.png" alt="Logo" type="image" class="LOGO" width="90%" height="10%">
+    <img src="../images/bookTitle.png" alt="Logo" type="image" class="LOGO" width="100%" height="auto">
     <section class="form-title">
             <h2>User Login</h2>
         </section>
@@ -32,10 +32,10 @@ include("../fetch/user-login-fetch.php");
             
         
         <section>
-            <input class="form-container" type="text" name="email" placeholder="email" required> 
+            <input type="text" name="email" placeholder="email" required> 
         </section>
         <section>
-            <input class="form-container" type="password" name="password" placeholder="password" required> <br>
+            <input type="password" name="password" placeholder="password" required> <br>
         </section>
         <section>
             <input type="submit" name="submit" value="Log In" class="submit-btn">
@@ -46,6 +46,52 @@ include("../fetch/user-login-fetch.php");
             <h4>Don't have an account?<a href="../pages/user-signup.php">Sign Up</a></h4>
         </section>
     </form>
+<script>
+
+const passwordField = document.getElementById("password");
+
+const showPassword = document.getElementById("show-password");
+
+
+
+showPassword.addEventListener("click", () => {
+
+    if (passwordField.type === "password") {
+
+        passwordField.type = "text";
+
+        showPassword.classList.remove("fa-eye");
+
+        showPassword.classList.add("fa-eye-slash");
+
+    } else {
+
+        passwordField.type = "password";
+
+        showPassword.classList.remove("fa-eye-slash");
+
+        showPassword.classList.add("fa-eye");
+
+    }
+
+});//show password 
+<?php if ($_SESSION['lock_time'] > time()): ?>
+let remaining = <?php echo $_SESSION['lock_time'] - time(); ?>;
+const attemptSpan = document.querySelector(".login-attempt u");
+
+const timer = setInterval(() => {
+    remaining--;
+    attemptSpan.textContent = "Locked for " + remaining + "s";
+
+    if (remaining <= 0) {
+        clearInterval(timer);
+         window.location.href = "admin-dashboard.php";
+    }
+}, 1000);
+<?php endif; ?>
+;
+</script>
+<script src="../script/admin-login.js"></script>
 
 </body>
 </html>
