@@ -59,7 +59,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Alice&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <title>Admin Login</title>
-  <link rel="stylesheet" href="../styles/admin-login.css">
+  <link rel="stylesheet" href="../styles/ad-login.css">
   <link rel="icon" href="../images/lock.png" type="image/x-icon">
 </head>
 <body>
@@ -71,9 +71,9 @@
     <?php endif; ?>
     <section class="form-container">
       <section class="form-title">
-        <h2 class="Library-name">Le Bros: Library</h2>
+        <img src="../images/bookTitle.png" alt="Logo" type="image" class="LOGO" width="90%" height="10%">
         <div class="login-text">
-          <h3>Login</h3>
+          <h3>Login</h3> 
         </div>
       </section>
       <section class="sign-ups">

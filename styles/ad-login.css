@@ -1,14 +1,18 @@
+/**/
+
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:  rgb(30, 55, 30);
+  background-color:  #2f3e2a;
   margin: 0;
   padding: 6%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 h3 {
-  margin: 0;
+  margin-top: 10px;
+  text-shadow: black
 }
 
 input {
@@ -26,14 +30,16 @@ input {
   width: 300px;
   min-height: 60vh;
   height: auto;
-  background-color: #a8b8ae;
+  box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
+  background-color: #d0d0cf;
   border-radius: 20px;
 }
 
 .form-title h2{
   display: grid;
+  
   grid-template-rows: 1fr;
-  font-family: Alice, 'Times New Roman', Times, serif;
+  font-family: "Alfa Slab One";
   font-size: 26px;
   font-weight: bolder;
   background-color: #3d4a38;
@@ -45,14 +51,19 @@ input {
   height: 60px;
 }
 
-.login-text {
-  color: white;
-  font-size: 20px;
-  font-family: Alice, 'Times New Roman', Times, serif;
-  font-weight: bolder;
-  font-style: italic;
-  margin-bottom: 20px;
+.LOGO{
+    margin: 0.5% 0 -2% 0;
 }
+
+.login-text {
+  color: black;
+  text-shadow: black;
+  font-size: 20px;
+  font-family: "Alfa Slab One";
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
 .sign-ups {
   display: flex;
   flex-direction: column;
@@ -65,11 +76,39 @@ input {
   box-sizing:  border-box;
 }
 
+u {
+  font-size: 110%;
+}
+
+span {
+  font-family: "Alfa Slab One";
+  margin-top: 3%;
+  font-size: 100%;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  font-size: 130%;
+}
+
+span:active {
+    color: rgb(105, 129, 102);
+    cursor: pointer;
+}
 
 .login-button{ 
   width: 50%;
   background-color: #3d4a38;
   margin-bottom: 10px;
+}
+
+.login-button:hover {
+    background-color: #7a896e;
+    cursor: pointer;
+}
+
+.btn-signup:active {
+    transform: scale(0.98);
+    background-color: rgb(0, 0, 0);
 }
 
 .login-attempt {
