@@ -1,0 +1,595 @@
+================================================================================
+                     LÉ BROS LIBRARY - SQL QUERIES REVIEW
+                        Important & Critical Queries Analysis
+================================================================================
+
+Generated: December 3, 2025
+Project: Library Website Management System
+Database: librarysysdb (MySQL)
+
+================================================================================
+1. ADMIN DASHBOARD - MARK BOOK AS RETURNED
+================================================================================
+
+File: pages/admin-dashboard.php
+Purpose: Update borrow record status and restore book quantity
+Type: MULTI-STEP TRANSACTION
+
+QUERY 1: Check Borrow Record Exists
+-------------------------------------
+SQL: SELECT book_id FROM borrow_records WHERE borrow_id = ? AND status = 'borrowed'
+Type: SELECT
+Parameters: borrow_id (INT)
+Security: Prepared Statement ✓
+Purpose: Verify record exists before updating; fetch book_id for quantity restoration
+
+QUERY 2: Update Borrow Status & Return Date
+---------------------------------------------
+SQL: UPDATE borrow_records SET status = 'returned', date_returned = ? WHERE borrow_id = ?
+Type: UPDATE
+Parameters: date_returned (STRING), borrow_id (INT)
+Security: Prepared Statement ✓
+Purpose: Mark book as returned and record return date in ISO format (Y-m-d)
+
+QUERY 3: Restore Book Quantity
+-------------------------------
+SQL: UPDATE books SET quantity = quantity + 1 WHERE bookId = ?
+Type: UPDATE
+Parameters: book_id (INT)
+Security: Prepared Statement ✓
+Purpose: Increase available quantity by 1 when book is returned
+Impact: Critical - ensures accurate inventory tracking
+
+ANALYSIS:
+• Uses proper transaction flow (SELECT → UPDATE → UPDATE)
+• All parameters bound safely
+• Prevents SQL injection
+• CONCERN: No explicit transaction (BEGIN/COMMIT) - consider adding for data consistency
+• BEST PRACTICE: Should use START TRANSACTION to ensure atomicity
+
+================================================================================
+2. ADMIN DASHBOARD - GET STATISTICS
+================================================================================
+
+File: pages/admin-dashboard.php
+Purpose: Display dashboard cards with real-time metrics
+Type: MULTIPLE SELECT QUERIES
+
+QUERY 1: Count Unique Visitors
+------------------------------
+SQL: SELECT COUNT(DISTINCT userId) as total_visitors FROM users
+Type: SELECT AGGREGATE
+Parameters: None
+Security: Direct Query (No parameters needed) ✓
+Purpose: Get total number of registered users
+Optimization: Uses INDEX on userId (assumed)
+
+QUERY 2: Count Currently Borrowed Books
+---------------------------------------
+SQL: SELECT COUNT(*) as total_borrowed FROM borrow_records WHERE status = 'borrowed'
+Type: SELECT AGGREGATE
+Parameters: None
+Security: Direct Query ✓
+Purpose: Get count of active borrows
+Index Recommendation: Add index on status column for performance
+
+QUERY 3: Count Overdue/Unreturned Books
+--------------------------------------
+SQL: SELECT COUNT(*) as total_unreturned 
+     FROM borrow_records 
+     WHERE status = 'borrowed' AND due_date < CURDATE()
+Type: SELECT AGGREGATE
+Parameters: None
+Security: Direct Query (CURDATE() is MySQL function) ✓
+Purpose: Find books past due date
+Optimization: CRITICAL - Add composite index on (status, due_date)
+
+ANALYSIS:
+• All use COUNT(*) aggregates - efficient
+• CURDATE() is timezone-safe
+• NO JOIN operations - good for performance
+• CONCERN: Multiple individual queries - consider combining into one for efficiency
+
+================================================================================
+3. ADMIN DASHBOARD - GET RECENTLY BORROWED BOOKS (COMPLEX JOIN)
+================================================================================
+
+File: pages/admin-dashboard.php
+Purpose: Display table of 10 most recent borrowed books with user & book details
+Type: MULTI-TABLE JOIN QUERY (3-table join)
+
+SQL QUERY:
+----------
+SELECT 
+    br.borrow_id,
+    br.date_borrowed,
+    br.due_date,
+    br.status,
+    u.username as borrower_name,
+    b.book_title,
+    b.bookId,
+    b.isbn,
+    b.book_category
+FROM borrow_records br
+JOIN users u ON br.user_id = u.userId
+JOIN books b ON br.book_id = b.bookId
+WHERE br.status = 'borrowed'
+ORDER BY br.date_borrowed DESC
+LIMIT 10
+
+Parameters: None
+Type: SELECT
+Security: Direct Query (No user input) ✓
+
+COMPLEXITY ANALYSIS:
+• 3-table JOIN (borrow_records, users, books)
+• Joins are performed on PRIMARY KEY relationships
+• WHERE clause filters on status column
+• ORDER BY on date_borrowed
+• LIMIT 10 for pagination
+
+OPTIMIZATION NOTES:
+✓ Uses PRIMARY KEY relationships (userId, bookId)
+✓ Filters before ORDER/LIMIT (efficient)
+✓ Only selects needed columns
+✓ LIMIT prevents large result sets
+? Consider adding LIMIT offset for true pagination (e.g., LIMIT 10 OFFSET 20)
+
+INDEX RECOMMENDATIONS:
+1. Composite: (status, date_borrowed DESC) on borrow_records
+2. Single: userId on borrow_records
+3. Single: book_id on borrow_records
+
+PERFORMANCE: GOOD - Suitable for admin dashboard refresh rate
+
+================================================================================
+4. USER DASHBOARD - GET BORROWED BOOKS
+================================================================================
+
+File: pages/user-dashboard.php
+Purpose: Show user their borrowed books with return/due information
+Type: MULTI-TABLE JOIN QUERY (3-table join)
+
+SQL QUERY:
+----------
+SELECT 
+    br.borrow_id, 
+    br.date_borrowed, 
+    br.due_date, 
+    br.status,
+    u.username,
+    b.book_title,
+    b.bookId,
+    b.isbn,
+    b.book_category
+FROM borrow_records br
+JOIN users u ON br.user_id = u.userId
+JOIN books b ON br.book_id = b.bookId
+WHERE br.user_id = ?
+ORDER BY br.date_borrowed DESC
+
+Parameters: user_id (INT)
+Type: SELECT
+Security: Prepared Statement ✓
+Binding Type: "i" (integer)
+
+ANALYSIS:
+• Same structure as admin dashboard query but filtered by user_id
+• User-specific query - security critical
+• Parameterized user_id prevents SQL injection
+• Shows all books including returned ones
+• ORDER BY shows most recent first
+
+OPTIMIZATION:
+✓ Filtered by user_id early (good WHERE clause position)
+✓ Uses INTEGER parameter binding
+✗ Missing status filter - might show returned books user has already seen
+RECOMMENDATION: Add AND status IN ('borrowed', 'pending') if not needed
+
+================================================================================
+5. USER DASHBOARD - CANCEL BORROW (DELETE)
+================================================================================
+
+File: pages/user-dashboard.php
+Purpose: Remove pending/borrowed book request and restore quantity
+Type: DELETE TRANSACTION
+
+QUERY 1: Get Book Details Before Deletion
+-------------------------------------------
+SQL: SELECT book_id FROM borrow_records WHERE borrow_id = ? AND user_id = ?
+Type: SELECT
+Parameters: borrow_id (INT), user_id (INT)
+Security: Prepared Statement ✓
+Purpose: Verify ownership & fetch book_id for quantity restoration
+
+QUERY 2: Delete Borrow Record
+------------------------------
+SQL: DELETE FROM borrow_records WHERE borrow_id = ? AND user_id = ?
+Type: DELETE
+Parameters: borrow_id (INT), user_id (INT)
+Security: Prepared Statement ✓
+Purpose: Remove borrow record with double verification (id + user_id)
+Safety: Excellent - user can only delete their own records
+
+QUERY 3: Restore Book Quantity
+-------------------------------
+SQL: UPDATE books SET quantity = quantity + 1 WHERE bookId = ?
+Type: UPDATE
+Parameters: book_id (INT)
+Security: Prepared Statement ✓
+Purpose: Return the book to available inventory
+
+ANALYSIS:
+• Uses double-check authorization (borrow_id + user_id)
+• Prevents users from deleting other users' borrow records
+• Properly restores quantity to prevent lost inventory
+• GOOD SECURITY PRACTICE
+
+================================================================================
+6. BORROW BOOK - INSERT BORROW RECORD
+================================================================================
+
+File: fetch/borrow-book-fetch.php, pages/user-homepage.php
+Purpose: Create new borrow record with due date calculation
+Type: INSERT with data validation
+
+PRE-INSERT CHECKS:
+1. Check book exists and has stock: SELECT bookId, isbn, quantity, book_title FROM books WHERE isbn = ?
+2. Check user hasn't already borrowed: SELECT borrow_id FROM borrow_records WHERE user_id = ? AND book_id = ? AND status = 'borrowed'
+
+MAIN INSERT QUERY:
+------------------
+SQL: INSERT INTO borrow_records (user_id, book_id, date_borrowed, due_date, status) 
+     VALUES (?, ?, ?, ?, 'borrowed')
+Type: INSERT
+Parameters: user_id (INT), book_id (INT), date_borrowed (STRING), due_date (STRING)
+Security: Prepared Statement ✓
+Binding Type: "iiss" (int, int, string, string)
+
+DATE GENERATION:
+• date_borrowed = date('Y-m-d') [TODAY's DATE]
+• due_date = date('Y-m-d', strtotime('+7 days')) [7 DAYS FROM TODAY]
+• Timezone: set to 'Asia/Manila' (CORRECT PRACTICE)
+
+FOLLOW-UP: Update book quantity
+SQL: UPDATE books SET quantity = quantity - 1 WHERE bookId = ?
+
+ANALYSIS:
+✓ Validates book stock before insert
+✓ Prevents duplicate active borrows
+✓ Uses correct date format (Y-m-d)
+✓ Correctly sets timezone before date calculation
+✓ Decrements inventory immediately
+✗ No explicit transaction - consider wrapping in BEGIN/COMMIT
+
+================================================================================
+7. USER SIGNUP - INSERT NEW USER
+================================================================================
+
+File: fetch/user-signup-fetch.php
+Purpose: Register new user with password hashing
+Type: INSERT with validation
+
+PRE-INSERT VALIDATION:
+✓ Email validation: filter_input(..., FILTER_VALIDATE_EMAIL)
+✓ Email vs Recovery Email check: $email !== $recovery_em
+✓ Password length check: strlen($password) >= 8
+✓ Special character requirement: preg_match('/[^a-zA-Z0-9]/', $password)
+✓ Password match check: $password === $confirmPassword
+
+INSERT QUERY:
+-------------
+SQL: INSERT INTO users (email, recovery_em, username, password) 
+     VALUES (?, ?, ?, ?)
+Type: INSERT
+Parameters: email (STRING), recovery_em (STRING), username (STRING), password (STRING)
+Security: Prepared Statement ✓
+Binding Type: "ssss" (4 strings)
+Password: Hashed with password_hash(..., PASSWORD_DEFAULT) [bcrypt]
+
+ERROR HANDLING:
+• Code 1062 (Duplicate Entry): "Email already signed up!"
+• Generic errors: "An Error Occurred, Please Try Again!"
+
+SECURITY ANALYSIS:
+✓ Password hashing with bcrypt (PASSWORD_DEFAULT)
+✓ Email validation
+✓ Recovery email differentiation
+✓ Prepared statements
+✓ Password complexity requirements
+✗ Username sanitization only - no uniqueness check
+RECOMMENDATION: Add UNIQUE constraint on username & email columns
+
+================================================================================
+8. USER LOGIN - AUTHENTICATE USER
+================================================================================
+
+File: fetch/user-login-fetch.php
+Purpose: Verify user credentials and create session
+Type: SELECT with password verification
+
+QUERY:
+------
+SQL: SELECT userId, userName, password FROM users WHERE email = ? OR userName = ?
+Type: SELECT
+Parameters: email (STRING), userName (STRING)
+Security: Prepared Statement ✓
+Binding Type: "ss" (2 strings)
+
+LOGIN FLOW:
+1. Get email/username from form
+2. Query to find user (accepts either login method)
+3. Verify password with password_verify($input_pass, $db_hash)
+4. Set $_SESSION['userId'] if successful
+5. Track login attempts for security lockout (5 attempts = 60-second lockout)
+
+ATTEMPT TRACKING:
+• Session key: $_SESSION['user_attempts'] (default 5)
+• Session key: $_SESSION['user_lock_time'] (lockout expiry timestamp)
+• Decrements attempts on wrong password
+• Locks account if attempts ≤ 0
+
+SECURITY ANALYSIS:
+✓ Prepared statement for injection prevention
+✓ Bcrypt password verification
+✓ Brute-force protection (5 attempts)
+✓ Session-based lockout mechanism
+✓ Accepts email or username login
+✓ Session timeout recommended (add expiry check)
+CONCERN: No session timeout - user can stay logged in indefinitely
+
+================================================================================
+9. ADMIN REPORT - CREATE TABLE IF NOT EXISTS
+================================================================================
+
+File: pages/admin-report.php, fetch/report-submit-fetch.php
+Purpose: Ensure reports table exists for storing user feedback
+Type: DDL (CREATE TABLE) with error handling
+
+SQL QUERY:
+----------
+CREATE TABLE IF NOT EXISTS reports (
+    report_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NULL,
+    user_name VARCHAR(100) NOT NULL,
+    issue_type VARCHAR(100) NOT NULL,
+    description LONGTEXT NOT NULL,
+    status VARCHAR(50) DEFAULT 'Pending',
+    report_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CHARACTERISTICS:
+• Uses IF NOT EXISTS (idempotent)
+• Auto-increment primary key
+• NULL user_id (allows guest reports)
+• LONGTEXT for detailed descriptions
+• TIMESTAMP with default CURRENT_TIMESTAMP
+• InnoDB engine (transactional)
+• UTF-8mb4 charset (emoji support)
+
+USAGE:
+• Called on every page load (reports.php)
+• Creates table if missing
+• Safe for repeated calls
+
+CONCERN: Performance - creating/checking table on every request
+RECOMMENDATION: Run once during setup; remove from application code
+
+================================================================================
+10. ADMIN REPORT - INSERT & UPDATE REPORTS
+================================================================================
+
+File: fetch/report-submit-fetch.php
+Purpose: Store user-submitted reports and manage status
+Type: INSERT and UPDATE
+
+INSERT QUERY:
+-------------
+SQL: INSERT INTO reports (user_id, user_name, issue_type, description, status) 
+     VALUES (?, ?, ?, ?, 'Pending')
+Type: INSERT
+Parameters: user_id (INT), user_name (STRING), issue_type (STRING), description (STRING)
+Security: Prepared Statement ✓
+Binding Type: "isss"
+
+UPDATE QUERY:
+-------------
+SQL: UPDATE reports SET status = ? WHERE report_id = ?
+Type: UPDATE
+Parameters: status (STRING), report_id (INT)
+Security: Prepared Statement ✓
+Binding Type: "si"
+
+DELETE QUERY:
+-------------
+SQL: DELETE FROM reports WHERE report_id = ?
+Type: DELETE
+Parameters: report_id (INT)
+Security: Prepared Statement ✓
+Binding Type: "i"
+
+ANALYSIS:
+✓ All queries use prepared statements
+✓ Admin-only operations (protected)
+✓ Proper error handling with json responses
+✓ Error logging to server log
+✓ Accepts guest reports (user_id nullable)
+
+================================================================================
+11. ADD BOOK - INSERT BOOK WITH IMAGE
+================================================================================
+
+File: fetch/add-delete-fetch.php
+Purpose: Add new book to inventory with image upload
+Type: INSERT with file handling
+
+PRE-INSERT PROCESSING:
+1. File upload validation (MIME type checking)
+2. File size validation
+3. Unique filename generation: "book_" + timestamp + random
+4. Move uploaded file to /images/books/
+
+INSERT QUERY:
+-------------
+SQL: INSERT INTO books (book_title, author, year_published, book_category, isbn, quantity, image) 
+     VALUES (?, ?, ?, ?, ?, ?, ?)
+Type: INSERT
+Parameters: title (S), author (S), year_published (S), category (S), isbn (S), quantity (I), image (S)
+Security: Prepared Statement ✓
+Binding Type: "sssssis"
+
+ERROR HANDLING:
+• Upload failure → delete uploaded file
+• SQL execution failure → delete uploaded file to prevent orphans
+• Success → redirect to prevent resubmission
+
+SECURITY ANALYSIS:
+✓ Prepared statement
+✓ File type validation
+✓ Unique filename prevents overwrites
+✓ Orphan file cleanup on errors
+✓ Input sanitization (FILTER_SANITIZE_SPECIAL_CHARS)
+✗ No file size limit check visible
+✗ MIME type validation needed
+RECOMMENDATIONS:
+1. Add explicit filesize limit check
+2. Validate MIME type strictly
+3. Store image path relative (security best practice)
+
+================================================================================
+12. ADMIN HOMEPAGE - QUANTITY UPDATE
+================================================================================
+
+File: pages/admin-homepage.php
+Purpose: Quickly increment/decrement book quantities
+Type: UPDATE with calculation
+
+QUERY - INCREMENT:
+------------------
+SQL: UPDATE books SET quantity = quantity + 1 WHERE isbn = ?
+Type: UPDATE
+Parameters: isbn (STRING)
+Security: Prepared Statement ✓
+
+QUERY - DECREMENT:
+------------------
+SQL: UPDATE books SET quantity = GREATEST(0, quantity - 1) WHERE isbn = ?
+Type: UPDATE
+Parameters: isbn (STRING)
+Security: Prepared Statement ✓
+Special: Uses GREATEST() function to prevent negative quantities
+
+ANALYSIS:
+✓ Prepared statement
+✓ Uses GREATEST(0, ...) to prevent negatives (GOOD!)
+✓ Uses ISBN as unique identifier
+✓ Maintains referential integrity
+✗ No feedback message displayed
+IMPROVEMENT: Add success confirmation message
+
+================================================================================
+13. ADMIN HOMEPAGE - DELETE BOOK
+================================================================================
+
+File: pages/admin-homepage.php
+Purpose: Remove book from inventory and delete image file
+Type: DELETE with file cleanup
+
+QUERY 1: Get Image Filename
+----------------------------
+SQL: SELECT image FROM books WHERE isbn = ?
+Type: SELECT
+Parameters: isbn (STRING)
+Security: Prepared Statement ✓
+Purpose: Retrieve filename before deletion
+
+QUERY 2: Delete Book Record
+----------------------------
+SQL: DELETE FROM books WHERE isbn = ?
+Type: DELETE
+Parameters: isbn (STRING)
+Security: Prepared Statement ✓
+
+FILE CLEANUP:
+if(file_exists(file_path)) {
+    unlink(file_path);  // Delete image file
+}
+
+ANALYSIS:
+✓ Retrieves image path before deletion
+✓ Uses prepared statement
+✓ Cleans up orphan image files
+✓ Prevents dangling image references
+✓ Uses ISBN as unique key
+CONCERN: Image deletion could fail silently
+IMPROVEMENT: Log deletion failures
+
+================================================================================
+                            SECURITY SUMMARY
+================================================================================
+
+STRENGTHS:
+✓ Consistent use of prepared statements (mysqli)
+✓ Password hashing with bcrypt
+✓ Brute-force protection on login
+✓ Input filtering & sanitization
+✓ SQL injection prevention
+✓ File upload handling with cleanup
+✓ Authorization checks (user_id verification)
+
+AREAS FOR IMPROVEMENT:
+1. Add explicit transaction support (BEGIN/COMMIT) for multi-step operations
+2. Implement session timeout/expiry
+3. Add UNIQUE constraints on username and email
+4. Consider prepared statements with object-oriented MySQLi
+5. Add file size limit checks
+6. Implement proper MIME type validation
+7. Add logging for security events
+8. Consider parameterizing more direct queries
+
+================================================================================
+                          PERFORMANCE NOTES
+================================================================================
+
+INDEXES RECOMMENDED:
+1. users: (email), (username)
+2. books: (isbn), (book_category)
+3. borrow_records: (user_id), (book_id), (status, date_borrowed)
+4. reports: (report_id), (status)
+
+QUERY OPTIMIZATION:
+• Combine multiple COUNT(*) queries into single result set
+• Consider caching admin dashboard statistics
+• Add pagination to admin book table
+• Use LIMIT with OFFSET for true pagination
+
+DATABASE SIZE ESTIMATION:
+- users table: VARCHAR(255) * 2 + INT * 2 ≈ 512 bytes/row
+- books table: TEXT fields + VARCHAR = ~1KB/row
+- borrow_records: INT * 2 + DATE * 2 + VARCHAR = ~100 bytes/row
+- Suitable for MySQL 5.7+ with proper indexing
+
+================================================================================
+                        RECOMMENDATIONS PRIORITY
+================================================================================
+
+HIGH PRIORITY:
+1. Add session timeout mechanism
+2. Add UNIQUE constraints on email & username
+3. Wrap multi-step operations in transactions
+4. Add file upload size limits
+
+MEDIUM PRIORITY:
+5. Implement indexes as listed
+6. Add logging for security events
+7. Consider OOP approach for database queries
+8. Add prepared statement caching
+
+LOW PRIORITY:
+9. Combine multiple admin dashboard queries
+10. Implement result caching layer
+11. Add query performance monitoring
+
+================================================================================
+                            END OF REVIEW
+================================================================================

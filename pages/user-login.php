@@ -117,6 +117,8 @@ if (isset($conn)) {
 <title>User Login</title>
 <link rel="stylesheet" href="../styles/user-log-in.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+<link rel="stylesheet" href="../styles/messages.css">
+<link rel="icon" href="../images/icons/bookIcon.png" type="image/png">
 </head>
 <body>
 
@@ -129,9 +131,9 @@ if (isset($conn)) {
 
     <!-- Display error messages -->
     <?php if (!empty($error_message)): ?>
-        <p style="color: red; text-align: center; margin-bottom: 15px; background: #ffebeb; padding: 10px; border-radius: 5px;">
+        <div class="page-message error">
             <?php echo $error_message; ?>
-        </p>
+        </div>
     <?php endif; ?>
 
     <!-- Email input -->
@@ -220,6 +222,9 @@ const timer = setInterval(() => {
 }, 1000);
 <?php endif; ?>
 </script>
+</body>
+</html>
+<script src="../script/messages.js"></script>
 
 </body>
 </html>

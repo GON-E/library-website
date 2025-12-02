@@ -106,7 +106,7 @@ if(isset($conn)) { mysqli_close($conn); }
   <title>Admin Login</title>
   <link rel="stylesheet" href="../styles/ad-login.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-  <link rel="icon" href="../images/lock.png" type="image/x-icon">
+  <link rel="icon" href="../images/icons/bookIcon.png" type="image/png">
 </head>
 <body>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">

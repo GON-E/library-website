@@ -110,7 +110,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cancel_borrow'])) {
 // COUNT with CASE counts only rows matching the condition
 $sql_stats = "SELECT 
     COUNT(CASE WHEN status = 'borrowed' THEN 1 END) as active_borrows,
-    COUNT(CASE WHEN status = 'borrowed' AND due_date < CURDATE() THEN 1 END) as overdue_count,
+    COUNT(CASE WHEN status = 'borrowed' AND due_date < NOW() THEN 1 END) as overdue_count,
     COUNT(*) as total_borrowed
     FROM borrow_records 
     WHERE user_id = ?";
@@ -315,15 +315,15 @@ $result = mysqli_stmt_get_result($stmt);
                     // Get status from database
                     $status = $book['status'];
                     
-                    // Get today's date
-                    $today = date('Y-m-d');
+                    // Get current timestamp as datetime string (Y-m-d H:i:s)
+                    $now = date('Y-m-d H:i:s');
                     
                     // Calculate days remaining until due date
                     // ceil() rounds up, time() gets current timestamp, 86400 = seconds in a day
                     $days_left = ceil((strtotime($book['due_date']) - time()) / 86400);
                     
-                    // Check if book is overdue
-                    if($status == 'borrowed' && $book['due_date'] < $today) {
+                    // Check if book is overdue (compare with current datetime including time)
+                    if($status == 'borrowed' && $book['due_date'] < $now) {
                       $status = 'overdue'; // Change status to overdue
                     }
                     

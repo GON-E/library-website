@@ -106,6 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_qty'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Homepage</title>
   <link rel="stylesheet" href="../styles/admin-homepage.css">
+  <link rel="icon" href="../images/icons/bookIcon.png" type="image/png">
 </head>
 <body>
   

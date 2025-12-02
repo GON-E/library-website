@@ -1,6 +1,9 @@
 <?php 
   include("../config/database.php");
+  // Capture any output from the signup handler so we can display it in a styled popup
+  ob_start();
   include("../fetch/user-signup-fetch.php");
+  $signup_message = trim(ob_get_clean());
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/user-sign-up.css">
+  <link rel="stylesheet" href="../styles/messages.css">
         <link rel="icon" href="../images/icons/bookIcon.png" type="image/png">  
 
 </head>
@@ -33,6 +37,13 @@
    </div> 
    <div class="report-png"><a img src="report_btn.png" href="https://www.youtube.com/@awshumdude._" width="100%" height="100%"></a></div>
   </form>
+  <?php if (!empty($signup_message)): ?>
+    <?php $is_success = (stripos($signup_message, 'success') !== false || stripos($signup_message, 'signed up') !== false); ?>
+    <div class="page-message <?php echo $is_success ? 'success' : 'error'; ?>">
+      <?php echo htmlspecialchars($signup_message); ?>
+    </div>
+    <script src="../script/messages.js"></script>
+  <?php endif; ?>
   <script>
   (function(){
     const form = document.getElementById('signupForm');

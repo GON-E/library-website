@@ -10,7 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manage Books</title>
   <link rel="stylesheet" href="../styles/add-book.css">
-  <link rel="icon" href="../images/favicon.jpg" type="image/x-icon">
+  <link rel="icon" href="../images/icons/bookIcon.png" type="image/png">
+  
 </head>
 <body>
 

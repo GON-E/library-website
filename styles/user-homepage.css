@@ -404,6 +404,59 @@ body {
     font-weight: bold;
 }
 
+/* Duration Selection Styles */
+.duration-selection {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.duration-selection label {
+    display: block;
+    margin-bottom: 12px;
+    color: #333;
+    font-weight: 600;
+}
+
+.duration-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.duration-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    background: white;
+    font-size: 14px;
+}
+
+.duration-option:hover {
+    background: #f0f0f0;
+    border-color: #3f7f45;
+}
+
+.duration-option input[type="radio"] {
+    cursor: pointer;
+    accent-color: #3f7f45;
+}
+
+.duration-option input[type="radio"]:checked + span {
+    color: #3f7f45;
+    font-weight: bold;
+}
+
+.duration-option input[type="radio"]:checked {
+    border-color: #3f7f45;
+}
+
 .modal-footer {
     display: flex;
     gap: 10px;

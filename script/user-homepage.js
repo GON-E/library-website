@@ -1,10 +1,26 @@
 // script/user-homepage.js - Borrow modal functionality
 
-function openBorrowModal(bookData) {
-  // Calculate dates
-  const today = new Date();
+function calculateDueDate(days) {
   const dueDate = new Date();
-  dueDate.setDate(today.getDate() + 7); // 7 days from today
+  // Handle fractional days (e.g., 0.0007 for 1 minute)
+  const milliseconds = parseFloat(days) * 24 * 60 * 60 * 1000;
+  dueDate.setTime(dueDate.getTime() + milliseconds);
+  return dueDate;
+}
+
+function updateDueDate() {
+  const selectedDays = document.querySelector('input[name="duration"]:checked').value;
+  const dueDate = calculateDueDate(selectedDays);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const dueDateFormatted = dueDate.toLocaleDateString('en-US', options);
+  document.getElementById('modal-due-date').textContent = dueDateFormatted;
+  document.getElementById('confirm-duration').value = selectedDays;
+}
+
+function openBorrowModal(bookData) {
+  // Calculate dates (default 7 days)
+  const today = new Date();
+  const dueDate = calculateDueDate(7);
 
   // Format dates
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -19,6 +35,10 @@ function openBorrowModal(bookData) {
   document.getElementById('modal-date-borrowed').textContent = todayFormatted;
   document.getElementById('modal-due-date').textContent = dueDateFormatted;
   document.getElementById('confirm-book-isbn').value = bookData.isbn;
+  document.getElementById('confirm-duration').value = '7';
+  
+  // Reset duration radio buttons to 7 days
+  document.querySelector('input[name="duration"][value="7"]').checked = true;
 
   // Show modal
   document.getElementById('borrowModal').style.display = 'flex';

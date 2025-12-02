@@ -14,6 +14,9 @@ $user_id = $_SESSION['userId'];
 // Handle borrow book action
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
     $book_isbn = filter_input(INPUT_POST, "book_isbn", FILTER_SANITIZE_SPECIAL_CHARS);
+    $borrow_duration_raw = filter_input(INPUT_POST, "borrow_duration", FILTER_SANITIZE_STRING);
+    // Convert to float to handle fractional days (e.g., 0.0007 for 1 minute)
+    $borrow_days = floatval($borrow_duration_raw) ?: 7;
     
     if(!empty($book_isbn)) {
         // Get book details using ISBN
@@ -58,9 +61,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
                 // Set timezone to Manila (Asia/Manila) to ensure correct date
                 date_default_timezone_set('Asia/Manila');
                 
-                // Set dates - 7 days borrowing period
-                $date_borrowed = date('Y-m-d');
-                $due_date = date('Y-m-d', strtotime('+7 days'));
+                // Set dates - borrow period based on user selection
+                // Handle fractional days by converting to seconds
+                $date_borrowed = date('Y-m-d H:i:s');
+                $seconds_to_add = $borrow_days * 24 * 60 * 60;
+                $due_date = date('Y-m-d H:i:s', time() + $seconds_to_add);
                 
                 // Insert borrow record
                 $insert_sql = "INSERT INTO borrow_records (user_id, book_id, date_borrowed, due_date, status) 
@@ -178,10 +183,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
             <span class="date-value due-date" id="modal-due-date"></span>
           </div>
         </div>
+
+        <!-- Duration selection -->
+        <div class="duration-selection">
+          <label for="borrow-duration"><strong>Borrow Duration:</strong></label>
+          <div class="duration-options">
+            <label class="duration-option">
+              <input type="radio" name="duration" value="0.0007" onchange="updateDueDate()">
+              <span>1 Minute (Test)</span>
+            </label>
+            <label class="duration-option">
+              <input type="radio" name="duration" value="1" onchange="updateDueDate()">
+              <span>1 Day</span>
+            </label>
+            <label class="duration-option">
+              <input type="radio" name="duration" value="3" onchange="updateDueDate()">
+              <span>3 Days</span>
+            </label>
+            <label class="duration-option">
+              <input type="radio" name="duration" value="7" checked onchange="updateDueDate()">
+              <span>7 Days</span>
+            </label>
+            <label class="duration-option">
+              <input type="radio" name="duration" value="14" onchange="updateDueDate()">
+              <span>14 Days</span>
+            </label>
+            <label class="duration-option">
+              <input type="radio" name="duration" value="21" onchange="updateDueDate()">
+              <span>21 Days</span>
+            </label>
+          </div>
+        </div>
       </div>
       
       <form method="post" class="modal-footer">
         <input type="hidden" name="book_isbn" id="confirm-book-isbn">
+        <input type="hidden" name="borrow_duration" id="confirm-duration" value="7">
         <button type="submit" name="borrow_book" class="btn-confirm">Confirm Borrow</button>
         <button type="button" onclick="closeBorrowModal()" class="btn-cancel-modal">Cancel</button>
       </form>

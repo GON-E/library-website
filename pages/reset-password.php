@@ -74,6 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
     <link rel="stylesheet" href="../styles/reset-password.css">
+    <link rel="stylesheet" href="../styles/messages.css">
     <link rel="icon" href="../images/icons/bookIcon.png" type="image/png">
     
 </head>
@@ -87,9 +88,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </section>
 
         <?php if ($message): ?>
-            <p style="padding: 10px; border: 1px solid #3f7f45; border-radius: 5px; background: #f0f0f0;">
+            <?php $is_success = (strpos($message, '✅') !== false); ?>
+            <div class="page-message <?php echo $is_success ? 'success' : 'error'; ?>">
                 <?php echo $message; ?>
-            </p>
+            </div>
         <?php endif; ?>
 
         <?php if ($reset_link): ?>
@@ -122,11 +124,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         function copyLink() {
             const link = document.getElementById('resetLink').href;
             navigator.clipboard.writeText(link).then(function() {
+                // show a quick temporary message
                 alert('Link copied to clipboard!');
             }, function() {
                 alert('Failed to copy link. Please copy it manually.');
             });
         }
     </script>
+    <script src="../script/messages.js"></script>
 </body>
 </html>
