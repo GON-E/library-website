@@ -1,4 +1,5 @@
 <?php
+// pages/user-dashboard.php - MY BORROWED BOOKS (Dashboard View)
 session_start();
 include('../config/database.php');
 
@@ -38,12 +39,14 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 ?>
 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Library Dashboard</title>
+  <title>My Dashboard - Lé Bros Library</title>
   <link rel="stylesheet" href="../styles/user-homepage.css">
 </head>
 <body>
@@ -91,7 +94,7 @@ $result = mysqli_stmt_get_result($stmt);
 
       <!-- Recently Borrowed Books Section -->
       <section class="information-table-container">
-        <h2>Recently Borrowed Books</h2>
+        <h2>My Borrowed Books</h2>
         
         <?php if(mysqli_num_rows($result) > 0): ?>
           <table class="table-wrap">
@@ -143,7 +146,7 @@ $result = mysqli_stmt_get_result($stmt);
         <?php else: ?>
           <p style="text-align: center; padding: 50px; color: white;">
             You haven't borrowed any books yet.<br><br>
-            <a href="public-homepage.php" style="color: #4CAF50; text-decoration: none; font-weight: bold;">
+            <a href="user-homepage.php" style="color: #4CAF50; text-decoration: none; font-weight: bold;">
               📚 Browse Available Books
             </a>
           </p>

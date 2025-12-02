@@ -1,23 +1,21 @@
 <?php
 // pages/public-homepage.php - PUBLIC VIEW (No login required)
+// Guests browse books here, must login to borrow
 
-// Start session
 if(session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 include('../config/database.php');
 
-// Check if user is logged in - if they are, redirect to dashboard
+// Check if user is logged in
 $isLoggedIn = isset($_SESSION['userId']) && !empty($_SESSION['userId']);
 
-// If user IS logged in, redirect to user-dashboard instead
+// If user IS logged in, redirect to user-homepage (browse books as logged in user)
 if($isLoggedIn) {
-    header("Location: user-dashboard.php");
+    header("Location: user-homepage.php");
     exit();
 }
-
-// If we're still here, user is a guest
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +24,6 @@ if($isLoggedIn) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Browse Books - Lé Bros Library</title>
-  <link rel="stylesheet" href="../styles/admin-homepage.css">
   <link rel="stylesheet" href="../styles/public-homepage.css">
 </head>
 <body>
@@ -34,8 +31,6 @@ if($isLoggedIn) {
   <header>
     <?php include('public-header.php'); ?>
   </header>
-
-  <!-- NO SIDE NAV FOR GUESTS -->
 
   <section>
     <?php include('book-category.php'); ?>
@@ -100,7 +95,6 @@ if($isLoggedIn) {
                         <?php endif; ?>
                     </div>
                     
-                    <!-- Guest users see "Login to Borrow" -->
                     <button type="button" 
                             class="borrow-btn" 
                             <?php echo ($book['quantity'] <= 0) ? 'disabled' : ''; ?>
@@ -122,30 +116,7 @@ if($isLoggedIn) {
     </section>
   </section>
 
-  <script>
-    function showLoginModal() {
-      document.getElementById('loginModal').style.display = 'flex';
-    }
-
-    function closeLoginModal() {
-      document.getElementById('loginModal').style.display = 'none';
-    }
-
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-      const loginModal = document.getElementById('loginModal');
-      if (event.target === loginModal) {
-        closeLoginModal();
-      }
-    }
-
-    // Close modal on ESC key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeLoginModal();
-      }
-    });
-  </script>
+  <script src="../script/public-homepage.js"></script>
 
 </body>
 
