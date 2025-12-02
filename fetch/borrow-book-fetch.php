@@ -1,5 +1,8 @@
 <?php
 // fetch/borrow-book-fetch.php
+// NOTE: This file is no longer used if you're using the modal system in public-homepage.php
+// The borrow logic is now directly in public-homepage.php
+// Keep this file for reference or delete it
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
     
@@ -58,9 +61,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
             }
             mysqli_stmt_close($check_borrowed_stmt);
             
-            // Set dates
+            // Set dates - CHANGED TO 7 DAYS
             $date_borrowed = date('Y-m-d');
-            $due_date = date('Y-m-d', strtotime('+14 days')); // 14 days borrowing period
+            $due_date = date('Y-m-d', strtotime('+7 days')); // 7 days borrowing period
             
             // Insert borrow record
             $insert_sql = "INSERT INTO borrow_records (user_id, book_id, date_borrowed, due_date, status) 

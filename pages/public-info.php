@@ -1,4 +1,5 @@
 <?php
+/*
  include("../config/database.php");
 ?>
 
@@ -62,3 +63,5 @@
    <?php include('footer.php');?>
 </body>
 </html>
+*/
+?>

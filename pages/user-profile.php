@@ -8,13 +8,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Profile Page</title>
-  <link rel="stylesheet" href="../styles/profile.css" />
+  <link rel="stylesheet" href="../styles/user-profile.css" />
 </head>
 <body>
- <?php include('public-nav.php');?>
+  
+ <?php include('user-nav.php');?>
   <main class="profile-container" role="main" aria-labelledby="profile-heading">
    
-    <img src="your-photo.jpg" alt="Profile picture of Your Name" />
+    <img src="your-photo.jpg" alt="Profile picture" />
 
     <h2 id="profile-heading">Your Name</h2>
     <p class="email">your.email@example.com</p>

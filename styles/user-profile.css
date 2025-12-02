@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: #3d4a38;
+    background: #d0d0cf;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,7 +10,7 @@ body {
 }
 
 .profile-container {
-    background: rgb(207, 219, 207);
+    background: #262c23;
     width: 350px;
     padding: 20px;
     text-align: center;
@@ -28,12 +28,12 @@ body {
 
 .profile-container h2 {
     margin: 10px 0;
-    color: #b8bab6;
+    color: #262c23;
 }
 
 .profile-container p {
     margin: 5px 0;
-    color: #1f2a15;
+    color: #262c23;
 }
 
 .profile-info {

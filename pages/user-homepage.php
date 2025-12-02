@@ -45,7 +45,6 @@ $result = mysqli_stmt_get_result($stmt);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Library Dashboard</title>
   <link rel="stylesheet" href="../styles/user-homepage.css">
-  <link rel="stylesheet" href="../styles/admin-dashboard.css">
 </head>
 <body>
 

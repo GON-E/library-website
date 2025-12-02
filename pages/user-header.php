@@ -21,8 +21,8 @@ $userName = isset($_SESSION['userName']) ? $_SESSION['userName'] : 'User';
   <header>
     <section class="upper-header">
       <section class="signout-container">
-        <!-- User Sign Out button - FIXED PATH -->
-        <form action="../fetch/user-logout.php" method="post" style="display: inline;">
+        <!-- FIXED: Changed path to match actual filename -->
+        <form action="../fetch/user-logout-fetch.php" method="post" style="display: inline;">
           <button type="submit" name="signout" class="signout-btn">Sign Out</button>
         </form>
       </section>

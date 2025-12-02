@@ -1,4 +1,4 @@
-<?php 
+<?php/* 
 session_start();
 include('../config/database.php');
 
@@ -145,4 +145,5 @@ $recent_result = mysqli_stmt_get_result($stmt_recent);
 <?php
 mysqli_stmt_close($stmt_recent);
 mysqli_close($conn);
+*/
 ?>

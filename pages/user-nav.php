@@ -19,12 +19,13 @@ if(!isset($_SESSION['userId']) || empty($_SESSION['userId'])) {
 </head>
 <body>
   <aside class="side-nav">
-
+<!--
 <section class="sidenav-link">
     <a href="user-dashboard.php" title="Dashboard">
         <img src="../images/dashboard-icon.svg">
     </a>
 </section>
+-->
 
 <section class="sidenav-link">
   <a href="user-homepage.php" title="My Borrowed Books">
@@ -45,13 +46,13 @@ if(!isset($_SESSION['userId']) || empty($_SESSION['userId'])) {
 </section>
 
 <section class="sidenav-link">
-  <a href="info.php" title="About">
+  <a href="user-info.php" title="About">
     <img src="../images/icons/info-icon.svg">
   </a>
 </section>
 
 <section class="sidenav-link">
-  <a href="profile.php" title="Profile">
+  <a href="user-profile.php" title="Profile">
     <img src="../images/icons/account-icon.svg">
   </a>
 </section>

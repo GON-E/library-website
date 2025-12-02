@@ -14,8 +14,9 @@ body {
     padding: 20px;
 }
 
+
 .container {
-    background-color: #FFFFFF;
+    background-color: #2f3e2a;
     color: #2f3e2a;
     width: 100%;
     max-width: 500px;
@@ -37,7 +38,7 @@ body {
 }
 
 .option {
-    background-color: #3D4E39;
+    background-color: white;
     padding: 10px;
     margin-bottom: 12px;
     border-radius: 8px;
