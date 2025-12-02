@@ -74,11 +74,11 @@ if(!empty($borrow_id)) {
                   // Close the restore statement
                   mysqli_stmt_close($restore_stmt);
                   
-                  // Set success message
-                  $_SESSION['success_message'] = "✅ Book marked as returned successfully!";
+                  // Set success message (emoji removed - CSS adds styled icon)
+                  $_SESSION['success_message'] = "Book marked as returned successfully!";
               } else {
                   // Update failed
-                  $_SESSION['error_message'] = "❌ Error marking book as returned.";
+                  $_SESSION['error_message'] = "Error marking book as returned.";
               }
               
               // Close the update statement
@@ -86,7 +86,7 @@ if(!empty($borrow_id)) {
           }
       } else {
           // No record found
-          $_SESSION['error_message'] = "❌ Borrow record not found.";
+          $_SESSION['error_message'] = "Borrow record not found.";
       }
         
         // Close the check statement
