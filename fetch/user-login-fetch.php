@@ -52,9 +52,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     // Use password_verify to securely check if entered password matches the hash
                     if(password_verify($password, $storedPassword)) { 
-                        // PASSWORD CORRECT! Store user info in session
-                        $_SESSION['userId'] = $row['userId']; // Store user ID
-                        $_SESSION['userName'] = $row['username']; // Store username
+                        // PASSWORD CORRECT! Store user info in session (set multiple keys for compatibility)
+                        $_SESSION['userId'] = $row['userId']; // original key used by some pages
+                        $_SESSION['user_id'] = $row['userId']; // normalized snake_case key
+
+                        // Username keys (various pages expect different names)
+                        $_SESSION['userName'] = $row['username'];
+                        $_SESSION['user_name'] = $row['username'];
+                        $_SESSION['username'] = $row['username'];
+
+                        // Email (useful fallback/display)
+                        $_SESSION['user_email'] = $email;
+                        $_SESSION['userEmail'] = $email;
+
+                        // Logged-in flag
+                        $_SESSION['is_user_logged_in'] = true;
 
                         // Redirect to user homepage (books page)
                         header("location: user-homepage.php");

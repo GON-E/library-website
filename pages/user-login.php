@@ -62,6 +62,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $_SESSION['is_user_logged_in'] = true;
                         $_SESSION['user_email'] = $row['email'];
                         $_SESSION['user_id'] = $row['id'];
+                        // Store the display name for reports and UI. Use 'username' column if available.
+                        if (!empty($row['username'])) {
+                            $_SESSION['user_name'] = $row['username'];
+                        } else {
+                            // fallback to email local-part
+                            $_SESSION['user_name'] = preg_replace('/@.*$/', '', $row['email']);
+                        }
 
                         header("Location: ../pages/user-dashboard.php");
                         exit();

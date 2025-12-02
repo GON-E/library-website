@@ -23,8 +23,7 @@
     <input type="text" placeholder="username" name="username" required>
     <input type="password" placeholder="Password" name="password" required>
  
-    
-
+  
     <input type="password" placeholder="Confirm Password" name="confirmPassword" required>  
     <i class="fa-solid fa-eye" id= "toggleConfirm"></i>   
     <button class="btn-signup" name="register"> Sign-In </button>

@@ -295,6 +295,35 @@ body {
     }
 }
 
+/* --- SUCCESS/ERROR MESSAGES (borrow feedback) --- */
+.success-message, .error-message {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 700;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    animation: slideDown 0.25s ease-out;
+    color: #fff;
+}
+
+.success-message {
+    background-color: #4CAF50; /* green */
+}
+
+.error-message {
+    background-color: #f44336; /* red */
+}
+
+/* Auto-hide transition helper: reduce opacity when removed */
+.success-message.hide, .error-message.hide {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
 .modal-close {
     position: absolute;
     top: 15px;

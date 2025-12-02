@@ -12,12 +12,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = null;
     if (!empty($_SESSION['user_id'])) $user_id = $_SESSION['user_id'];
     elseif (!empty($_SESSION['userId'])) $user_id = $_SESSION['userId'];
+    elseif (!empty($_SESSION['userId'])) $user_id = $_SESSION['userId'];
 
-    // Determine user name: prefer session user_name, then user_email, else fallback
+    // Determine user name: check multiple session keys used by different pages
     if (!empty($_SESSION['user_name'])) {
         $user_name = $_SESSION['user_name'];
+    } elseif (!empty($_SESSION['userName'])) {
+        $user_name = $_SESSION['userName'];
+    } elseif (!empty($_SESSION['username'])) {
+        $user_name = $_SESSION['username'];
     } elseif (!empty($_SESSION['user_email'])) {
         $user_name = $_SESSION['user_email'];
+    } elseif (!empty($_SESSION['userEmail'])) {
+        $user_name = $_SESSION['userEmail'];
     } else {
         $user_name = 'Anonymous';
     }
