@@ -55,6 +55,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
                 }
                 mysqli_stmt_close($check_borrowed_stmt);
                 
+                // Set timezone to Manila (Asia/Manila) to ensure correct date
+                date_default_timezone_set('Asia/Manila');
+                
                 // Set dates - 7 days borrowing period
                 $date_borrowed = date('Y-m-d');
                 $due_date = date('Y-m-d', strtotime('+7 days'));
