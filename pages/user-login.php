@@ -4,7 +4,7 @@ include("../config/database.php");
 include("../fetch/user-login-fetch.php");
 
 $max_attempts = 5;
-$lock_duration = 60; // 1 minute
+$lock_duration = 30; // 1 minute
 $current_time = time();
 
 // Initialize session variables
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         // Trigger lock only if attempts reach 0
                         if ($_SESSION['user_attempts'] === 0) {
                             $_SESSION['user_lock_time'] = time() + $lock_duration;
-                            $error_message = "Too many attempts! Locked for 1 minute.";
+                            $error_message = "Too many attempts! Locked for 30 sec.";
                         } else {
                             $error_message = "Incorrect Password. Attempts left: " . $_SESSION['user_attempts'];
                         }
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     if ($_SESSION['user_attempts'] === 0) {
                         $_SESSION['user_lock_time'] = time() + $lock_duration;
-                        $error_message = "Account not found. Locked for 1 minute.";
+                        $error_message = "Account not found. Locked for 30 sec.";
                     } else {
                         $error_message = "Account not found. Attempts left: " . $_SESSION['user_attempts'];
                     }

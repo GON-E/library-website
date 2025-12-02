@@ -1,0 +1,399 @@
+/* Global setup, assuming shared assets are available */
+* {
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5; /* Light grey background */
+}
+
+/* Main Layout Container */
+.main-container {
+    display: flex;
+    /* Calculate remaining height after header/footer (assuming 100px total for header/footer) */
+    min-height: calc(100vh - 100px);
+    background-color: #f5f5f5;
+}
+
+/* Report Content Area (Offset by sidebar) */
+.report-container {
+    flex: 1;
+    padding: 30px;
+    /* Adjust this margin to match the width of admin-side-nav.php */
+    margin-left: 250px; 
+    background-color: #ffffff;
+    overflow-y: auto;
+}
+
+.report-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #2f3e2a; /* Use dark green theme color */
+}
+
+.report-header h1 {
+    margin: 0;
+    color: #333;
+    font-size: 32px;
+}
+
+.report-count {
+    margin: 10px 0 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Table Styling */
+.reports-table-wrapper {
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Slightly heavier shadow */
+}
+
+.reports-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    min-width: 800px; /* Ensure table is wide enough for content */
+}
+
+.reports-table thead {
+    background-color: #4b6245; /* Dark Green Header */
+    color: white;
+}
+
+.reports-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.reports-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+.reports-table tbody tr:hover {
+    background-color: #f0f8ee; /* Light green hover background */
+}
+
+.report-id {
+    font-weight: bold;
+    color: #2f3e2a;
+}
+
+.user-name {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Issue Type Badges */
+.issue-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Specific Badge Colors */
+.issue-bug-in-the-system {
+    background-color: #d9534f; /* Red */
+    color: white;
+}
+
+.issue-buttons-not-working {
+    background-color: #f0ad4e; /* Orange */
+    color: white;
+}
+
+.issue-other-problem {
+    background-color: #5bc0de; /* Blue */
+    color: white;
+}
+
+.description-text {
+    color: #555;
+    display: block;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: help; /* Suggests full text available (via tooltip or modal) */
+}
+
+.report-date {
+    color: #999;
+    font-size: 13px;
+}
+
+/* Status Select Dropdown */
+.status-form {
+    margin: 0;
+    display: inline-block; /* Ensure form doesn't take full width */
+}
+
+.status-select {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    appearance: none; /* Hide default arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%;
+    background-size: 0.65em auto;
+}
+
+/* Specific Status Colors */
+.status-select.status-pending {
+    background-color: #fcf8e3;
+    color: #8a6d3b;
+    border-color: #faebcc;
+}
+
+.status-select.status-in-progress {
+    background-color: #d9edf7;
+    color: #31708f;
+    border-color: #bce8f1;
+}
+
+.status-select.status-resolved {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border-color: #d6e9c6;
+}
+
+/* Actions Buttons */
+.actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.view-btn,
+.delete-btn,
+.delete-btn-trigger { /* Added trigger class */
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-btn {
+    background-color: #6a9570; /* Primary Green */
+    color: white;
+}
+
+.view-btn:hover {
+    background-color: #4b6245; 
+    box-shadow: 0 2px 6px rgba(75, 98, 69, 0.3);
+}
+
+.delete-btn-trigger, 
+.delete-btn { /* Style for both the trigger button and the confirm button */
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.delete-btn-trigger:hover,
+.delete-btn:hover {
+    background-color: #c82333;
+    box-shadow: 0 2px 6px rgba(200, 35, 51, 0.3);
+}
+
+.no-reports {
+    text-align: center;
+    padding: 50px;
+    color: #999;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.no-reports p {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* --- Modal Styles (Detailed View & Confirmation) --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 650px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    animation: slideIn 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bounce effect */
+}
+
+.modal-small {
+    max-width: 450px; /* Smaller width for confirmation modal */
+    text-align: center;
+}
+
+@keyframes slideIn {
+    from {
+        transform: scale(0.8) translateY(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #2f3e2a;
+    border-bottom: 2px solid #6a9570;
+    padding-bottom: 10px;
+}
+
+.modal-small h2 {
+    border-bottom: none;
+}
+
+.modal-small p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.close:hover,
+.close:focus {
+    color: #2f3e2a;
+}
+
+.modal-body {
+    margin: 20px 0;
+    text-align: left; /* Reset text-align for details */
+}
+
+.detail-row {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.detail-row strong {
+    display: block;
+    color: #4b6245;
+    margin-bottom: 3px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.detail-row span {
+    color: #333;
+    word-break: break-word;
+}
+
+.description-full {
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    /* Optional: style for a contained description box */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .report-container {
+        /* When sidebar might be hidden or full width */
+        margin-left: 0; 
+    }
+}
+
+@media (max-width: 768px) {
+    .report-container {
+        padding: 15px;
+    }
+
+    .reports-table {
+        font-size: 12px;
+        min-width: 600px; /* Adjust min width for smaller screens */
+    }
+
+    .reports-table th,
+    .reports-table td {
+        padding: 8px;
+    }
+    
+    .description-text {
+        max-width: 150px; /* Reduce max width on mobile */
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .view-btn,
+    .delete-btn-trigger,
+    .delete-btn {
+        width: 100%;
+        padding: 6px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}

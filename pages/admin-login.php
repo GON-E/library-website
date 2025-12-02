@@ -5,9 +5,10 @@ include("../config/database.php");
 $error_message = "";
 
 $max_attempts = 5;
-$lock_duration = 60; // 1 minute
+$lock_duration = 30; 
+$attempts_after_lock = 2; 
 
-// Initialize attempts and lock if not set
+
 if (!isset($_SESSION['admin_attempts'])) {
     $_SESSION['admin_attempts'] = $max_attempts;
 }
@@ -21,6 +22,15 @@ if ($_SESSION['admin_lock_time'] > $current_time) {
     $remaining = $_SESSION['admin_lock_time'] - $current_time;
     $error_message = "Too many attempts! Try again in $remaining seconds.";
 }
+
+// --- NEW CODE ADDED HERE: Handles lock expiration and grants 2 attempts ---
+if ($_SESSION['admin_lock_time'] !== 0 && $_SESSION['admin_lock_time'] <= $current_time) {
+    // Lock expired. Reset attempts to 2 and clear the lock time.
+    $_SESSION['admin_attempts'] = $attempts_after_lock;
+    $_SESSION['admin_lock_time'] = 0;
+}
+// --- END OF NEW CODE ---
+
 
 // Handle login submission
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -61,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $_SESSION['admin_attempts']--;
                         if ($_SESSION['admin_attempts'] <= 0){
                             $_SESSION['admin_lock_time'] = time() + $lock_duration;
-                            $error_message = "Too many attempts! Locked for 1 minute.";
+                            $error_message = "Too many attempts! Locked for 30 sec.";
                         } else {
                             $error_message = "Incorrect Password. Attempts left: " . $_SESSION['admin_attempts'];
                         }
@@ -71,7 +81,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $_SESSION['admin_attempts']--;
                     if ($_SESSION['admin_attempts'] <= 0){
                         $_SESSION['admin_lock_time'] = time() + $lock_duration;
-                        $error_message = "Account not found. Locked for 1 minute.";
+                        $error_message = "Account not found. Locked for 30 sec.";
                     } else {
                         $error_message = "Account not found. Attempts left: " . $_SESSION['admin_attempts'];
                     }
@@ -91,10 +101,11 @@ if(isset($conn)) { mysqli_close($conn); }
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alice&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link href="fonts.googleapis.com" rel="stylesheet">
+  <link rel="stylesheet" href="cdnjs.cloudflare.com"> 
   <title>Admin Login</title>
   <link rel="stylesheet" href="../styles/ad-login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <link rel="icon" href="../images/lock.png" type="image/x-icon">
 </head>
 <body>
