@@ -2,167 +2,599 @@
 
 /* --- RESET & BASIC SETUP --- */
 * {
+    /* Apply border-box sizing to all elements for easier layout control */
     box-sizing: border-box;
 }
 
 body {
+    /* Set page background color */
     background-color: #d0d0cf;
+    /* Remove default body margin */
     margin: 0;
+    /* Remove default body padding */
     padding: 0;
+    /* Set default font family */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* --- MAIN CONTENT AREA --- */
 main {
+    /* Add left margin to account for sidebar navigation */
     margin-left: 40px;
+    /* Add padding around main content */
     padding: 20px;
+    /* Add bottom padding to prevent footer overlap */
     padding-bottom: 80px;
 }
 
-/* --- STATISTICS CARDS --- */
+/* --- MAIN CONTAINER --- */
 .main-container {
+    /* Add padding inside container */
     padding: 20px;
+    /* Set maximum width for large screens */
     max-width: 1400px;
+    /* Center the container horizontally */
     margin: 0 auto;
 }
 
+/* --- STATISTICS CARDS GRID --- */
 .information-cards-grid {
+    /* Use CSS Grid for card layout */
     display: grid;
+    /* Create responsive columns: minimum 250px, maximum 1fr (equal distribution) */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Add space between grid items */
     gap: 20px;
+    /* Add space below the cards grid */
     margin-bottom: 40px;
 }
 
+/* --- INDIVIDUAL STATISTICS CARD --- */
 .information-card {
+    /* Set card background color */
     background-color: #3d4a38;
+    /* Round the card corners */
     border-radius: 12px;
+    /* Add internal padding */
     padding: 25px;
+    /* Add shadow for depth effect */
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    /* Add smooth transition for hover effect */
     transition: transform 0.2s;
 }
 
+/* Hover effect for cards */
 .information-card:hover {
+    /* Lift card slightly on hover */
     transform: translateY(-5px);
 }
 
+/* --- CARD TITLE SECTION --- */
 .card-title {
+    /* Use flexbox for horizontal layout */
     display: flex;
+    /* Space between title and icon */
     justify-content: space-between;
+    /* Vertically center items */
     align-items: center;
+    /* Add space below title section */
     margin-bottom: 15px;
 }
 
 .card-title h2 {
+    /* Set text color to white */
     color: white;
+    /* Set font size */
     font-size: 18px;
+    /* Remove default margin */
     margin: 0;
 }
 
 .card-title img {
+    /* Set icon width */
     width: 40px;
+    /* Set icon height */
     height: 40px;
+    /* Invert icon colors to white */
     filter: brightness(0) invert(1);
 }
 
+/* --- CARD COUNT DISPLAY --- */
 .card-count h1 {
+    /* Set number color to white */
     color: white;
+    /* Set large font size for emphasis */
     font-size: 48px;
+    /* Remove default margin */
     margin: 0;
+    /* Center the number */
     text-align: center;
 }
 
 /* --- TABLE CONTAINER --- */
 .information-table-container {
+    /* Set dark background for table container */
     background-color: #3d4a38;
+    /* Round container corners */
     border-radius: 12px;
+    /* Add internal padding */
     padding: 25px;
+    /* Add shadow for depth */
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
 .information-table-container h2 {
+    /* Set heading color to white */
     color: white;
+    /* Remove top margin */
     margin-top: 0;
+    /* Add space below heading */
     margin-bottom: 20px;
+    /* Set heading font size */
     font-size: 24px;
 }
 
+/* --- TABLE STYLES --- */
 .table-wrap {
+    /* Make table full width of container */
     width: 100%;
+    /* Remove spacing between table cells */
     border-collapse: collapse;
+    /* Set table background to white */
     background-color: white;
+    /* Round table corners */
     border-radius: 8px;
+    /* Hide overflow to maintain rounded corners */
     overflow: hidden;
 }
 
 .table-wrap thead {
+    /* Set header background color */
     background-color: #2f3e2a;
 }
 
 .table-wrap th {
+    /* Set header text color to white */
     color: white;
+    /* Add padding inside header cells */
     padding: 15px;
+    /* Align header text to left */
     text-align: left;
+    /* Make header text bold */
     font-weight: 600;
 }
 
 .table-wrap td {
+    /* Add padding inside table cells */
     padding: 12px 15px;
+    /* Add border between rows */
     border-bottom: 1px solid #f0f0f0;
+    /* Set text color */
     color: #333;
 }
 
+/* Hover effect for table rows */
 .table-wrap tbody tr:hover {
+    /* Highlight row on hover */
     background-color: #f8f8f8;
 }
 
+/* Remove border from last row */
 .table-wrap tbody tr:last-child td {
     border-bottom: none;
 }
 
-/* --- BROWSE LINK --- */
-.browse-link {
-    display: inline-block;
-    margin: 20px 0 20px 60px;
-    padding: 12px 24px;
-    background-color: #3f7f45;
+/* --- CANCEL BUTTON --- */
+.btn-cancel-borrow {
+    /* Set button background color */
+    background-color: #dc3545;
+    /* Set text color to white */
     color: white;
-    text-decoration: none;
+    /* Remove default border */
+    border: none;
+    /* Add internal padding */
+    padding: 8px 16px;
+    /* Round button corners */
     border-radius: 5px;
+    /* Change cursor to pointer on hover */
+    cursor: pointer;
+    /* Make text bold */
     font-weight: bold;
-    transition: background-color 0.3s;
+    /* Set font size */
+    font-size: 14px;
+    /* Add smooth transition for hover effect */
+    transition: 0.2s;
 }
 
-.browse-link:hover {
-    background-color: #2e5e32;
+/* Hover effect for cancel button */
+.btn-cancel-borrow:hover {
+    /* Darken color on hover */
+    background-color: #c82333;
+    /* Slightly enlarge button */
+    transform: scale(1.05);
+}
+
+/* Active/click effect for cancel button */
+.btn-cancel-borrow:active {
+    /* Shrink button slightly when clicked */
+    transform: scale(0.95);
+}
+
+/* --- SUCCESS/ERROR MESSAGES --- */
+.dashboard-message {
+    /* Position fixed at top center of screen */
+    position: fixed;
+    /* Distance from top */
+    top: 100px;
+    /* Center horizontally using left + transform */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Add internal padding */
+    padding: 15px 30px;
+    /* Round message corners */
+    border-radius: 8px;
+    /* Make text bold */
+    font-weight: bold;
+    /* Ensure message appears above other content */
+    z-index: 9999;
+    /* Add shadow for visibility */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    /* Add fade-in animation */
+    animation: slideDown 0.3s ease-out;
+    /* Add smooth opacity transition for hide effect */
+    transition: opacity 0.3s;
+}
+
+/* Success message styling */
+.success-message {
+    /* Green background for success */
+    background-color: #4CAF50;
+    /* White text */
+    color: white;
+}
+
+/* Error message styling */
+.error-message {
+    /* Red background for errors */
+    background-color: #f44336;
+    /* White text */
+    color: white;
+}
+
+/* Slide down animation for messages */
+@keyframes slideDown {
+    from {
+        /* Start above screen */
+        top: 50px;
+        /* Start transparent */
+        opacity: 0;
+    }
+    to {
+        /* End at final position */
+        top: 100px;
+        /* End fully visible */
+        opacity: 1;
+    }
+}
+
+/* --- CANCEL MODAL OVERLAY --- */
+.cancel-modal-overlay {
+    /* Hide by default */
+    display: none;
+    /* Position fixed to cover entire screen */
+    position: fixed;
+    /* Cover from top */
+    top: 0;
+    /* Cover from left */
+    left: 0;
+    /* Full screen width */
+    width: 100%;
+    /* Full screen height */
+    height: 100%;
+    /* Semi-transparent black background */
+    background: rgba(0, 0, 0, 0.7);
+    /* Ensure modal appears above other content */
+    z-index: 1000;
+    /* Center modal using flexbox */
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- CANCEL MODAL CONTENT --- */
+.cancel-modal {
+    /* White background for modal */
+    background: white;
+    /* Round modal corners */
+    border-radius: 15px;
+    /* Add internal padding */
+    padding: 30px;
+    /* Set maximum width */
+    max-width: 500px;
+    /* Make modal responsive (90% of screen width) */
+    width: 90%;
+    /* Add shadow for depth */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    /* Position relative for absolute children */
+    position: relative;
+    /* Add slide-down animation */
+    animation: modalSlideDown 0.3s ease-out;
+    /* Set maximum height for scrolling */
+    max-height: 90vh;
+    /* Enable vertical scrolling if content is too tall */
+    overflow-y: auto;
+}
+
+/* Modal slide down animation */
+@keyframes modalSlideDown {
+    from {
+        /* Start above final position */
+        transform: translateY(-50px);
+        /* Start transparent */
+        opacity: 0;
+    }
+    to {
+        /* End at final position */
+        transform: translateY(0);
+        /* End fully visible */
+        opacity: 1;
+    }
+}
+
+/* --- MODAL CLOSE BUTTON --- */
+.modal-close {
+    /* Position in top-right corner */
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    /* Large font for X symbol */
+    font-size: 28px;
+    /* Make X bold */
+    font-weight: bold;
+    /* Gray color */
+    color: #999;
+    /* Change cursor to pointer */
+    cursor: pointer;
+    /* Remove button styling */
+    background: none;
+    border: none;
+    /* Add smooth transition */
+    transition: 0.2s;
+}
+
+/* Close button hover effect */
+.modal-close:hover {
+    /* Darken on hover */
+    color: #333;
+    /* Slightly enlarge */
+    transform: scale(1.1);
+}
+
+/* --- MODAL HEADER --- */
+.modal-header {
+    /* Center text */
+    text-align: center;
+    /* Add space below header */
+    margin-bottom: 20px;
+    /* Add bottom border */
+    border-bottom: 2px solid #3f7f45;
+    /* Add padding below border */
+    padding-bottom: 15px;
+}
+
+.modal-header h2 {
+    /* Set heading color */
+    color: #3f7f45;
+    /* Remove default margin */
+    margin: 0;
+    /* Set font size */
+    font-size: 24px;
+}
+
+/* --- MODAL BODY --- */
+.modal-body {
+    /* Add space below body */
+    margin-bottom: 25px;
+}
+
+/* Warning text styling */
+.warning-text {
+    /* Set font size */
+    font-size: 16px;
+    /* Set text color */
+    color: #333;
+    /* Add space below */
+    margin-bottom: 20px;
+    /* Center text */
+    text-align: center;
+}
+
+/* --- BOOK INFO DISPLAY IN MODAL --- */
+.book-info-display {
+    /* Light gray background */
+    background: #f8f9fa;
+    /* Add internal padding */
+    padding: 15px;
+    /* Round corners */
+    border-radius: 8px;
+    /* Add space below */
+    margin: 15px 0;
+}
+
+/* Label for book info */
+.info-label {
+    /* Make label bold */
+    font-weight: bold;
+    /* Set label color */
+    color: #333;
+    /* Add space below */
+    margin-bottom: 5px;
+    /* Set font size */
+    font-size: 14px;
+}
+
+/* Value for book info */
+.info-value {
+    /* Set value color */
+    color: #666;
+    /* Add space below */
+    margin-bottom: 15px;
+    /* Set font size */
+    font-size: 15px;
+    /* Remove bottom margin from last item */
+}
+
+.info-value:last-child {
+    margin-bottom: 0;
+}
+
+/* Note text styling */
+.note-text {
+    /* Set font size */
+    font-size: 14px;
+    /* Set text color */
+    color: #666;
+    /* Italicize text */
+    font-style: italic;
+    /* Center text */
+    text-align: center;
+    /* Add space above */
+    margin-top: 15px;
+}
+
+/* --- MODAL FOOTER --- */
+.modal-footer {
+    /* Use flexbox for button layout */
+    display: flex;
+    /* Add space between buttons */
+    gap: 10px;
+    /* Center buttons */
+    justify-content: center;
+    /* Add space above footer */
+    margin-top: 20px;
+}
+
+/* Confirm cancel button */
+.btn-cancel-confirm {
+    /* Red background (danger action) */
+    background-color: #dc3545;
+    /* White text */
+    color: white;
+    /* Add internal padding */
+    padding: 12px 30px;
+    /* Remove default border */
+    border: none;
+    /* Round button corners */
+    border-radius: 5px;
+    /* Set font size */
+    font-size: 16px;
+    /* Make text bold */
+    font-weight: bold;
+    /* Change cursor to pointer */
+    cursor: pointer;
+    /* Add smooth transition */
+    transition: 0.3s;
+}
+
+/* Confirm button hover effect */
+.btn-cancel-confirm:hover {
+    /* Darken on hover */
+    background-color: #c82333;
+    /* Lift button slightly */
+    transform: translateY(-2px);
+    /* Add shadow */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Confirm button active effect */
+.btn-cancel-confirm:active {
+    /* Reset lift on click */
+    transform: translateY(0);
+}
+
+/* Keep button (cancel action) */
+.btn-keep {
+    /* Gray background (neutral action) */
+    background-color: #6c757d;
+    /* White text */
+    color: white;
+    /* Add internal padding */
+    padding: 12px 30px;
+    /* Remove default border */
+    border: none;
+    /* Round button corners */
+    border-radius: 5px;
+    /* Set font size */
+    font-size: 16px;
+    /* Make text bold */
+    font-weight: bold;
+    /* Change cursor to pointer */
+    cursor: pointer;
+    /* Add smooth transition */
+    transition: 0.3s;
+}
+
+/* Keep button hover effect */
+.btn-keep:hover {
+    /* Darken on hover */
+    background-color: #5a6268;
 }
 
 /* --- MOBILE RESPONSIVE --- */
 @media screen and (max-width: 768px) {
+    /* Remove left margin on mobile */
     main { 
         margin-left: 0; 
+        /* Reduce padding */
         padding: 10px;
+        /* Ensure space for footer */
         padding-bottom: 100px;
     }
     
+    /* Stack cards in single column on mobile */
     .information-cards-grid {
         grid-template-columns: 1fr;
+        /* Reduce gap */
         gap: 15px;
     }
     
+    /* Reduce table font size on mobile */
     .table-wrap {
         font-size: 14px;
     }
     
+    /* Reduce table cell padding on mobile */
     .table-wrap th,
     .table-wrap td {
         padding: 10px 8px;
     }
     
+    /* Reduce card number size on mobile */
     .card-count h1 {
         font-size: 36px;
     }
     
-    .browse-link {
-        margin-left: 10px;
+    /* Make modal full width on mobile */
+    .cancel-modal {
+        width: 95%;
+        /* Reduce padding on mobile */
+        padding: 20px;
+    }
+    
+    /* Stack modal buttons vertically on mobile */
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    /* Make buttons full width on mobile */
+    .btn-cancel-confirm,
+    .btn-keep {
+        width: 100%;
+    }
+    
+    /* Make messages responsive on mobile */
+    .dashboard-message {
+        width: 90%;
+        left: 5%;
+        transform: none;
     }
 }

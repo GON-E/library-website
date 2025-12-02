@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif; /* Or a similar sans-serif font */
-    background-color: #2e3e2e; /* Dark green/brownish background */
+    background-color: #2f3e2a; /* Dark green/brownish background */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +12,7 @@ body {
 }
 
 /* Background texture/pattern (if desired, not directly in image but implied) */
-body::before {
+body:before {
     content: '';
     position: absolute;
     top: 0;
