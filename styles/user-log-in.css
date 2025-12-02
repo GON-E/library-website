@@ -1,7 +1,7 @@
 * /* General Body and Container Styles */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif; /* Or a similar sans-serif font */
+    font-size: 120%;
+    font-family: "Alfa Slab One";
     background-color: #2f3e2a; /* Dark green/brownish background */
     display: flex;
     justify-content: center;
@@ -11,152 +11,27 @@ body {
     position: relative;
 }
 
-/* Background texture/pattern (if desired, not directly in image but implied) */
-body:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://www.transparenttextures.com/patterns/dust-and-scratches.png'); /* Example texture, replace or remove */
-    opacity: 0.1; /* Adjust opacity for subtlety */
-    pointer-events: none; /* Allows clicks to pass through */
-    z-index: 0;
-}
 
-.container {
-    display: flex;
-    gap: 30px; /* Space between the login form and the about box */
-    align-items: flex-start; /* Align items at the top */
-    z-index: 1; /* Keep content above background texture */
-}
+
 
 
 form {
-    background-color: #d0d0cf;
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    width: 350px; /* Fixed width for the form */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative; /* For the book header */
-    overflow: hidden; /* To contain the book header */
+  text-align: center;
+  padding: 20px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-height: 60vh;
+  height: auto;
+  box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
+  background-color: #d0d0cf;
+  border-radius: 20px;
 }
 
-/* Book header graphic */
-form::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50px; /* Height of the book graphic */
-    background-color: #5d7054; /* Darker green for the book spine area */
-    border-radius: 10px 10px 0 0;
-    background-image: url('https://i.imgur.com/your-book-texture-here.png'); /* Replace with your actual book texture or a simpler linear gradient */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* Example simple gradient if you don't have an image: */
-    /* background: linear-gradient(to right, #6d8263, #90a986, #6d8263); */
-    /* border-bottom: 2px solid #4a5c41; */
+.LOGO{
+    margin: 0.5% 0 -2% 0;
 }
 
-.form-title {
-    display: flex;
-    align-items: center;
-    margin-top: 50px; /* Push down to clear the book header */
-    margin-bottom: 20px;
-    color: #2e3e2e; /* Dark text color */
-}
-
-.form-title h2 {
-    font-size: 2.2em; /* Larger font for the title */
-    margin: 0;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-.form-title img {
-    height: 50px; /* Adjust size of your book icon */
-    margin-right: 10px;
-}
-
-.form-title p { /* For "Log In" text below "Lé Bros: Library" */
-    font-size: 1.5em;
-    margin-top: 5px;
-    font-weight: normal;
-    color: #4a5c41;
-}
-
-/* Input field sections */
-form section:not(.form-title):not(.links) {
-    width: 100%; /* Make input sections take full width */
-    margin-bottom: 15px;
-    position: relative;
-    display: flex; /* For icons */
-    align-items: center;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"] { /* Added email for reset password form */
-    width: calc(100% - 40px); /* Adjust for padding and icon */
-    padding: 12px 10px 12px 40px; /* Left padding for icon */
-    border: none;
-    border-radius: 5px;
-    background-color: #d1d8cb; /* Lighter background for inputs */
-    font-size: 1em;
-    color: #2e3e2e;
-    outline: none;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-input[type="text"]::placeholder,
-input[type="password"]::placeholder,
-input[type="email"]::placeholder {
-    color: #6a7c61; /* Placeholder color */
-}
-
-/* Input Icons */
-.form-title > img { /* Assuming the book icon is an actual <img> tag */
-    height: 50px; /* Size of the book icon */
-    margin-right: 10px;
-}
-
-/* For the user icon */
-form section:nth-of-type(2)::before { /* Targets the first input section (email/username) */
-    content: '👤'; /* Unicode user icon */
-    font-size: 1.2em;
-    position: absolute;
-    left: 10px;
-    color: #4a5c41; /* Icon color */
-    pointer-events: none; /* Make icon unclickable */
-}
-
-/* For the password icon */
-form section:nth-of-type(3)::before { /* Targets the second input section (password) */
-    content: '🔒'; /* Unicode lock icon */
-    font-size: 1.2em;
-    position: absolute;
-    left: 10px;
-    color: #4a5c41; /* Icon color */
-    pointer-events: none;
-}
-
-/* Eye icon for password visibility (assuming it's part of the input section) */
-/* You'll likely need a JavaScript solution to toggle password visibility */
-form section:nth-of-type(3)::after { /* Targets the second input section (password) */
-    content: '👁️'; /* Unicode eye icon */
-    font-size: 1.2em;
-    position: absolute;
-    right: 10px;
-    color: #4a5c41;
-    cursor: pointer; /* Indicate it's clickable */
-}
 
 
 /* Login Attempts */
@@ -171,17 +46,16 @@ form section:nth-of-type(3)::after { /* Targets the second input section (passwo
 
 /* Submit Button */
 .submit-btn {
-    width: 100%;
-    padding: 12px 20px;
-    background-color: #5d7054; /* Darker green for the button */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
+  width: 90%;
+  border-radius: 20px;
+  color: white;
+  background-color: #3d4a38;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: none;
 }
 
 .submit-btn:hover {

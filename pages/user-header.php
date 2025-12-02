@@ -29,7 +29,7 @@ $userName = isset($_SESSION['userName']) ? $_SESSION['userName'] : 'User';
       </section>
       <section>
         <!-- Browse Books Button - Goes to Dashboard -->
-        <a href="user-dashboard.php">
+        <a href="user-homepage.php">
           <button class="signout-btn">Browse Books</button>
         </a>
       </section>

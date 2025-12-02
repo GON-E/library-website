@@ -37,7 +37,6 @@ input {
 
 .form-title h2{
   display: grid;
-  
   grid-template-rows: 1fr;
   font-family: "Alfa Slab One";
   font-size: 26px;

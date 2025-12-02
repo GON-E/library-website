@@ -51,28 +51,17 @@ input{
 
 
 .btn-signup{ 
-  width: 90%;
-  border-radius: 20px;
-  color: white;
-  background-color: #3d4a38;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 20px;
-  box-shadow: none;
-}
-
-
-.btn-signup:hover {
-    background-color: #7a896e;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #5d7054; /* Darker green for the button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
     cursor: pointer;
-}
-
-
-.btn-signup:active {
-    transform: scale(0.98);
-    background-color: rgb(0, 0, 0);
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
 }
 
 

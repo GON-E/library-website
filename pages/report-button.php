@@ -12,7 +12,8 @@
 </head>
 
 <body>
-  <?php include('user-nav.php');?>
+  <div class="main-container">
+      <?php include('user-nav.php');?>
 
      <div class="container">
     <h2>Report an Issue</h2>
@@ -45,6 +46,7 @@
 
       <a class="back-btn" href="../pages/user-homepage.php">Home</a>
   </div>
+  </div>
+  <section class="footer-inc"><?php include('footer.php');?></section>
 </body>
-<section><?php include('footer.php');?></section>
 </html>

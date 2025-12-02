@@ -18,7 +18,9 @@ include("../fetch/user-login-fetch.php");
 <body>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
-        <section class="form-title">
+        
+    <img src="../images/bookTitle.png" alt="Logo" type="image" class="LOGO" width="90%" height="10%">
+    <section class="form-title">
             <h2>User Login</h2>
         </section>
 
@@ -27,7 +29,8 @@ include("../fetch/user-login-fetch.php");
                 <?php echo $error_message; ?>
             </p>
         <?php endif; ?>
-
+            
+        
         <section>
             <input type="text" name="email" placeholder="email" required> 
         </section>

@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="../styles/user-profile.css" />
 </head>
 <body>
-  
- <?php include('user-nav.php');?>
+  <div class="main-container">
+     <?php include('user-nav.php');?>
   <main class="profile-container" role="main" aria-labelledby="profile-heading">
    
     <img src="your-photo.jpg" alt="Profile picture" />
@@ -29,10 +29,10 @@
     <div class="actions">
       <a href="public-homepage.php" class="btn" role="button">Back Home</a>
     </div>
+  </div>
   </main>
-
+  <section><?php include('footer.php');?></section>
 </body>
-<section><?php include('footer.php');?></section>
 </html>
 
 

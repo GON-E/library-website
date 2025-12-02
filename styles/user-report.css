@@ -5,16 +5,14 @@
     font-family: 'Georgia', serif;
 }
 
-body {
-    background-color: #d0d0cf;
+
+.main-container {
+     background-color: #d0d0cf;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
 }
-
-
 .container {
     background-color: #2f3e2a;
     color: #2f3e2a;
@@ -101,6 +99,10 @@ body {
 .back-btn:active {
     text-decoration: underline;
     color: black;
+}
+
+.footer-inc {
+    position: relative;
 }
 
 @media screen and (max-width: 768px) {
