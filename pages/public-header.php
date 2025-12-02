@@ -25,7 +25,10 @@ $userName = $isLoggedIn ? $_SESSION['userName'] : 'Guest';
     <section class="upper-header">
       <section class="signin-container">
         <?php if($isLoggedIn): ?>
-          <!-- User is logged in - show Sign Out button -->
+          <!-- User is logged in - show Browse Books and Sign Out buttons -->
+          <a href="user-homepage.php">
+            <button class="signin-btn">Browse Books</button>
+          </a>
           <form action="../fetch/user-logout-fetch.php" method="post" style="display: inline;">
             <button type="submit" name="signout" class="signin-btn">Sign Out</button>
           </form>

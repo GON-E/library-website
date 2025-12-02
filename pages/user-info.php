@@ -6,6 +6,7 @@
 <html lang="en">
 <head>
    <link rel="stylesheet" href="../styles/user-info.css">
+   <link rel="icon" href="../images/icons/bookIcon.png" type="image/png">
    
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,21 +21,28 @@
       <section class="about">
          <h1>ABOUT OUR SITE</h1>
          <p>
-            meow
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-            This website is for educational purposes only. You can check newly added books in our library.
-
+            Welcome to Lé Bros Library, a modern digital library management system designed to make 
+            book borrowing simple, efficient, and accessible
+             for everyone. Our platform bridges the gap between traditional library services and 
+             contemporary technology, offering users the ability to browse our extensive collection of
+             books across multiple categories including Entertainment, Science, History, Mathematics, 
+             Electronics, Novels, and Cooking. Whether you're a student seeking academic resources, a 
+             professional looking for technical references, or simply an avid reader exploring new stories, 
+             our library provides a user-friendly interface that makes discovering and borrowing books 
+             easier than ever before.
+         </p>
+         <p>
+            Our system empowers both library administrators and users with powerful
+            tools for managing book inventories and tracking borrowed materials. 
+            Administrators can efficiently add new books, update quantities, and monitor 
+            borrowing activity through an intuitive dashboard, while registered users enjoy 
+            the convenience of browsing available titles, borrowing books with a simple click, 
+            and managing their borrowed items through a personalized dashboard. With features 
+            like a 7-day borrowing period, real-time inventory tracking, and overdue notifications, 
+            we ensure a transparent and organized lending process. Built as an educational project, 
+            Lé Bros Library demonstrates the potential of web-based solutions in modernizing library
+             operations while maintaining the warmth and accessibility that make libraries 
+             essential community resources.
          </p>
       </section>
 

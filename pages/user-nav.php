@@ -49,11 +49,7 @@ if(!isset($_SESSION['userId']) || empty($_SESSION['userId'])) {
             </a>
         </section>
 
-        <section class="sidenav-link">
-            <a href="user-profile.php" title="Profile">
-                <img src="../images/icons/account-icon.svg">
-            </a>
-        </section>
+
 
     </aside>
 </body>

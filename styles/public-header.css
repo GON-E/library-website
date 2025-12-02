@@ -1,73 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; 
+}
+
 body{
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  font-family: 'Roboto', sans-serif; 
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 h1 {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 1.5em;
+    /* Prevent text from wrapping */
+    white-space: nowrap; 
 }
+
 header {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
+
 .upper-header {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 40px;
-  background-color:#20231e;
-  object-fit: contain;
-  padding-left: 40px;
-  box-sizing: border-box;
-  justify-content: start;
-  align-items: center;
-  gap: 10px;
-}
-
-
-
-.signin-container{ 
-  margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    background-color: #262c23;
+    object-fit: contain;
+    padding-left: 14px;
+    box-sizing: border-box;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
 }
 
 .signin-btn {
-  color: rgb(0, 0, 0);
-  background-color: #778f5e;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  font-weight: bold;
+    color: rgb(0, 0, 0);
+    background-color: #778f5e;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 .signin-btn:hover {
-  background-color: white;
+    background-color: #8fa376;
+}
+
+.signin-btn:active {
+    background-color: #5d7248;
+}
+
+.signin-container{ 
+    margin-right: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .lower-header { 
-  color: white;
-  display: flex;
-  height: auto;
-  background-color: #3d4a38;
-  align-items: center;
-  padding-left: 40px;
-  box-sizing: border-box;
-  margin: 0;
+    color: white;
+    display: flex;
+    height: auto;
+    background-color: #3d4a38;
+    align-items: center;
+    padding-left: 5px;
+    box-sizing: border-box;
+    margin: 0;
 }
-/*
-.blank-green-bg {
-  display: flex;
-  width: 40px;
-  height: 100%;
-  background-color: white;
-  align-self: stretch;
-} */
-
 
 .lower-header-content {
-  padding: 10px; 
+    padding: 10px; 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Ensure content stays on one line */
+    flex-wrap: nowrap; 
+}
+
+.time-date {
+    color: white;
+    font-size: 14px;
+    margin-right: 20px;
+    /* Prevent time/date from shrinking or wrapping prematurely */
+    white-space: nowrap; 
+    flex-shrink: 0;
+}
+
+#liveClock {
+    font-weight: bold;
 }
 
