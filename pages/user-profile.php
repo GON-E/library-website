@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Profile Page</title>
   <link rel="stylesheet" href="../styles/user-profile.css" />
+  <link rel="icon" href="../images/icons/bookIcon.png" type="image/png">
 </head>
 <body>
   <div class="main-container">

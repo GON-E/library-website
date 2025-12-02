@@ -59,30 +59,120 @@ body {
 .information-table-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #2f3e2a;
-  color: white;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: #3d4a38;
+  color: #333;
   overflow-x: auto;
-  width: auto;
-  padding: 10px 0 10px 10px;
-  border-radius: 10px;
-}
-
-.table-wrap{
-  width: auto;
-  max-width: 1200px;
-}
-
-.information-table-container table {
   width: 100%;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Title styling for the table section */
+.information-table-container h2 {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive table wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+.table-wrap {
+  width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
+  background-color: white;
   overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Table header styling */
+.information-table-container thead {
+  background-color: #2f3e2a;
 }
 
 .information-table-container th {
   text-align: left;
   font-weight: 600;
+  padding: 15px;
+  color: white;
+  font-size: 0.95rem;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+  background-color: #2f3e2a;
+}
+
+/* Table body rows */
+.information-table-container tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
+.information-table-container tbody tr:hover {
+  background-color: #f8f8f8;
+}
+
+/* Remove border from last row */
+.information-table-container tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Table cell styling */
+.information-table-container td {
+  padding: 12px 15px;
+  color: #333;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+/* Highlight overdue status in red */
+.information-table-container td[data-label="Status"] {
+  font-weight: 500;
+  padding: 12px 15px;
+}
+
+/* Action button styling */
+.btn-mark-returned {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-mark-returned:hover {
+  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-mark-returned:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Empty state message */
+.information-table-container p {
+  text-align: center;
+  padding: 50px 20px;
+  color: #a0a0a0;
+  font-style: italic;
+  width: 100%;
 }
 
 
@@ -196,12 +286,59 @@ body {
 
 @media screen and (max-width: 768px) {
   .information-table-container {
-    padding: 10px;
+    padding: 15px;
+  }
+  
+  .information-table-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
   }
   
   .information-table-container th,
   .information-table-container td {
     padding: 10px 8px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+  }
+  
+  .information-table-container th {
+    font-size: 0.8rem;
+    text-transform: capitalize;
+  }
+  
+  .btn-mark-returned {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 480px) {
+  .information-table-container {
+    padding: 10px;
+    margin-top: 15px;
+  }
+  
+  .information-table-container h2 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .table-responsive {
+    border-radius: 4px;
+  }
+  
+  .information-table-container th,
+  .information-table-container td {
+    padding: 8px 6px;
+    font-size: 0.75rem;
+  }
+  
+  .information-table-container th {
+    font-size: 0.7rem;
+  }
+  
+  .btn-mark-returned {
+    padding: 5px 8px;
+    font-size: 0.7rem;
   }
 }

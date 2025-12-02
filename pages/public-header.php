@@ -17,6 +17,7 @@ $userName = $isLoggedIn ? $_SESSION['userName'] : 'Guest';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="../styles/public-header.css">
+  <link rel="icon" href="../images/icons/bookIcon.png" type="image/png">
   <script src="../script/header.js" defer></script>
 </head>
 <body>

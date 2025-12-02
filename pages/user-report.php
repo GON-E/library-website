@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="homepage.css">
+    <link rel="icon" href="../images/icons/bookIcon.png" type="image/png">
 </head>
 <body>
     

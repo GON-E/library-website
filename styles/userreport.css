@@ -1,0 +1,220 @@
+/* --- Global Reset and Fonts --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Using Roboto for modern look, similar to dashboard */
+    font-family: 'Roboto', sans-serif; 
+    align-items: center;
+}
+
+body {
+    background-color: #2f3e2a; /* LIGHT background for the main page */
+    display: flex; /* Enables side-by-side layout with user-nav */
+    min-height: 100vh;
+}
+
+/* --- Main Content Area (Offsetting the Side Navigation) --- */
+/* Assuming user-nav.php creates a fixed/sticky sidebar approximately 80px wide */
+.report-content {
+    /* Pushes content right to clear the sidebar */
+    margin-left: 80px; 
+    padding: 30px 20px; /* Increased top padding for better vertical centering/spacing */
+    flex-grow: 1; /* Takes up remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Report Form Card (The 'Container') --- */
+.container {
+    background-color: #d0d0cf; /* DARK green card background (Consistent theme color) */
+    color: black; /* Light text color */
+    width: 600px;
+    max-width: 600px; 
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+    margin-bottom: 50px; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+.container h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: black;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+/* --- Radio Button Options --- */
+.option {
+    background-color: white; /* Slightly lighter dark green for the options box */
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.option:hover {
+    background-color: #4b6245; /* Darker hover effect */
+}
+
+.option input[type="radio"] {
+    /* Style radio button container */
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #D0D0CF; /* Light border */
+    border-radius: 50%;
+    margin-right: 5px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.option input[type="radio"]:checked {
+    background-color: #6a9570; /* Primary green check color */
+    border-color: #6a9570;
+    box-shadow: 0 0 0 3px #2f3e2a; /* Inner glow effect */
+}
+
+.option label {
+    font-size: 16px;
+    color: black; 
+    cursor: pointer;
+}
+
+/* --- Textarea --- */
+.textbox-area {
+    margin-top: 25px;
+}
+
+.textbox-area textarea {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #50644E;
+    background-color: #ffffff;
+    color: #333; /* Dark text on white background */
+    font-size: 15px;
+    resize: vertical; 
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.textbox-area textarea:focus {
+    border-color: #6a9570; /* Primary focus color */
+    box-shadow: 0 0 0 3px rgba(106, 149, 112, 0.5); /* Green ring focus */
+    outline: none;
+}
+
+/* --- Submit Button --- */
+.submit-btn{
+    margin-top: 30px;
+    width: 100%;
+    padding: 14px;
+    background-color: #6a9570; /* Primary action color */
+    color: white; /* Dark text on light button */
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.submit-btn:hover {
+    background-color: #50644E; /* Darker hover */
+    color: black;
+    transform: translateY(-2px); /* Lift slightly on hover */
+    box-shadow: 0 6px 10px rgba(0,0,0,0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* --- Back Button/Link --- */
+.back-btn {
+    display: block;
+    color: black;
+    text-align: center;
+    margin-top: 20px; /* Increased margin */
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.2s, text-decoration 0.2s;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+/* Success/Error Message Styles */
+.success-message,
+.error-message {
+    width: 100%;
+    max-width: 550px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.success-message {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.error-message {
+    background-color: #f44336;
+    color: white;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media screen and (max-width: 768px) {
+    .report-content {
+        /* Remove margin when sidebar likely collapses or hides on mobile/tablet */
+        margin-left: 0; 
+        padding: 20px 10px;
+    }
+    
+    .container {
+        padding: 20px 25px;
+    }
+
+    .container h2 {
+        font-size: 24px;
+    }
+
+    .option {
+        padding: 12px;
+    }
+
+    .submit-btn {
+        font-size: 16px;
+        padding: 12px;
+    }
+}

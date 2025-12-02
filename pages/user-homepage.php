@@ -100,6 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow_book'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Browse Books - Lé Bros Library</title>
   <link rel="stylesheet" href="../styles/user-homepage.css">
+  <link rel="icon" href="../images/icons/bookIcon.png" type="image/png">
 </head>
 <body>
 

@@ -20,7 +20,7 @@ body {
 
 .book-catalog {
   display: grid;
-  margin-left: 50px;
+  margin-left: 55px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
   background-color: #d0d0cf;
