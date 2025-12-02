@@ -22,6 +22,9 @@
 
 </section>
 <section class="sidenav-link">
+  <a href="../pages/admin-report.php">
+    <img src="../images/icons/report-flag.png"> 
+  </a>
 </section>
 
 

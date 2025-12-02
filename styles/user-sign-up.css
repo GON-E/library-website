@@ -103,3 +103,28 @@ input {
     color: rgb(105, 129, 102); 
     cursor: pointer;
 }
+
+/* --- Error Message Styling --- */
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff6f6;
+    border-left: 4px solid #b00020;
+    color: #b00020;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.error-message i {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.error-message span {
+    flex-grow: 1;
+}

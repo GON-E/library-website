@@ -1,13 +1,13 @@
 <?php 
 session_start();
 include("../config/database.php");
-include("../fetch/user-login-fetch.php"); // Your login logic
+include("../fetch/user-login-fetch.php");
 
-// ===== LOGIN ATTEMPT CONFIGURATION =====
 $max_attempts = 5;
 $lock_duration = 60; // 1 minute
+$current_time = time();
 
-// Initialize session variables if not set
+// Initialize session variables
 if (!isset($_SESSION['user_attempts'])) {
     $_SESSION['user_attempts'] = $max_attempts;
 }
@@ -15,46 +15,46 @@ if (!isset($_SESSION['user_lock_time'])) {
     $_SESSION['user_lock_time'] = 0;
 }
 
-// Check current time
-$current_time = time();
-
-// If lock just ended and user attempts were 0, reset attempts to 1
-if ($_SESSION['user_lock_time'] != 0 && $_SESSION['user_lock_time'] <= $current_time && $_SESSION['user_attempts'] === 0) {
-    $_SESSION['user_attempts'] = 1; // 1 chance after lock
-    $_SESSION['user_lock_time'] = 0;
+// Reset attempts AFTER lock expires, but only if attempts were 0
+if ($_SESSION['user_lock_time'] != 0 && $_SESSION['user_lock_time'] <= $current_time) {
+    if ($_SESSION['user_attempts'] === 0) {
+        $_SESSION['user_attempts'] = 2; // 2 attempts after lock
+    }
+    $_SESSION['user_lock_time'] = 0; // clear lock
 }
 
-// Show error if still locked
-if ($_SESSION['user_lock_time'] > $current_time) {
+// Only show lock message if user really has 0 attempts and lock is active
+if ($_SESSION['user_attempts'] === 0 && $_SESSION['user_lock_time'] > $current_time) {
     $remaining = $_SESSION['user_lock_time'] - $current_time;
     $error_message = "Too many attempts! Try again in $remaining seconds.";
 }
 
 // Handle login submission
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($_SESSION['user_lock_time'] > $current_time) {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // If locked, prevent login
+    if ($_SESSION['user_attempts'] === 0 && $_SESSION['user_lock_time'] > $current_time) {
         $error_message = "You are locked. Try again in " . ($_SESSION['user_lock_time'] - $current_time) . " seconds.";
     } else {
         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
         $password = $_POST["password"];
 
-        if(empty($email) || empty($password)){
+        if (empty($email) || empty($password)) {
             $error_message = "All fields are required!";
         } else {
             $sql = "SELECT * FROM users WHERE email = ?";
             $stmt = mysqli_prepare($conn, $sql);
 
-            if($stmt){
+            if ($stmt) {
                 mysqli_stmt_bind_param($stmt, "s", $email);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
 
-                if(mysqli_num_rows($result) > 0){
+                if (mysqli_num_rows($result) > 0) {
                     $row = mysqli_fetch_assoc($result);
                     $storedPassword = $row['password'];
 
-                    if(password_verify($password, $storedPassword)){
-                        // SUCCESS → reset attempts
+                    if (password_verify($password, $storedPassword)) {
+                        // Success → reset attempts to max
                         $_SESSION['user_attempts'] = $max_attempts;
                         $_SESSION['user_lock_time'] = 0;
 
@@ -66,10 +66,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("Location: ../pages/user-dashboard.php");
                         exit();
                     } else {
-                        // WRONG PASSWORD → decrease attempts safely
+                        // Wrong password → decrease attempts safely
                         if ($_SESSION['user_attempts'] > 0) $_SESSION['user_attempts']--;
                         if ($_SESSION['user_attempts'] < 0) $_SESSION['user_attempts'] = 0;
 
+                        // Trigger lock only if attempts reach 0
                         if ($_SESSION['user_attempts'] === 0) {
                             $_SESSION['user_lock_time'] = time() + $lock_duration;
                             $error_message = "Too many attempts! Locked for 1 minute.";
@@ -78,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
                 } else {
-                    // EMAIL NOT FOUND → decrease attempts safely
+                    // Email not found → decrease attempts safely
                     if ($_SESSION['user_attempts'] > 0) $_SESSION['user_attempts']--;
                     if ($_SESSION['user_attempts'] < 0) $_SESSION['user_attempts'] = 0;
 
@@ -94,7 +95,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-if(isset($conn)) { mysqli_close($conn); }
+
+if (isset($conn)) {
+    mysqli_close($conn);
+}
+
 ?>
 
 <!DOCTYPE html>
