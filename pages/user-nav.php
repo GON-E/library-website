@@ -28,7 +28,7 @@ if(!isset($_SESSION['userId']) || empty($_SESSION['userId'])) {
 -->
 
 <section class="sidenav-link">
-  <a href="user-homepage.php" title="My Borrowed Books">
+  <a href="public-homepage.php" title="My Borrowed Books">
     <img src="../images/icons/home-icon.svg">
   </a>
 </section>
