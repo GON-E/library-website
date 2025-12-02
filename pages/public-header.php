@@ -1,4 +1,5 @@
 <?php
+// pages/public-header.php
 // Ensure session is started to access user info
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -16,7 +17,7 @@ $userName = $isLoggedIn ? $_SESSION['userName'] : 'Guest';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="../styles/public-header.css">
-  <script src="../script/public-header.js" defer></script>
+  <script src="../script/header.js" defer></script>
 </head>
 <body>
   <header>
@@ -24,6 +25,9 @@ $userName = $isLoggedIn ? $_SESSION['userName'] : 'Guest';
       <section class="signin-container">
         <?php if($isLoggedIn): ?>
           <!-- User is logged in - show Sign Out button -->
+          <form action="../fetch/user-logout-fetch.php" method="post" style="display: inline;">
+            <button type="submit" name="signout" class="signin-btn">Sign Out</button>
+          </form>
         <?php else: ?>
           <!-- User is NOT logged in - show Login/Sign Up buttons -->
           <a href="user-login.php">

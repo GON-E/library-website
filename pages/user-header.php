@@ -1,4 +1,5 @@
 <?php
+// pages/user-header.php
 // Ensure session is started to access user info
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -21,14 +22,14 @@ $userName = isset($_SESSION['userName']) ? $_SESSION['userName'] : 'User';
   <header>
     <section class="upper-header">
       <section class="signout-container">
-        <!-- FIXED: Changed path to match actual filename -->
+        <!-- User Sign Out button -->
         <form action="../fetch/user-logout-fetch.php" method="post" style="display: inline;">
           <button type="submit" name="signout" class="signout-btn">Sign Out</button>
         </form>
       </section>
       <section>
-        <!-- Browse Books Button -->
-        <a href="public-homepage.php">
+        <!-- Browse Books Button - Goes to Dashboard -->
+        <a href="user-dashboard.php">
           <button class="signout-btn">Browse Books</button>
         </a>
       </section>
