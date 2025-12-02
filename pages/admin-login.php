@@ -71,7 +71,7 @@
     <?php endif; ?>
     <section class="form-container">
       <section class="form-title">
-        <img src="../images/bookTitle.png" alt="Logo" type="image" class="LOGO" width="90%" height="10%">
+        <img src="../images/bookTitle.png" alt="Logo" type="image" class="LOGO" width="100%" height="20%">
         <div class="login-text">
           <h3>Login</h3> 
         </div>
@@ -86,7 +86,7 @@
            <i id="show-password" class="fa-regular fa-eye"></i>
           <br>
     </div>
-          <span class="login-attempt attempt-count"><u>Login Attempts: 0</u></span>
+          <span class="login-attempt attempt-count"><u>Login Attempts: 3</u></span>
     
         </section>
         <section>

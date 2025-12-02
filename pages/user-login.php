@@ -32,18 +32,18 @@ include("../fetch/user-login-fetch.php");
             
         
         <section>
-            <input type="text" name="email" placeholder="email" required> 
+            <input class="form-container" type="text" name="email" placeholder="email" required> 
         </section>
         <section>
-            <input type="password" name="password" placeholder="password" required> <br>
+            <input class="form-container" type="password" name="password" placeholder="password" required> <br>
         </section>
         <section>
             <input type="submit" name="submit" value="Log In" class="submit-btn">
         </section>
         <section class="links">
-            <h5><a href="../pages/reset-password.php">forgot password</a></h5>
+            <h4><a href="../pages/reset-password.php">Forgot Password</a></h4>
             
-            <h5>Don't have an account?<a href="../pages/user-signup.php">Sign Up</a></h5>
+            <h4>Don't have an account?<a href="../pages/user-signup.php">Sign Up</a></h4>
         </section>
     </form>
 

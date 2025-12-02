@@ -1,35 +1,28 @@
 * /* General Body and Container Styles */
 body {
-    font-size: 120%;
-    font-family: "Alfa Slab One";
-    background-color: #2f3e2a; /* Dark green/brownish background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Full viewport height */
-    overflow: hidden; /* Prevent scrollbars if content slightly overflows */
-    position: relative;
+    margin: 0;
+    text-align: center; 
+    background-color: #2f3e2a;
 }
-
-
 
 
 
 form {
-  text-align: center;
-  padding: 20px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  min-height: 60vh;
-  height: auto;
-  box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
-  background-color: #d0d0cf;
-  border-radius: 20px;
+    background-color: #d0d0cf;
+    border-radius: 20px;
+    max-width: 35%;
+    max-height: 15%;
+    margin:  auto;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
+    padding: 2%;
+    position: relative;
+    width: 95%;
 }
 
 .LOGO{
-    margin: 0.5% 0 -2% 0;
+    margin: auto;
 }
 
 
@@ -46,7 +39,7 @@ form {
 
 /* Submit Button */
 .submit-btn {
-  width: 90%;
+  width: 95%;
   border-radius: 20px;
   color: white;
   background-color: #3d4a38;
@@ -71,7 +64,7 @@ form {
 }
 
 .links a {
-    color: #4a5c41; /* Link color */
+    color: black; /* Link color */
     text-decoration: none;
     margin: 0 5px;
 }
@@ -82,6 +75,7 @@ form {
 
 .links h6 {
     margin: 5px 0;
+    color: white;
     font-weight: normal;
 }
 
@@ -112,11 +106,7 @@ form {
     font-size: 1.1em;
 }
 
-.about-box p {
-    margin-top: 30px; /* Push content down to clear "About page:" */
-    font-size: 0.95em;
-    /* Adjust text color and line height as needed */
-}
+
 
 /* Login as Admin Button */
 .admin-login-btn { /* Assuming this is a button or link with class 'admin-login-btn' */
@@ -135,82 +125,19 @@ form {
     cursor: pointer;
 }
 
-.admin-login-btn:hover {
-    background-color: #4a5c41;
-}
 
-/* Right-side container for about box and admin button */
-.right-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align the about box and button to the left */
-}
-
-/* Bottom right exclamation mark (assuming it's a fixed element) */
-.exclamation-mark {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #5d7054; /* Dark green */
-    color: white;
-    font-size: 1.8em;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    z-index: 10;
-}
-
-/* Footer */
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #4a5c41; /* Darker green for footer */
-    color: #d1d8cb;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 0.85em;
-    z-index: 1; /* Keep above background texture */
-}
-
-/* Adjustments for the specific text styling in your image */
-/* This is an approximation of the "Lé Bros: Library" custom font */
-.form-title h2 {
-    font-family: 'Times New Roman', serif; /* A serif font for the title */
-    /* If you have a custom font like 'Lobster' or 'Pacifico', you'd include it */
-    /* @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap'); */
-    /* font-family: 'Lobster', cursive; */
-}
-
-/* The "Log In" text right below the main title */
-.form-title p {
-    font-family: Arial, sans-serif;
-    letter-spacing: 1px;
-    color: #2e3e2e;
-    font-weight: 500;
-}
-
-/* Specific styling for the about box text */
-.about-box p {
-    font-family: 'Georgia', serif; /* A classic serif font */
-    color: #2e3e2e;
+.form-container {
+    background-color: #d0d0cf;
+    border-radius: 20px;
+    max-width: 95%;
+    max-height: 15%;
+    margin:  auto;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    box-shadow: 0 0 2% 5% rgba(90, 44, 44, 0.1);
+    padding: 2%;
+    position: relative;
+    width: 95%;
 }
 
 
-/* Responsive Adjustments (optional, but good practice) */
-@media (max-width: 900px) {
-    .container {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-    .about-box, .admin-login-btn {
-        margin-left: 0; /* Remove margin for smaller screens */
-        width: 350px; /* Match form width */
-    }
-}

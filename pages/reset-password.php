@@ -73,36 +73,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
-    <link rel="stylesheet" href="../styles/user-login.css">
+    <link rel="stylesheet" href="../styles/reset-password.css">
     <style>
-        .reset-link-box {
-            background: #f0f0f0;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            word-wrap: break-word;
-        }
-        .reset-link-box a {
-            color: #3f7f45;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .copy-btn {
-            background: #3f7f45;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .copy-btn:hover {
-            background: #2e5e32;
-        }
+        
     </style>
 </head>
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
+    <section class="form-container">
         <section class="form-title">
             <h2>Reset Password</h2>
         </section>
@@ -136,6 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <section class="links">
             <h6><a href="../pages/user-login.php">Back to Login</a></h6>
         </section>
+    </section>
     </form>
 
     <script>

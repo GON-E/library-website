@@ -8,7 +8,7 @@ body {
   background-color:  #2f3e2a;
   margin: 0;
   padding: 6%;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Alfa Slab One";
 }
 h3 {
   margin-top: 10px;
@@ -24,7 +24,7 @@ input {
 
 .form-container{
   text-align: center;
-  padding: 20px 20px 0px 20px;
+  padding: 40px 40px 0px 40px;
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -51,7 +51,8 @@ input {
 }
 
 .LOGO{
-    margin: 0.5% 0 -2% 0;
+    margin: 0;
+
 }
 
 .login-text {
