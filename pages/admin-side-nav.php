@@ -11,7 +11,7 @@
 
 <section class="sidenav-link">
   <a href="../pages/admin-dashboard.php">
-    <img src="../images/icons/home-icon.svg"> <!-- Dashboard image -->
+    <img src="../images/dashboard-icon.svg"> <!-- Dashboard image -->
   </a>
 </section>
 

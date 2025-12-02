@@ -7,11 +7,12 @@
 }
 
 body {
-  background:#2f3e2a;
+  background: #2f3e2a;
   font-family: sans-serif;
 }
 
 .book-catalog-container {
+
   display: block;
   width: 100%;
   max-width: 1201px;
@@ -23,7 +24,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
-  background-color: #3f7f45;
+  background-color: #d0d0cf;
   padding: 20px;
   border-radius: 10px;
 }
